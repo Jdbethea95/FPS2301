@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int jumpMax;
     [SerializeField] int jumpCount;
 
+    bool isShooting = false;
+    [SerializeField] int shootDamage = 10;
+    [SerializeField] int shootDist;
+    [SerializeField] float shootRate;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +30,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+
+        if (!isShooting && Input.GetButtonDown("Shoot"))
+            StartCoroutine(Shoot());
     }
 
     void Movement() 
@@ -39,7 +46,6 @@ public class PlayerController : MonoBehaviour
         Jump();
 
     }
-
 
     //used in movement for jump input
     void Jump() 
@@ -58,6 +64,23 @@ public class PlayerController : MonoBehaviour
 
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    IEnumerator Shoot() 
+    {
+        isShooting = true;
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+        {
+            if (hit.collider.GetComponent<IDamage>() != null)
+            {
+                hit.collider.GetComponent<IDamage>().TakeDamage(shootDamage);
+            }
+        }
+
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
     }
 
 }
