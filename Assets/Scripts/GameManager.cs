@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
 
+    int enemyCount;
+
     //aquires player gameobject and script, Remember awake happens before Start.
     private void Awake()
     {
@@ -19,5 +21,14 @@ public class GameManager : MonoBehaviour
         playerScript = player.GetComponent<PlayerController>();
     }
 
+    public void UpdateEnemiesRemaining(int amount) 
+    {
+        enemyCount += amount;
+
+        if (enemyCount <= 0) 
+        {
+            Debug.Log("All Enemies Eliminated!!");
+        }
+    }
 
 }

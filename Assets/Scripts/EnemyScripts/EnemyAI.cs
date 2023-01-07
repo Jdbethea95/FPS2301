@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
 
     [Header("----- Enemy Stats -----")]
-    [Range(1,100)][SerializeField] int hp = 10;
+    [Range(1, 100)] [SerializeField] int hp = 10;
     [SerializeField] int rotSpeed;
 
     [Header("----- Gun Stats -----")]
@@ -25,11 +25,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     bool playerInRange = false;
 
-    
+
 
     private void Start()
     {
-        
+        GameManager.instance.UpdateEnemiesRemaining(1);
     }
 
     private void Update()
@@ -47,7 +47,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 FacePlayer();
 
             if (!isShooting)
-                StartCoroutine(Shoot()); 
+                StartCoroutine(Shoot());
         }
 
     }
@@ -63,11 +63,15 @@ public class EnemyAI : MonoBehaviour, IDamage
         agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (hp <= 0)
+        {
+            GameManager.instance.UpdateEnemiesRemaining(-1);
             Destroy(gameObject);
+        }
+
     }
 
     //Adjusts the enemy's rotation upon reaching player
-    void FacePlayer() 
+    void FacePlayer()
     {
         playerDir.y = 0;
 
@@ -75,7 +79,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * rotSpeed);
     }
 
-    IEnumerator Shoot() 
+    IEnumerator Shoot()
     {
         isShooting = true;
 
