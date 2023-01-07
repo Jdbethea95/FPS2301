@@ -17,7 +17,6 @@ public class BaseHealth : MonoBehaviour, IDamage
     bool isShooting = false;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPos;
-    [Range(1, 20)] [SerializeField] int shootDamage = 10;
     [Range(5, 100)] [SerializeField] int shootDist;
     [Range(0.1f, 2)] [SerializeField] float shootRate;
     [Range(15, 50)] [SerializeField] int bulletSpeed;
