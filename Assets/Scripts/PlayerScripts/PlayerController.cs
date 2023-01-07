@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("----- Cpomonents -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] int speed;
+
+    [Header("----- Player Stats -----")]
+    [Range(10, 100)] [SerializeField] int hp = 50;
+    [Range(1, 20)] [SerializeField] int speed;
+
+    [Header("----- Jump Stats -----")]
+    [SerializeField] float gravity = 9.8f;
+    [Range(5, 10)] [SerializeField] int jumpHeight;
+    [Range(1, 3)] [SerializeField] int jumpMax;
+    [SerializeField] int jumpCount;
+
+    [Header("----- Gun Stats -----")]
+    bool isShooting = false;
+    [Range(5, 50)] [SerializeField] int shootDamage = 10;
+    [Range(15, 200)] [SerializeField] int shootDist;
+    [Range(0.1f, 2)] [SerializeField] float shootRate;
 
     Vector3 move;
     Vector3 velocity;
 
-    [SerializeField] float gravity = 9.8f;
-    [SerializeField] int jumpHeight;
-    [SerializeField] int jumpMax;
-    [SerializeField] int jumpCount;
 
-    bool isShooting = false;
-    [SerializeField] int shootDamage = 10;
-    [SerializeField] int shootDist;
-    [SerializeField] float shootRate;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Movement();
@@ -81,6 +81,12 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    public void TakeDamage(int amount) 
+    {
+        hp -= amount;
+        Debug.Log(hp);
     }
 
 }
