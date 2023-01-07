@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     void Movement() 
     {
+        ResetJump();
 
         move = (transform.right * Input.GetAxis("Horizontal")) + 
                (transform.forward * Input.GetAxis("Vertical"));
@@ -44,17 +45,12 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
 
         Jump();
-
+       
     }
 
     //used in movement for jump input
     void Jump() 
     {
-        if (controller.isGrounded && velocity.y < 0)
-        {
-            velocity.y = 0;
-            jumpCount = 0;
-        }
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
@@ -64,6 +60,17 @@ public class PlayerController : MonoBehaviour
 
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    //Resets Jump Count once Grounded
+    void ResetJump() 
+    {
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = 0;
+            jumpCount = 0;
+        }
+        
     }
 
     IEnumerator Shoot() 
