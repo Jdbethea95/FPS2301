@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Tooltip("Horizontal Sensitivity")]
+    [Range(100, 600)] [SerializeField] int sensHor;
+    [Tooltip("Vertical Sensitivity")]
+    [Range(100, 600)] [SerializeField] int sensVer;
 
-    [SerializeField] int sensHor;
-    [SerializeField] int sensVer;
+    [Tooltip("Lower Vertical Camera Limit")]
+    [Range(-180, 0)] [SerializeField] float lockMin;
+    [Tooltip("Upper Vertical Camera Limit")]
+    [Range(0, 180)] [SerializeField] float lockMax;
 
-    [SerializeField] float lockMin;
-    [SerializeField] float lockMax;
-
+    [Tooltip("Invert Vertical Input")]
     [SerializeField] bool invertX;
 
     float xRotation;
@@ -29,7 +33,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void Rotation() 
+    void Rotation()
     {
         float mouseY = Input.GetAxis("Mouse Y") * sensHor * Time.deltaTime;
         float mouseX = Input.GetAxis("Mouse X") * sensVer * Time.deltaTime;

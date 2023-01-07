@@ -34,11 +34,13 @@ public class BaseHealth : MonoBehaviour, IDamage
 
     private void Update()
     {
+        //Checks to see if Player Triggers Sphere Collider
         if (playerInRange)
         {
-
+            //Provides player's direction from enemy
             playerDir = GameManager.instance.player.transform.position - headPos.position;
 
+            //sets destination for enemy pathing
             agent.SetDestination(GameManager.instance.player.transform.position);
 
             if (agent.remainingDistance < agent.stoppingDistance)
@@ -50,6 +52,10 @@ public class BaseHealth : MonoBehaviour, IDamage
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dmg">Applies Damage to Enemy</param>
     public void TakeDamage(int dmg)
     {
 
@@ -60,6 +66,7 @@ public class BaseHealth : MonoBehaviour, IDamage
             Destroy(gameObject);
     }
 
+    //Adjusts the enemy's rotation upon reaching player
     void FacePlayer() 
     {
         playerDir.y = 0;
@@ -79,6 +86,7 @@ public class BaseHealth : MonoBehaviour, IDamage
         isShooting = false;
     }
 
+    //Checks for player inside collider trigger
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -87,6 +95,7 @@ public class BaseHealth : MonoBehaviour, IDamage
         }
     }
 
+    //Checks for player exit from collider trigger
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))

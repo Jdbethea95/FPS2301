@@ -10,14 +10,17 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+        //Destroys bullet after alloted amount of time in for collision happens
         Destroy(gameObject, timer);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        //damages player from collision of bullet
         if (other.CompareTag("Player"))
             GameManager.instance.playerScript.TakeDamage(bulletDMG);
 
+        //destroys bullet object upon collision with any object not on enemy layer
         Destroy(gameObject);
     }
 }
