@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("----- Player Stats -----")]
     [Range(10, 100)] [SerializeField] int hp = 50;
     [Range(1, 20)] [SerializeField] int speed;
+    int maxHp = 50;
 
     [Header("----- Jump Stats -----")]
     [SerializeField] float gravity = 9.8f;
@@ -26,6 +27,15 @@ public class PlayerController : MonoBehaviour
     Vector3 move;
     Vector3 velocity;
 
+    #region Properties
+
+    public bool CanHeal
+    {
+        get { return hp != maxHp; }
+
+    }
+
+    #endregion
 
     void Update()
     {
@@ -35,21 +45,21 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Shoot());
     }
 
-    void Movement() 
+    void Movement()
     {
         ResetJump();
 
-        move = (transform.right * Input.GetAxis("Horizontal")) + 
+        move = (transform.right * Input.GetAxis("Horizontal")) +
                (transform.forward * Input.GetAxis("Vertical"));
 
         controller.Move(move * speed * Time.deltaTime);
 
         Jump();
-       
+
     }
 
     //used in movement for jump input
-    void Jump() 
+    void Jump()
     {
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
@@ -63,17 +73,17 @@ public class PlayerController : MonoBehaviour
     }
 
     //Resets Jump Count once Grounded
-    void ResetJump() 
+    void ResetJump()
     {
         if (controller.isGrounded && velocity.y < 0)
         {
             velocity.y = 0;
             jumpCount = 0;
         }
-        
+
     }
 
-    IEnumerator Shoot() 
+    IEnumerator Shoot()
     {
         isShooting = true;
         RaycastHit hit;
@@ -90,9 +100,14 @@ public class PlayerController : MonoBehaviour
         isShooting = false;
     }
 
-    public void TakeDamage(int amount) 
+    public void TakeDamage(int amount)
     {
-        hp -= amount;
+        //healthpack uses takedamage in negative amounts to heal
+        if (hp - amount >= maxHp)
+            hp = maxHp;
+        else
+            hp -= amount;
+
         Debug.Log(hp);
     }
 
