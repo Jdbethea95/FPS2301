@@ -9,8 +9,12 @@ public class PlayerController : MonoBehaviour
 
     [Header("----- Player Stats -----")]
     [Range(10, 100)] [SerializeField] int hp = 50;
-    [Range(1, 20)] [SerializeField] int speed;
     int maxHp = 50;
+    [Range(1, 20)] [SerializeField] int speed;
+    [Range(1, 5)] [SerializeField] int reduceRate = 2;
+    int baseSpeed;
+    float speedTimer;
+
 
     [Header("----- Jump Stats -----")]
     [SerializeField] float gravity = 9.8f;
@@ -37,14 +41,24 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    //sets baseSpeed to match speed provided on start
+    private void Start()
+    {
+        baseSpeed = speed;
+    }
+
     void Update()
     {
         Movement();
 
         if (!isShooting && Input.GetButtonDown("Shoot"))
             StartCoroutine(Shoot());
+
+        if (Time.time > speedTimer && speed > baseSpeed)
+            ReduceSpeed();
     }
 
+    #region MovementMethods
     void Movement()
     {
         ResetJump();
@@ -83,6 +97,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    #endregion
+
+    #region DamageMethods
+
     IEnumerator Shoot()
     {
         isShooting = true;
@@ -110,5 +129,27 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log(hp);
     }
+    #endregion
+
+    #region SpeedMethods
+
+    public void SpeedBoost(int boost, int offset)
+    {
+        speed += boost;
+        speedTimer = Time.time + offset;
+    }
+
+    void ReduceSpeed()
+    {
+        speedTimer = Time.time + 1f;
+
+        if (speed - reduceRate <= baseSpeed)
+            speed = baseSpeed;
+        else
+            speed -= reduceRate;
+
+    }
+
+    #endregion
 
 }
