@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("----- Cpomonents -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] ParticleSystem dashParticles;
 
     [Header("----- Player Stats -----")]
     [Range(10, 100)] [SerializeField] int hp = 50;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         baseSpeed = speed;
+        dashParticles.Stop();
     }
 
     void Update()
@@ -137,6 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         speed += boost;
         speedTimer = Time.time + offset;
+        dashParticles.Play();
     }
 
     void ReduceSpeed()
@@ -144,7 +147,10 @@ public class PlayerController : MonoBehaviour
         speedTimer = Time.time + 1f;
 
         if (speed - reduceRate <= baseSpeed)
+        {
             speed = baseSpeed;
+            dashParticles.Stop();
+        }            
         else
             speed -= reduceRate;
 
