@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     [Header("----- Cpomonents -----")]
     [SerializeField] CharacterController controller;
 
@@ -14,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [Range(1, 5)] [SerializeField] int reduceRate = 2;
     int baseSpeed;
     float speedTimer;
-
 
     [Header("----- Jump Stats -----")]
     [SerializeField] float gravity = 9.8f;
