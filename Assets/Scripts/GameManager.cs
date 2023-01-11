@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     [Header("----- Canvas Items-----")]
     [SerializeField] TextMeshProUGUI enemyCountTxt;
+    public Image playerHpBar;
 
     //Pause State Variables
     public bool isPaused;
@@ -82,6 +84,13 @@ public class GameManager : MonoBehaviour
             activeMenu = winMenu;
             activeMenu.SetActive(true);
         }
+    }
+
+    public void PlayerDeath() 
+    {
+        PauseGame();
+        activeMenu = deathMenu;
+        activeMenu.SetActive(true);
     }
 
 }

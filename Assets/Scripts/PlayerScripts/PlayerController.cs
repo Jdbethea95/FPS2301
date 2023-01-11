@@ -46,7 +46,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         baseSpeed = speed;
+        maxHp = hp;
         dashParticles.Stop();
+        UpdatePlayerHp();
     }
 
     void Update()
@@ -125,13 +127,26 @@ public class PlayerController : MonoBehaviour
     {
         //healthpack uses takedamage in negative amounts to heal
         if (hp - amount >= maxHp)
+        {
             hp = maxHp;
+        }
         else
+        {
             hp -= amount;
+        }            
 
-        Debug.Log(hp);
+        UpdatePlayerHp();
+
+        if (hp <= 0)
+            GameManager.instance.PlayerDeath();
     }
     #endregion
+
+    public void UpdatePlayerHp() 
+    {
+        GameManager.instance.playerHpBar.fillAmount = (float)hp / (float)maxHp;
+        Debug.Log(hp);
+    }
 
     #region SpeedMethods
 
