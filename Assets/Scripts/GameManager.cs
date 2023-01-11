@@ -25,7 +25,16 @@ public class GameManager : MonoBehaviour
 
     [Header("----- Canvas Items-----")]
     [SerializeField] TextMeshProUGUI enemyCountTxt;
+    [SerializeField] TextMeshProUGUI timerTxt;
     public Image playerHpBar;
+
+
+    //timer variables
+    int timerSeconds;
+    int timerMinutes;
+    //Time.time Trackers
+    int timeInterval = 1;
+    float currentTime = 0f;
 
     //Pause State Variables
     public bool isPaused;
@@ -44,6 +53,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
+        StopWatch();
+
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;
@@ -54,6 +66,7 @@ public class GameManager : MonoBehaviour
                 PauseGame();
 
         }
+
     }
 
 
@@ -91,6 +104,36 @@ public class GameManager : MonoBehaviour
         PauseGame();
         activeMenu = deathMenu;
         activeMenu.SetActive(true);
+    }
+
+    void StopWatch() 
+    {
+        if (Time.time > currentTime + timeInterval)
+        {
+            timerSeconds += timeInterval;
+
+            if (timerSeconds >= 60)
+            {
+                timerMinutes++;
+                timerSeconds = 0;
+            }
+
+            currentTime = Time.time;
+            //minute conversion
+            if (timerMinutes <= 0)
+                timerTxt.text = $"00:";
+            else if (timerMinutes < 10)
+                timerTxt.text = $"0{timerMinutes}:";
+            else
+                timerTxt.text = $"{timerMinutes}:";
+
+            //second conversion
+            if (timerSeconds < 10)
+                timerTxt.text += $"0{timerSeconds}";
+            else
+                timerTxt.text += $"{timerSeconds}";
+            
+        }
     }
 
 }
