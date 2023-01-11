@@ -54,8 +54,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        StopWatch();
-
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;
@@ -66,6 +64,8 @@ public class GameManager : MonoBehaviour
                 PauseGame();
 
         }
+
+        StopWatch();
 
     }
 
