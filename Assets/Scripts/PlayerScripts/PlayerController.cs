@@ -24,10 +24,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int jumpCount;
 
     [Header("----- Gun Stats -----")]
-    bool isShooting = false;
     [Range(5, 50)] [SerializeField] int shootDamage = 10;
     [Range(15, 200)] [SerializeField] int shootDist;
     [Range(0.1f, 2)] [SerializeField] float shootRate;
+    [SerializeField] ParticleSystem gunFlash;
+    bool isShooting = false;
 
     Vector3 move;
     Vector3 velocity;
@@ -110,6 +111,8 @@ public class PlayerController : MonoBehaviour
     {
         isShooting = true;
         RaycastHit hit;
+
+        gunFlash.Play();
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
