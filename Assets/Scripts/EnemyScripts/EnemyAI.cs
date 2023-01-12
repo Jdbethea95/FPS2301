@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("----- Enemy Stats -----")]
     [Range(1, 100)] [SerializeField] int hp = 10;
     [SerializeField] int rotSpeed;
+    [SerializeField] int speedMult;
 
     [Header("----- Gun Stats -----")]
     bool isShooting = false;
@@ -30,6 +31,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     private void Start()
     {
         GameManager.instance.UpdateEnemiesRemaining(1);
+        agent.speed = agent.speed * speedMult;
+
+        if (agent.speed == 0)
+            agent.stoppingDistance = int.MaxValue;
     }
 
     private void Update()
@@ -42,11 +47,12 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             //sets destination for enemy pathing
             agent.SetDestination(GameManager.instance.player.transform.position);
-
+            
             if (agent.remainingDistance < agent.stoppingDistance)
                 FacePlayer();
 
-            if (!isShooting)
+            if (!isShooting && shootDist >= Vector3.Distance(transform.position,
+                                           GameManager.instance.player.transform.position))
                 StartCoroutine(Shoot());
         }
 
