@@ -8,11 +8,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("----- Components -----")]
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform headPos;
+    [SerializeField] Animator animator;
 
     [Header("----- Enemy Stats -----")]
     [Range(1, 100)] [SerializeField] int hp = 10;
     [SerializeField] int rotSpeed;
     [SerializeField] int speedMult;
+    [SerializeField] int viewAngle;
+    [SerializeField] int shootAngle;
 
     [Header("----- Gun Stats -----")]
     bool isShooting = false;
@@ -25,7 +28,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     Vector3 playerDir;
     bool playerInRange = false;
-
+    float angleToPlayer;
 
 
     private void Start()
@@ -39,21 +42,12 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     private void Update()
     {
+        // we don't have a shoot anim so we need to talk about that 
+        //animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
         //Checks to see if Player Triggers Sphere Collider
         if (playerInRange)
         {
-            //Provides player's direction from enemy
-            playerDir = GameManager.instance.player.transform.position - headPos.position;
-
-            //sets destination for enemy pathing
-            agent.SetDestination(GameManager.instance.player.transform.position);
-            
-            if (agent.remainingDistance < agent.stoppingDistance)
-                FacePlayer();
-
-            if (!isShooting && shootDist >= Vector3.Distance(transform.position,
-                                           GameManager.instance.player.transform.position))
-                StartCoroutine(Shoot());
+            canSeePlayer();
         }
 
     }
@@ -75,6 +69,33 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
 
     }
+    void canSeePlayer()
+    {
+        //Provides player's direction from enemy
+        playerDir = GameManager.instance.player.transform.position - headPos.position;
+        //AI's veiw section
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+
+        Debug.Log(angleToPlayer);
+        Debug.DrawRay(headPos.position, playerDir);
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+        
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            {
+                //sets destination for enemy pathing
+                agent.SetDestination(GameManager.instance.player.transform.position);
+
+                if (agent.remainingDistance < agent.stoppingDistance)
+                    FacePlayer();
+
+                if (!isShooting && angleToPlayer <= shootAngle  && shootDist >= Vector3.Distance(transform.position, GameManager.instance.player.transform.position))
+                    StartCoroutine(Shoot());
+            }
+        }
+    }
 
     //Adjusts the enemy's rotation upon reaching player
     void FacePlayer()
@@ -88,6 +109,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isShooting = true;
+
+        animator.SetTrigger("Shoot");
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
