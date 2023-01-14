@@ -100,8 +100,8 @@ public class EnemyAI : MonoBehaviour, IDamage
                 if (agent.remainingDistance < agent.stoppingDistance)
                     FacePlayer();
 
-                //angleToPlayer <= shootAngle  &&
-                if (!isShooting && shootDist >= Vector3.Distance(transform.position, GameManager.instance.player.transform.position))
+                
+                if (!isShooting && angleToPlayer <= shootAngle)
                     StartCoroutine(Shoot());
             }
         }
