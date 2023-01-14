@@ -73,8 +73,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         //Provides player's direction from enemy
         playerDir = GameManager.instance.player.transform.position - headPos.position;
+
+        float pdy = playerDir.y;
+        playerDir.y = 0;
+
         //AI's veiw section
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+
+        playerDir.y = pdy;
 
         Debug.Log(angleToPlayer);
         Debug.DrawRay(headPos.position, playerDir);
@@ -91,7 +97,8 @@ public class EnemyAI : MonoBehaviour, IDamage
                 if (agent.remainingDistance < agent.stoppingDistance)
                     FacePlayer();
 
-                if (!isShooting && angleToPlayer <= shootAngle  && shootDist >= Vector3.Distance(transform.position, GameManager.instance.player.transform.position))
+                //angleToPlayer <= shootAngle  &&
+                if (!isShooting && shootDist >= Vector3.Distance(transform.position, GameManager.instance.player.transform.position))
                     StartCoroutine(Shoot());
             }
         }

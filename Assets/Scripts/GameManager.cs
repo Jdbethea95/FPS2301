@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerTxt;
     public Image playerHpBar;
 
+    [SerializeField]List<GameObject> doors;
+    [SerializeField]List<DoorScript> doorScripts;
 
     //timer variables
     int timerSeconds;
@@ -44,8 +46,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
+
+        //I really hate this
+        doors.AddRange(GameObject.FindGameObjectsWithTag("Door"));
+        GetDoorScripts();
 
         timeScaleOrig = Time.timeScale;
     }
@@ -69,6 +76,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    #region MenuConditions
 
     public void PauseGame()
     {
@@ -77,7 +85,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void UnPause() 
+    public void UnPause()
     {
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
@@ -86,27 +94,39 @@ public class GameManager : MonoBehaviour
         activeMenu = null;
     }
 
-    public void UpdateEnemiesRemaining(int amount) 
+    public void WinCondition()
     {
-        enemyCount += amount;
-        enemyCountTxt.text = enemyCount.ToString("F0");
 
-        if (enemyCount <= 0) 
-        {
-            PauseGame();
-            activeMenu = winMenu;
-            activeMenu.SetActive(true);
-        }
+        PauseGame();
+        activeMenu = winMenu;
+        activeMenu.SetActive(true);
+
     }
 
-    public void PlayerDeath() 
+    public void PlayerDeath()
     {
         PauseGame();
         activeMenu = deathMenu;
         activeMenu.SetActive(true);
     }
 
-    void StopWatch() 
+    #endregion
+
+    public void UpdateEnemiesRemaining(int amount)
+    {
+        enemyCount += amount;
+        enemyCountTxt.text = enemyCount.ToString("F0");
+
+        if (amount < 0)
+        {
+            for (int i = 0; i < doors.Count; i++)
+            {
+                doorScripts[i].UpdateDoorCounter(amount);
+            }
+        }
+    }
+
+    void StopWatch()
     {
         if (Time.time > currentTime + timeInterval)
         {
@@ -132,7 +152,15 @@ public class GameManager : MonoBehaviour
                 timerTxt.text += $"0{timerSeconds}";
             else
                 timerTxt.text += $"{timerSeconds}";
-            
+
+        }
+    }
+
+    void GetDoorScripts() 
+    {
+        for (int i = 0; i < doors.Count; i++)
+        {
+            doorScripts.Add(doors[i].GetComponent<DoorScript>());
         }
     }
 

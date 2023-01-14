@@ -723,9 +723,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 950872555839150767}
   headPos: {fileID: 951079390285464579}
+  animator: {fileID: 0}
   hp: 10
   rotSpeed: 300
   speedMult: 1
+  viewAngle: 0
+  shootAngle: 0
   bullet: {fileID: 6716093678165597531, guid: 3132bb0d0b13c7d42bbe0cb4b7e25adb, type: 3}
   shootPos: {fileID: 38295023660289884}
   shootDist: 20
@@ -777,7 +780,7 @@ Animator:
   m_GameObject: {fileID: 947062895039000835}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 535511bb156e7f54f83f305d96a1c4ce, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47a9c5e70b8a7a04492b4c3d565a271a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
