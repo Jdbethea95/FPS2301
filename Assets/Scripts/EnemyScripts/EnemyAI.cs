@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform headPos;
     [SerializeField] Animator animator;
+    [SerializeField] Collider body;
 
     [Header("----- Enemy Stats -----")]
     [Range(1, 100)] [SerializeField] int hp = 10;
@@ -29,6 +30,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     bool playerInRange = false;
     float angleToPlayer;
+    bool isDead = false;
 
 
     private void Start()
@@ -42,10 +44,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     private void Update()
     {
-        // we don't have a shoot anim so we need to talk about that 
+        
         animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
         //Checks to see if Player Triggers Sphere Collider
-        if (playerInRange)
+        if (playerInRange && !isDead)
         {
             canSeePlayer();
         }
@@ -57,16 +59,19 @@ public class EnemyAI : MonoBehaviour, IDamage
     /// </summary>
     /// <param name="dmg">Applies Damage to Enemy</param>
     public void TakeDamage(int dmg)
-    {
-
+    {        
         hp -= dmg;
         animator.SetBool("PlayerNear", true);
+        animator.SetTrigger("Hurt");
         agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (hp <= 0)
         {
+            animator.SetBool("Dead", true);
+            isDead = true;
+            body.enabled = false;
             GameManager.instance.UpdateEnemiesRemaining(-1);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }
@@ -121,9 +126,14 @@ public class EnemyAI : MonoBehaviour, IDamage
         isShooting = true;
 
         animator.SetTrigger("Shoot");
+        int offest = Random.Range(0, 2);
+
+        Vector3 accuracy = new Vector3(GameManager.instance.playerScript.COM.x + offest,
+                                       GameManager.instance.playerScript.COM.y,
+                                       GameManager.instance.playerScript.COM.z + offest);
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        bulletClone.GetComponent<Rigidbody>().velocity = (accuracy - transform.position).normalized * bulletSpeed;
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;

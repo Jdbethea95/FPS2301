@@ -41,11 +41,9 @@ public class DoorScript : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if (Input.GetButtonDown("Action"))
-        {
             if (isUnlocked)
                 gameObject.SetActive(false);
-        }
+        
     }
 
 

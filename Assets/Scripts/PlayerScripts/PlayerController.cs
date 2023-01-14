@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("----- Cpomonents -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] ParticleSystem dashParticles;
+    [SerializeField] GameObject com;
 
     [Header("----- Player Stats -----")]
     [Range(10, 100)] [SerializeField] int hp = 50;
@@ -39,6 +40,12 @@ public class PlayerController : MonoBehaviour
     {
         get { return hp != maxHp; }
 
+    }
+
+    //center of mass
+    public Vector3 COM 
+    {
+        get { return com.transform.position; }
     }
 
     #endregion
