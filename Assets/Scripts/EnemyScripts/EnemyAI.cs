@@ -43,7 +43,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     private void Update()
     {
         // we don't have a shoot anim so we need to talk about that 
-        //animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
+        animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
         //Checks to see if Player Triggers Sphere Collider
         if (playerInRange)
         {
@@ -60,6 +60,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
 
         hp -= dmg;
+        animator.SetBool("PlayerNear", true);
         agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (hp <= 0)
@@ -74,12 +75,14 @@ public class EnemyAI : MonoBehaviour, IDamage
         //Provides player's direction from enemy
         playerDir = GameManager.instance.player.transform.position - headPos.position;
 
+        //saves directional Y and sets to zero for angle calculations to ignore Y axis
         float pdy = playerDir.y;
         playerDir.y = 0;
 
         //AI's veiw section
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
+        //resets Y back into playerDir for Raycast
         playerDir.y = pdy;
 
         Debug.Log(angleToPlayer);
@@ -132,6 +135,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            animator.SetBool("PlayerNear", true);
         }
     }
 
@@ -141,6 +145,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            animator.SetBool("PlayerNear", false);
         }
     }
 
