@@ -46,6 +46,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         
         animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
+
         //Checks to see if Player Triggers Sphere Collider
         if (playerInRange && !isDead)
         {
@@ -90,7 +91,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         //resets Y back into playerDir for Raycast
         playerDir.y = pdy;
 
-        Debug.Log(angleToPlayer);
+        Debug.Log($"Angle{angleToPlayer} :: Dir{playerDir}");
         Debug.DrawRay(headPos.position, playerDir);
 
         RaycastHit hit;
