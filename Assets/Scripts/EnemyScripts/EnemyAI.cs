@@ -72,6 +72,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             isDead = true;
             body.enabled = false;
             GameManager.instance.UpdateEnemiesRemaining(-1);
+            GameManager.instance.currentScore.EnemyScore = 1;
             //Destroy(gameObject);
         }
 

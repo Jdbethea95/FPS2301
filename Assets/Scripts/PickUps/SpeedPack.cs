@@ -14,7 +14,8 @@ public class SpeedPack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.playerScript.SpeedBoost(speedBoost, duration);
+            GameManager.instance.currentScore.BoostScore = 1;
+            GameManager.instance.playerScript.SpeedBoost(speedBoost, duration);            
             Destroy(gameObject);
         }
     }

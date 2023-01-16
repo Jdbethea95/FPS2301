@@ -28,6 +28,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerTxt;
     public Image playerHpBar;
 
+
+    [Header("----- Score Items-----")]
+    [SerializeField] TextMeshProUGUI totalScoreTxt;
+    [SerializeField] TextMeshProUGUI timeScoreTxt;
+    [SerializeField] TextMeshProUGUI enemyScoreTxt;
+    [SerializeField] TextMeshProUGUI healthScoreTxt;
+    [SerializeField] TextMeshProUGUI boostScoreTxt;
+    [SerializeField] TextMeshProUGUI PerkScoreTxt;
+    public Score currentScore = new Score();
+
     [SerializeField]List<GameObject> doors;
     [SerializeField]List<DoorScript> doorScripts;
 
@@ -99,8 +109,21 @@ public class GameManager : MonoBehaviour
 
         PauseGame();
         activeMenu = winMenu;
+        UpdateScoreCard();
         activeMenu.SetActive(true);
 
+    }
+
+    void UpdateScoreCard() 
+    {
+        currentScore.HealthScore = playerScript.CurrentHealth;
+        currentScore.SetTimeScore(timerMinutes, timerSeconds);
+
+        timeScoreTxt.text = currentScore.TimeScore.ToString("F0");
+        enemyScoreTxt.text = currentScore.EnemyScore.ToString("F0");
+        healthScoreTxt.text = currentScore.HealthScore.ToString("F0");
+        boostScoreTxt.text = currentScore.BoostScore.ToString("F0");
+        totalScoreTxt.text = currentScore.TotalScore.ToString("F0");
     }
 
     public void PlayerDeath()

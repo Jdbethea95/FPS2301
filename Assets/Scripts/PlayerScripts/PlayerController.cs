@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public int CurrentHealth { get { return hp; } }
+
     //center of mass
     public Vector3 COM 
     {
