@@ -22,4 +22,14 @@ public class ButtonFunctions : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ReturnToMenu() 
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void TempPlay() 
+    {
+        SceneManager.LoadScene("BuildingLevel");
+    }
 }
