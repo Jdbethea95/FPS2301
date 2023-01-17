@@ -13,18 +13,19 @@ public class ScoreBoardUI : MonoBehaviour
 
     private void Start()
     {
-        //SetUpGrid();
+        SetUpGrid();
     }
 
     public void SetUpGrid() 
     {
-        RemoveRows();
+        
 
         foreach (var lvl in ScoreManager.instance.boards)
         {
             levels.Add(lvl.Value);
         }
 
+        RemoveRows();
         UpdateGrid(levels[drop.value]);
 
         levels.Clear();
