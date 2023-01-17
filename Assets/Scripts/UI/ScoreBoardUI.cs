@@ -17,6 +17,7 @@ public class ScoreBoardUI : MonoBehaviour
         foreach (var score in ScoreManager.instance.boards)
         {
             levels.Add(score.Value);
+            Debug.Log($"Made it in foreach");
         }
 
         RemoveRows();
@@ -29,6 +30,7 @@ public class ScoreBoardUI : MonoBehaviour
     {
         for (int i = 0; i < level.ScoreBoard.Count; i++)
         {
+            
             rows.Add(Instantiate(row, transform));
             RowUI ui = rows[i].GetComponent<RowUI>();
 

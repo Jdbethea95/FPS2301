@@ -25,15 +25,15 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        SceneManager.LoadScene("MainMenu");
+
     }
 
     public void TempPlay()
     {
-        SceneManager.LoadScene("BuildingLevel");
-
         GameManager.instance.UnPause();
+        SceneManager.LoadScene("BuildingLevel");
     }
 }
