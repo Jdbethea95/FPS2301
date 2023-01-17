@@ -11,19 +11,24 @@ public class ScoreBoardUI : MonoBehaviour
     List<LevelScores> levels = new List<LevelScores>();
 
 
+    private void Start()
+    {
+        SetUpGrid();
+    }
+
     public void SetUpGrid() 
     {
+        RemoveRows();
 
-        foreach (var score in ScoreManager.instance.boards)
+        foreach (var lvl in ScoreManager.instance.boards)
         {
-            levels.Add(score.Value);
-            Debug.Log($"Made it in foreach");
+            levels.Add(lvl.Value);
         }
 
-        RemoveRows();
         UpdateGrid(levels[drop.value]);
 
         levels.Clear();
+
     }
 
     void UpdateGrid(LevelScores level)
@@ -65,8 +70,8 @@ public class ScoreBoardUI : MonoBehaviour
         for (int i = 0; i < rows.Count; i++)
         {
             Destroy(rows[i]);
-            rows.RemoveAt(i);
         }
+        rows.Clear();
     }
 
 }

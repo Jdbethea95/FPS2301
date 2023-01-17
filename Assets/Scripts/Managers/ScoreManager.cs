@@ -13,8 +13,12 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
         DontDestroyOnLoad(gameObject);
+
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
     }
 
     private void Start()

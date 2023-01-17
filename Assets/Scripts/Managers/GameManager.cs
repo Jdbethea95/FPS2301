@@ -114,8 +114,9 @@ public class GameManager : MonoBehaviour
 
         if (ScoreManager.instance != null && ScoreManager.instance.boards.ContainsKey(SceneManager.GetActiveScene().name))
         {
-            ScoreManager.instance.boards[SceneManager.GetActiveScene().name].AddScore(currentScore);
-            Debug.Log("This happened");
+            if (ScoreManager.instance.boards[SceneManager.GetActiveScene().name].AddScore(currentScore))
+                Debug.Log("Score Added");
+            
         }
             
 

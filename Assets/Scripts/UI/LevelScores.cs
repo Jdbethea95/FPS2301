@@ -34,6 +34,7 @@ public class LevelScores
         if (_scoreBoard.Count == 0)
         {
             _scoreBoard.Add(score);
+            Debug.Log($"Score: {score.TotalScore}");
             return true;
         }
 

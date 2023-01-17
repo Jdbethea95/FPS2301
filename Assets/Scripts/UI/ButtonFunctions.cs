@@ -32,8 +32,8 @@ public class ButtonFunctions : MonoBehaviour
     }
 
     public void TempPlay()
-    {
-        GameManager.instance.UnPause();
+    {       
         SceneManager.LoadScene("BuildingLevel");
+        GameManager.instance.UnPause();
     }
 }
