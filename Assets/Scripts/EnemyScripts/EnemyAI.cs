@@ -92,8 +92,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         //resets Y back into playerDir for Raycast
         playerDir.y = pdy;
 
-        Debug.Log($"Angle{angleToPlayer} :: Dir{playerDir}");
-        Debug.DrawRay(headPos.position, playerDir);
+        //Debug.Log($"Angle{angleToPlayer} :: Dir{playerDir}");
+        //Debug.DrawRay(headPos.position, playerDir);
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))

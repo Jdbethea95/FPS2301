@@ -5,6 +5,7 @@ using UnityEngine;
 public class Score
 {
     int totalScore, _healthBonus, _boostBonus, _enemyBonus, _timeBonus = 18590;
+    string _playerName;
 
     public int HealthScore
     {
@@ -39,13 +40,24 @@ public class Score
         private set { }
     }
 
-
+    public string PlayerName 
+    {
+        get { return _playerName; }
+        set 
+        {
+            if (value.Length > 3)
+                _playerName = "NAH";
+            else
+                _playerName = value.ToUpper();
+        }
+    }
 
     public Score() 
     {
         HealthScore = 0;
         BoostScore = 0;
         EnemyScore = 0;
+        _playerName = "JZH";
     }
 
     /// <summary>

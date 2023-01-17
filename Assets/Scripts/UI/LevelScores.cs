@@ -6,7 +6,7 @@ public class LevelScores
 {
     public string levelName;
 
-    List<Score> _scoreBoard;
+    List<Score> _scoreBoard = new List<Score>();
     public List<Score> ScoreBoard 
     {
         get { return _scoreBoard; }

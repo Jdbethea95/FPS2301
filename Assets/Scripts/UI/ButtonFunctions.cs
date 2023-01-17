@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class ButtonFunctions : MonoBehaviour
 {
 
-    public void Resume() 
+    public void Resume()
     {
         GameManager.instance.UnPause();
         GameManager.instance.isPaused = !GameManager.instance.isPaused;
     }
 
-    public void Restart() 
+    public void Restart()
     {
         GameManager.instance.UnPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -23,13 +23,17 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
     }
 
-    public void ReturnToMenu() 
+    public void ReturnToMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void TempPlay() 
+    public void TempPlay()
     {
         SceneManager.LoadScene("BuildingLevel");
+
+        GameManager.instance.UnPause();
     }
 }

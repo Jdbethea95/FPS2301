@@ -39,8 +39,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI PerkScoreTxt;
     public Score currentScore = new Score();
 
-    [SerializeField]List<GameObject> doors;
-    [SerializeField]List<DoorScript> doorScripts;
+    [SerializeField] List<GameObject> doors;
+    [SerializeField] List<DoorScript> doorScripts;
 
     //timer variables
     int timerSeconds;
@@ -111,11 +111,20 @@ public class GameManager : MonoBehaviour
         PauseGame();
         activeMenu = winMenu;
         UpdateScoreCard();
+
+        if (ScoreManager.instance != null && ScoreManager.instance.boards.ContainsKey(SceneManager.GetActiveScene().name))
+        {
+            ScoreManager.instance.boards[SceneManager.GetActiveScene().name].AddScore(currentScore);
+            Debug.Log("This happened");
+        }
+            
+
         activeMenu.SetActive(true);
 
     }
 
-    void UpdateScoreCard() 
+    //Implement player name here
+    void UpdateScoreCard()
     {
         currentScore.HealthScore = playerScript.CurrentHealth;
         currentScore.SetTimeScore(timerMinutes, timerSeconds);
@@ -180,7 +189,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void GetDoorScripts() 
+    void GetDoorScripts()
     {
         for (int i = 0; i < doors.Count; i++)
         {
