@@ -26,7 +26,6 @@ public class ScoreManager : MonoBehaviour
         foreach (string name in Scenes)
         {
             boards.Add(name, new LevelScores(name));
-            Debug.Log(name);
         }
 
     }

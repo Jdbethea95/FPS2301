@@ -13,7 +13,7 @@ public class ScoreBoardUI : MonoBehaviour
 
     private void Start()
     {
-        SetUpGrid();
+        //SetUpGrid();
     }
 
     public void SetUpGrid() 
