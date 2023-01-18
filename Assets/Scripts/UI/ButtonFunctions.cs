@@ -62,4 +62,15 @@ public class ButtonFunctions : MonoBehaviour
         SceneManager.LoadScene("BuildingLevel");
         GameManager.instance.UnPause();
     }
+
+    public void SaveButton() 
+    {
+        SaveManager.instance.SaveGame();
+    }
+
+    public void LoadButton() 
+    {
+        SaveManager.instance.LoadGame();
+        ScoreManager.instance.Load(SaveManager.instance.gameData);
+    }
 }
