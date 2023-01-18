@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScriptObj : MonoBehaviour
+
+[CreateAssetMenu]
+
+public class SO_Perk : ScriptableObject
 {
    public string ID;
    public int ShootDistance;
