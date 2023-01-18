@@ -10033,8 +10033,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbf2ef76636bf746849d3df0f46a215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHor: 350
-  sensVer: 350
+  sensHor: 300
+  sensVer: 300
   lockMin: -90
   lockMax: 90
   invertX: 0
@@ -10143,6 +10143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 8413257563759295684}
   dashParticles: {fileID: 1564800678}
+  cam: {fileID: 8413257563753050936}
   com: {fileID: 1991006701}
   hp: 50
   speed: 5

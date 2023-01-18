@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject deathMenu;
+    public GameObject settingsMenu;
+
+    [Header("----- Settings Components -----")]
+    public Slider xSenSlider;
+    public Slider ySenSlider;
 
     [Header("----- Canvas Items-----")]
     [SerializeField] TextMeshProUGUI enemyCountTxt;
