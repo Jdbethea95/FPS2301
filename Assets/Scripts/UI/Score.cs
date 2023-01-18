@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Score
 {
     int totalScore, _healthBonus, _boostBonus, _enemyBonus, _timeBonus = 18590;
