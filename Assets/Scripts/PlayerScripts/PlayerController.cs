@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [Header("----- Cpomonents -----")]
+    [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] ParticleSystem dashParticles;
+    public CameraController cam;
     [SerializeField] GameObject com;
 
     [Header("----- Player Stats -----")]

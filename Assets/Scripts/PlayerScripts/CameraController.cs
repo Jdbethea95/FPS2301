@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [Tooltip("Horizontal Sensitivity")]
-    [Range(100, 600)] [SerializeField] int sensHor;
+    [Range(100, 1000)] [SerializeField] float sensHor;
     [Tooltip("Vertical Sensitivity")]
-    [Range(100, 600)] [SerializeField] int sensVer;
+    [Range(100, 1000)] [SerializeField] float sensVer;
 
     [Tooltip("Lower Vertical Camera Limit")]
     [Range(-180, 0)] [SerializeField] float lockMin;
@@ -18,6 +18,17 @@ public class CameraController : MonoBehaviour
     [SerializeField] bool invertX;
 
     float xRotation;
+
+    public float YSen 
+    {
+        get { return sensHor; }
+        set { sensHor = value; }
+    }
+    public float XSen
+    {
+        get { return sensVer; }
+        set { sensVer = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
