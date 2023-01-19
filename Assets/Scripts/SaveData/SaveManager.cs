@@ -19,6 +19,7 @@ public class SaveManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+        gameData = new GameData();
     }
 
     public void NewGame()

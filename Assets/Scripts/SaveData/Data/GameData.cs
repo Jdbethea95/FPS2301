@@ -6,19 +6,19 @@ using UnityEngine;
 public class GameData
 {
     public List<LevelScores> scores = new List<LevelScores>();
-    public List<string> perkIds  = new List<string>();
+    public List<string> perkIds = new List<string>();
     public List<bool> levelLocks = new List<bool>();
 
     public float xSen;
     public float ySen;
 
-    public GameData() 
+    public GameData()
     {
         xSen = 300f;
         ySen = 300f;
     }
 
-    public GameData(GameData data) 
+    public GameData(GameData data)
     {
         UpdateScores(data.scores);
         UpdatePerks(data.perkIds);
@@ -42,7 +42,7 @@ public class GameData
         }
     }
 
-    public void UpdatePerks(List<string> _str) 
+    public void UpdatePerks(List<string> _str)
     {
         for (int i = 0; i < _str.Count; i++)
         {
@@ -50,7 +50,7 @@ public class GameData
         }
     }
 
-    public void UpdateLevels(List<bool> _bl) 
+    public void UpdateLevels(List<bool> _bl)
     {
         for (int i = 0; i < _bl.Count; i++)
         {
