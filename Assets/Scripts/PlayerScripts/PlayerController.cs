@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ParticleSystem dashParticles;
     public CameraController cam;
     [SerializeField] GameObject com;
+    [SerializeField] AudioSource audioPlayer;
 
     [Header("----- Player Stats -----")]
     [Range(10, 100)] [SerializeField] int hp = 50;
@@ -30,7 +32,17 @@ public class PlayerController : MonoBehaviour
     [Range(15, 200)] [SerializeField] int shootDist;
     [Range(0.1f, 2)] [SerializeField] float shootRate;
     [SerializeField] ParticleSystem gunFlash;
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audPlayerTakesDamage;
+    [Range(0, 1)][SerializeField] float audPlayerTakesDamageVol;
+    [SerializeField] AudioClip[] audPlayerJump;
+    [Range(0, 1)][SerializeField] float audPlayerJumpVol;
+    [SerializeField] AudioClip[] audPlayerSteps;
+    [Range(0, 1)][SerializeField] float audPlayerStepsVol;
+
     bool isShooting = false;
+    bool isPlayingSteps;
 
     Vector3 move;
     Vector3 velocity;
@@ -67,6 +79,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (move.normalized.magnitude > 0.199f && !isPlayingSteps)
+        {
+            StartCoroutine(playSteps());
+        }
         Movement();
 
         if (!isShooting && Input.GetButtonDown("Shoot"))
@@ -98,6 +114,7 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = jumpHeight;
             jumpCount++;
+            audioPlayer.PlayOneShot(audPlayerJump[Random.Range(0, audPlayerJump.Length)], audPlayerJumpVol);
         }
 
         velocity.y -= gravity * Time.deltaTime;
@@ -115,6 +132,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    IEnumerator playSteps()
+    {
+        //is the player grounded?
+        if (controller.isGrounded)
+        {
+            isPlayingSteps = true;
+            audioPlayer.PlayOneShot(audPlayerSteps[Random.Range(0, audPlayerSteps.Length)], audPlayerStepsVol);
+
+            if (speed < 10)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+            else if (speed < 20)
+            {
+                yield return new WaitForSeconds(0.3f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.2f);
+            }
+
+            isPlayingSteps = true; 
+        }
+    }
 
     #endregion
 
@@ -157,6 +198,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int amount, Vector3 pos)
     {
+        audioPlayer.PlayOneShot(audPlayerTakesDamage[Random.Range(0, audPlayerTakesDamage.Length)], audPlayerTakesDamageVol);
         //healthpack uses takedamage in negative amounts to heal
         if (hp - amount >= maxHp)
         {
@@ -167,11 +209,8 @@ public class PlayerController : MonoBehaviour
             hp -= amount;
         }
 
-        
-        pos.y = 0;
-
         //Angle of bullet
-        float angleToPlayer = Vector3.Angle(pos, transform.forward);
+        float angleToPlayer = Vector3.SignedAngle(pos, transform.forward, Vector3.up);
 
         //TODO Add direction flash to screen.
         if (angleToPlayer >= 0 && angleToPlayer <= 42)

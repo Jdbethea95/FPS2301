@@ -15,6 +15,6 @@ public class SO_Perk : ScriptableObject
    public int SpeedModifier; 
    public Renderer Model;
    public Material material;
-   public AudioClip Sound;
-   [Range(0, 1f)] public float SoundVol;
+   public AudioClip[] audGunShot;
+   [Range(0, 1)] public float audGunShotVol;
 }
