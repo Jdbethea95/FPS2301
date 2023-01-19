@@ -18,7 +18,13 @@ public class Bullet : MonoBehaviour
     {
         //damages player from collision of bullet
         if (other.CompareTag("Player"))
-            GameManager.instance.playerScript.TakeDamage(bulletDMG);
+        {
+            Vector3 dir = GameManager.instance.player.transform.position - transform.position;
+            GameManager.instance.playerScript.TakeDamage(bulletDMG, dir);
+        }
+            
+
+        
 
         //destroys bullet object upon collision with any object not on enemy layer
         Destroy(gameObject);

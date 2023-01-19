@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 move;
     Vector3 velocity;
+    public Vector3 hitDirection = Vector3.zero;
 
     #region Properties
 
@@ -138,7 +139,23 @@ public class PlayerController : MonoBehaviour
         isShooting = false;
     }
 
-    public void TakeDamage(int amount)
+
+    public void HealPlayer(int amount) 
+    {
+        if (hp + amount >= maxHp)
+        {
+            hp = maxHp;
+        }
+        else 
+        {
+            hp += amount;
+        }
+
+        UpdatePlayerHp();
+
+    }
+
+    public void TakeDamage(int amount, Vector3 pos)
     {
         //healthpack uses takedamage in negative amounts to heal
         if (hp - amount >= maxHp)
@@ -148,7 +165,25 @@ public class PlayerController : MonoBehaviour
         else
         {
             hp -= amount;
-        }            
+        }
+
+        
+        pos.y = 0;
+
+        //Angle of bullet
+        float angleToPlayer = Vector3.Angle(pos, transform.forward);
+
+        //TODO Add direction flash to screen.
+        if (angleToPlayer >= 0 && angleToPlayer <= 42)
+            Debug.Log("Top");
+        else if (angleToPlayer >= 43 && angleToPlayer <= 87)
+            Debug.Log("SideR"); //needs refining
+        else if (angleToPlayer >= 88 && angleToPlayer <= 110)
+            Debug.Log("sideL"); //needs refining
+        else
+            Debug.Log("Back");
+
+        //Debug.Log(angleToPlayer);
 
         UpdatePlayerHp();
 
@@ -159,8 +194,7 @@ public class PlayerController : MonoBehaviour
 
     public void UpdatePlayerHp() 
     {
-        GameManager.instance.playerHpBar.fillAmount = (float)hp / (float)maxHp;
-        Debug.Log(hp);
+        GameManager.instance.playerHpBar.fillAmount = (float)hp / (float)maxHp;        
     }
 
     #region SpeedMethods

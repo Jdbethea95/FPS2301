@@ -52,6 +52,9 @@ public class LevelScores
             }
         }
 
+        if (ScoreBoard.Count < 10)
+            ScoreBoard.Add(score);
+
         return false;
     }
 

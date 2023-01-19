@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367426870604705642}
+  - component: {fileID: 354249034160694573}
   - component: {fileID: 395847438098205050}
   - component: {fileID: 385134471366642096}
   - component: {fileID: 354249034160694570}
-  - component: {fileID: 354249034160694573}
   - component: {fileID: 354249034160694572}
   m_Layer: 2
   m_Name: Health_Item
@@ -36,6 +36,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -2.216, y: 13.828001, z: 11.275001}
+--- !u!114 &354249034160694573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363865578071503734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6cedbf8de0b244d8c50d132ac4e6e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heal: 20
 --- !u!33 &395847438098205050
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,21 +110,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3367196
+  m_Radius: 0.79
   m_Center: {x: 0.000000048428774, y: -1.138846e-15, z: -7.2164497e-16}
---- !u!114 &354249034160694573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363865578071503734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa6cedbf8de0b244d8c50d132ac4e6e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heal: -10
 --- !u!95 &354249034160694572
 Animator:
   serializedVersion: 5
