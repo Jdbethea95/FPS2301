@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
         maxHp = hp;
         dashParticles.Stop();
         UpdatePlayerHp();
+        cam.XSen = SaveManager.instance.gameData.xSen;
+        cam.YSen = SaveManager.instance.gameData.ySen;
     }
 
     void Update()

@@ -47,6 +47,9 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.playerScript.cam.XSen = GameManager.instance.xSenSlider.value;
         GameManager.instance.playerScript.cam.YSen = GameManager.instance.ySenSlider.value;
 
+        SaveManager.instance.gameData.xSen = GameManager.instance.playerScript.cam.XSen;
+        SaveManager.instance.gameData.ySen = GameManager.instance.playerScript.cam.YSen;
+
         SettingsBack();
     }
 

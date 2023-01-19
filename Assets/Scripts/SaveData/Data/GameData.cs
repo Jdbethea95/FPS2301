@@ -14,8 +14,8 @@ public class GameData
 
     public GameData() 
     {
-        xSen = 1.5f;
-        ySen = 1.5f;
+        xSen = 300f;
+        ySen = 300f;
     }
 
     public GameData(GameData data) 
