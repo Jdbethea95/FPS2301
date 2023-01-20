@@ -35,14 +35,17 @@ public class PlayerController : MonoBehaviour
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audPlayerTakesDamage;
-    [Range(0, 1)][SerializeField] float audPlayerTakesDamageVol;
+    [Range(0, 1)] [SerializeField] float audPlayerTakesDamageVol;
     [SerializeField] AudioClip[] audPlayerJump;
-    [Range(0, 1)][SerializeField] float audPlayerJumpVol;
+    [Range(0, 1)] [SerializeField] float audPlayerJumpVol;
     [SerializeField] AudioClip[] audPlayerSteps;
-    [Range(0, 1)][SerializeField] float audPlayerStepsVol;
+    [Range(0, 1)] [SerializeField] float audPlayerStepsVol;
+    [SerializeField] AudioClip[] audPlayerShoot;
+    [Range(0, 1)] [SerializeField] float audPlayerShootVol;
 
     bool isShooting = false;
     bool isPlayingSteps;
+    bool isPlayingShootAudio;
 
     Vector3 move;
     Vector3 velocity;
@@ -59,7 +62,7 @@ public class PlayerController : MonoBehaviour
     public int CurrentHealth { get { return hp; } }
 
     //center of mass
-    public Vector3 COM 
+    public Vector3 COM
     {
         get { return com.transform.position; }
     }
@@ -135,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator playSteps()
     {
-        
+
         //is the player grounded?
         if (controller.isGrounded)
         {
@@ -156,7 +159,7 @@ public class PlayerController : MonoBehaviour
             }
             isPlayingSteps = false;
         }
-        
+
     }
 
     #endregion
@@ -170,6 +173,10 @@ public class PlayerController : MonoBehaviour
 
         gunFlash.Play();
 
+        if (!isPlayingShootAudio)
+            StartCoroutine(PlayShootAudio());
+
+        
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
             if (hit.collider.GetComponent<IDamage>() != null)
@@ -182,14 +189,24 @@ public class PlayerController : MonoBehaviour
         isShooting = false;
     }
 
+    IEnumerator PlayShootAudio()
+    {
 
-    public void HealPlayer(int amount) 
+        isPlayingShootAudio = true;
+        audioPlayer.PlayOneShot(audPlayerShoot[Random.Range(0, audPlayerShoot.Length)], audPlayerShootVol);
+        yield return new WaitForSeconds(.15f);
+        isPlayingShootAudio = false;
+
+    }
+
+
+    public void HealPlayer(int amount)
     {
         if (hp + amount >= maxHp)
         {
             hp = maxHp;
         }
-        else 
+        else
         {
             hp += amount;
         }
@@ -233,9 +250,9 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    public void UpdatePlayerHp() 
+    public void UpdatePlayerHp()
     {
-        GameManager.instance.playerHpBar.fillAmount = (float)hp / (float)maxHp;        
+        GameManager.instance.playerHpBar.fillAmount = (float)hp / (float)maxHp;
     }
 
     #region SpeedMethods
@@ -255,7 +272,7 @@ public class PlayerController : MonoBehaviour
         {
             speed = baseSpeed;
             dashParticles.Stop();
-        }            
+        }
         else
             speed -= reduceRate;
 
