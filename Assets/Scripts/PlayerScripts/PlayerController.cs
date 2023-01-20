@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = jumpHeight;
             jumpCount++;
-            audioPlayer.PlayOneShot(audPlayerJump[Random.Range(0, audPlayerJump.Length)], audPlayerJumpVol);
+            //audioPlayer.PlayOneShot(audPlayerJump[Random.Range(0, audPlayerJump.Length)], audPlayerJumpVol);
         }
 
         velocity.y -= gravity * Time.deltaTime;
