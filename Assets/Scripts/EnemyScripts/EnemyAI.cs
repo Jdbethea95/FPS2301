@@ -64,10 +64,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         hp -= dmg;
         animator.SetBool("PlayerNear", true);
         animator.SetTrigger("Hurt");
-        agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (hp <= 0)
         {
+            agent.stoppingDistance = int.MaxValue;
             animator.SetBool("Dead", true);
             isDead = true;
             body.enabled = false;
@@ -75,6 +75,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             GameManager.instance.currentScore.EnemyScore = 1;
             //Destroy(gameObject);
         }
+        else { agent.SetDestination(GameManager.instance.player.transform.position); }
 
     }
     void canSeePlayer()
