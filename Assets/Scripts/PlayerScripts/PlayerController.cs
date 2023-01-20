@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     int maxHp = 50;
     [Range(1, 20)] [SerializeField] int speed;
     [Range(1, 5)] [SerializeField] int reduceRate = 2;
+    SO_Perk[] activePerk = new SO_Perk[2];
     int baseSpeed;
     float speedTimer;
 
@@ -48,7 +49,14 @@ public class PlayerController : MonoBehaviour
     bool isPlayingSteps;
     bool isPlayingShootAudio;
     bool isSparking;
+    bool isLobby;
+    int ogShootDist;
+    float ogShootRate;
+    int ogShootDamage;
+    int ogHp;
+    int ogSpeed;
 
+    string perkName;
     Vector3 move;
     Vector3 velocity;
     public Vector3 hitDirection = Vector3.zero;
@@ -76,8 +84,19 @@ public class PlayerController : MonoBehaviour
     {
         baseSpeed = speed;
         maxHp = hp;
+        ogShootDist = shootDist;
+        ogShootRate = shootRate; 
+        ogShootDamage = shootDamage;
+        ogHp = maxHp;
+        ogSpeed = baseSpeed;
+
         dashParticles.Stop();
         UpdatePlayerHp();
+        if(!isLobby && activePerk[0] != null)
+        {
+            ActivatePerks();
+        }
+
         cam.XSen = SaveManager.instance.gameData.xSen;
         cam.YSen = SaveManager.instance.gameData.ySen;
     }
@@ -296,5 +315,30 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+    public void perkPickup(SO_Perk pickup)
+    {
+        perkName = pickup.ID;
 
+    }
+
+    public void ActivatePerks()
+    {
+
+        for(int i = 0; i < 3; i++)
+        {
+            shootDamage += activePerk[i].ShootDamage;
+            maxHp += activePerk[i].hpModifier;
+            baseSpeed += activePerk[i].SpeedModifier;
+            shootDist += activePerk[i].ShootDistance;
+            shootRate += activePerk[i].ShootRate;
+        }
+    }
+    public void DeActivatePerks()
+    {
+        maxHp = ogHp;
+        shootDamage = ogShootDamage;
+        baseSpeed = ogSpeed;
+        shootDist = ogShootDist;
+        shootRate = ogShootRate;
+    }
 }
