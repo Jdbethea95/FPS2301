@@ -79,9 +79,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (move.normalized.magnitude > 0.199f && !isPlayingSteps)
+        //Compares velocity of player set between 0 and 1 to a float
+        if (move.normalized.magnitude > 0.9f && !isPlayingSteps)
         {
-            //StartCoroutine(playSteps());
+            StartCoroutine(playSteps());
         }
         Movement();
 
@@ -134,6 +135,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator playSteps()
     {
+        
         //is the player grounded?
         if (controller.isGrounded)
         {
@@ -152,9 +154,9 @@ public class PlayerController : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.2f);
             }
-
-            isPlayingSteps = false; 
+            isPlayingSteps = false;
         }
+        
     }
 
     #endregion
