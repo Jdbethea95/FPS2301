@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
             }
 
-            isPlayingSteps = true; 
+            isPlayingSteps = false; 
         }
     }
 
