@@ -35,11 +35,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audPlayerTakesDamage;
-    [Range(0, 1)][SerializeField] float audPlayerTakesDamageVol;
+    [Range(0, 1)] [SerializeField] float audPlayerTakesDamageVol;
     [SerializeField] AudioClip[] audPlayerJump;
-    [Range(0, 1)][SerializeField] float audPlayerJumpVol;
+    [Range(0, 1)] [SerializeField] float audPlayerJumpVol;
     [SerializeField] AudioClip[] audPlayerSteps;
-    [Range(0, 1)][SerializeField] float audPlayerStepsVol;
+    [Range(0, 1)] [SerializeField] float audPlayerStepsVol;
 
     bool isShooting = false;
     bool isPlayingSteps;
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     public int CurrentHealth { get { return hp; } }
 
     //center of mass
-    public Vector3 COM 
+    public Vector3 COM
     {
         get { return com.transform.position; }
     }
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
     {
         if (move.normalized.magnitude > 0.199f && !isPlayingSteps)
         {
-            StartCoroutine(playSteps());
+            //StartCoroutine(playSteps()); //Waiting for sounds
         }
         Movement();
 
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
             }
 
-            isPlayingSteps = true; 
+            isPlayingSteps = true;
         }
     }
 
@@ -181,13 +181,13 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void HealPlayer(int amount) 
+    public void HealPlayer(int amount)
     {
         if (hp + amount >= maxHp)
         {
             hp = maxHp;
         }
-        else 
+        else
         {
             hp += amount;
         }
@@ -198,31 +198,27 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int amount, Vector3 pos)
     {
-        audioPlayer.PlayOneShot(audPlayerTakesDamage[Random.Range(0, audPlayerTakesDamage.Length)], audPlayerTakesDamageVol);
-        //healthpack uses takedamage in negative amounts to heal
-        if (hp - amount >= maxHp)
-        {
-            hp = maxHp;
-        }
-        else
-        {
-            hp -= amount;
-        }
+        //audioPlayer.PlayOneShot(audPlayerTakesDamage[Random.Range(0, audPlayerTakesDamage.Length)], audPlayerTakesDamageVol);
+
+        hp -= amount;
+
 
         //Angle of bullet
         float angleToPlayer = Vector3.SignedAngle(pos, transform.forward, Vector3.up);
+        Debug.Log($"{angleToPlayer}");
 
-        //TODO Add direction flash to screen.
-        if (angleToPlayer >= 0 && angleToPlayer <= 42)
-            Debug.Log("Top");
-        else if (angleToPlayer >= 43 && angleToPlayer <= 87)
-            Debug.Log("SideR"); //needs refining
-        else if (angleToPlayer >= 88 && angleToPlayer <= 110)
-            Debug.Log("sideL"); //needs refining
+        if (angleToPlayer >= -40 && angleToPlayer <= 40)
+            StartCoroutine(GameManager.instance.TopFlash());
+        else if (angleToPlayer <= -41 && angleToPlayer >= -130)
+            StartCoroutine(GameManager.instance.RightFlash());
+        else if (angleToPlayer >= 41 && angleToPlayer <= 130)
+            StartCoroutine(GameManager.instance.LeftFlash());
         else
-            Debug.Log("Back");
+            StartCoroutine(GameManager.instance.BottomFlash());
 
-        //Debug.Log(angleToPlayer);
+        //40 to -40 front
+        //-41 to -130 right, 41 to 130 left
+        //-130 to -160 && 130 to 160
 
         UpdatePlayerHp();
 
@@ -231,9 +227,9 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    public void UpdatePlayerHp() 
+    public void UpdatePlayerHp()
     {
-        GameManager.instance.playerHpBar.fillAmount = (float)hp / (float)maxHp;        
+        GameManager.instance.playerHpBar.fillAmount = (float)hp / (float)maxHp;
     }
 
     #region SpeedMethods
@@ -253,7 +249,7 @@ public class PlayerController : MonoBehaviour
         {
             speed = baseSpeed;
             dashParticles.Stop();
-        }            
+        }
         else
             speed -= reduceRate;
 

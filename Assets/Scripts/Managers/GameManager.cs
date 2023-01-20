@@ -34,6 +34,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerTxt;
     public Image playerHpBar;
 
+    [Header("----- Flash Items-----")]
+    [SerializeField] GameObject topFlash;
+    [SerializeField] GameObject leftFlash;
+    [SerializeField] GameObject rightFlash;
+    [SerializeField] GameObject bottomFlash;
 
     [Header("----- Score Items-----")]
     [SerializeField] TextMeshProUGUI totalScoreTxt;
@@ -201,5 +206,37 @@ public class GameManager : MonoBehaviour
             doorScripts.Add(doors[i].GetComponent<DoorScript>());
         }
     }
+
+    #region Flashes
+
+    public IEnumerator TopFlash()
+    {
+        topFlash.SetActive(true);
+        yield return new WaitForSeconds(.5f);
+        topFlash.SetActive(false);
+    }
+
+    public IEnumerator LeftFlash()
+    {
+        leftFlash.SetActive(true);
+        yield return new WaitForSeconds(.5f);
+        leftFlash.SetActive(false);
+    }
+
+    public IEnumerator RightFlash()
+    {
+        rightFlash.SetActive(true);
+        yield return new WaitForSeconds(.5f);
+        rightFlash.SetActive(false);
+    }
+
+    public IEnumerator BottomFlash()
+    {
+        bottomFlash.SetActive(true);
+        yield return new WaitForSeconds(.5f);
+        bottomFlash.SetActive(false);
+    }
+
+    #endregion
 
 }
