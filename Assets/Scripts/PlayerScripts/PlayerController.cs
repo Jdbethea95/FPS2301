@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
     {
         if (move.normalized.magnitude > 0.199f && !isPlayingSteps)
         {
-            StartCoroutine(playSteps());
+            //StartCoroutine(playSteps());
         }
         Movement();
 
@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int amount, Vector3 pos)
     {
-        audioPlayer.PlayOneShot(audPlayerTakesDamage[Random.Range(0, audPlayerTakesDamage.Length)], audPlayerTakesDamageVol);
+        //audioPlayer.PlayOneShot(audPlayerTakesDamage[Random.Range(0, audPlayerTakesDamage.Length)], audPlayerTakesDamageVol);
         //healthpack uses takedamage in negative amounts to heal
         if (hp - amount >= maxHp)
         {
@@ -213,14 +213,14 @@ public class PlayerController : MonoBehaviour
         float angleToPlayer = Vector3.SignedAngle(pos, transform.forward, Vector3.up);
 
         //TODO Add direction flash to screen.
-        if (angleToPlayer >= 0 && angleToPlayer <= 42)
-            Debug.Log("Top");
-        else if (angleToPlayer >= 43 && angleToPlayer <= 87)
-            Debug.Log("SideR"); //needs refining
-        else if (angleToPlayer >= 88 && angleToPlayer <= 110)
-            Debug.Log("sideL"); //needs refining
+        if (angleToPlayer >= -40 && angleToPlayer <= 40)
+            StartCoroutine(GameManager.instance.TopFlash());
+        else if (angleToPlayer <= -41 && angleToPlayer >= -130)
+            StartCoroutine(GameManager.instance.RightFlash());
+        else if (angleToPlayer >= 41 && angleToPlayer <= 130)
+            StartCoroutine(GameManager.instance.LeftFlash());
         else
-            Debug.Log("Back");
+            StartCoroutine(GameManager.instance.BottomFlash());
 
         //Debug.Log(angleToPlayer);
 
