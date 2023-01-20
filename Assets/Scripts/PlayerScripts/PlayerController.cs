@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [Range(15, 200)] [SerializeField] int shootDist;
     [Range(0.1f, 2)] [SerializeField] float shootRate;
     [SerializeField] ParticleSystem gunFlash;
+    [SerializeField] ParticleSystem gunSpark;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audPlayerTakesDamage;
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
     bool isShooting = false;
     bool isPlayingSteps;
     bool isPlayingShootAudio;
+    bool isSparking;
 
     Vector3 move;
     Vector3 velocity;
@@ -83,13 +85,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Compares velocity of player set between 0 and 1 to a float
-        if (move.normalized.magnitude > 0.9f && !isPlayingSteps)
-        {
+        if (move.normalized.magnitude > 0.9f && !isPlayingSteps)       
             StartCoroutine(playSteps());
-        }
+        
         Movement();
 
-        if (!isShooting && Input.GetButtonDown("Shoot"))
+        if (!isShooting && Input.GetButtonDown("Shoot") && !GameManager.instance.isPaused)
             StartCoroutine(Shoot());
 
         if (Time.time > speedTimer && speed > baseSpeed)
@@ -176,9 +177,19 @@ public class PlayerController : MonoBehaviour
         if (!isPlayingShootAudio)
             StartCoroutine(PlayShootAudio());
 
-        
+
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
+
+            if (!hit.collider.CompareTag("Bullet"))
+            {
+                gunSpark.transform.position = hit.point;
+                gunSpark.Play();
+
+                if (!isSparking)
+                    StartCoroutine(ResetSpark());
+            }
+
             if (hit.collider.GetComponent<IDamage>() != null)
             {
                 hit.collider.GetComponent<IDamage>().TakeDamage(shootDamage);
@@ -199,6 +210,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    IEnumerator ResetSpark() 
+    {
+        isSparking = true;
+        yield return new WaitForSeconds(gunSpark.main.duration);
+        isSparking = false;
+    }
 
     public void HealPlayer(int amount)
     {
