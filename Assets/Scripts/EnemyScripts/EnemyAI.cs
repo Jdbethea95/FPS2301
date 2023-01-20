@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Animator animator;
     [SerializeField] Collider body;
+    [SerializeField] AudioSource audioPlayer;
 
     [Header("----- Enemy Stats -----")]
     [Range(1, 100)] [SerializeField] int hp = 10;
@@ -26,11 +27,19 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Range(0.1f, 2)] [SerializeField] float shootRate;
     [Range(15, 50)] [SerializeField] int bulletSpeed;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audEnemyTakesDamage;
+    [Range(0, 5)][SerializeField] float audEnemyTakesDamageVol;
+    [SerializeField] AudioClip[] audEnemySteps;
+    [Range(0, 5)][SerializeField] float audEnemyStepsVol;
+    [SerializeField] AudioClip[] audEnemyShoot;
+    [Range(0, 5)][SerializeField] float audEnemyShootVol;
 
     Vector3 playerDir;
     bool playerInRange = false;
     float angleToPlayer;
     bool isDead = false;
+    bool isPlayingSteps;
 
 
     private void Start()
@@ -75,7 +84,15 @@ public class EnemyAI : MonoBehaviour, IDamage
             GameManager.instance.currentScore.EnemyScore = 1;
             //Destroy(gameObject);
         }
-        else { agent.SetDestination(GameManager.instance.player.transform.position); }
+        else 
+        { 
+            
+            agent.SetDestination(GameManager.instance.player.transform.position);
+            if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
+            {
+                StartCoroutine(playSteps()); 
+            }
+        }
 
     }
     void canSeePlayer()
@@ -104,14 +121,40 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 //sets destination for enemy pathing
                 agent.SetDestination(GameManager.instance.player.transform.position);
+                if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
+                {
+                    StartCoroutine(playSteps()); 
+                }
 
                 if (agent.remainingDistance < agent.stoppingDistance)
+                {
                     FacePlayer();
+                }
 
                 
                 if (!isShooting && angleToPlayer <= shootAngle)
                     StartCoroutine(Shoot());
             }
+        }
+    }
+
+    IEnumerator playSteps()
+    {
+        if (agent.isOnNavMesh)
+        {
+
+            isPlayingSteps = true;
+            audioPlayer.PlayOneShot(audEnemySteps[Random.Range(0, audEnemySteps.Length)], audEnemyStepsVol);
+
+            if (agent.speed == 3)
+            {
+                yield return new WaitForSeconds(0.4f);
+            }
+            else if(agent.speed == 6)
+            {
+                yield return new WaitForSeconds(0.3f);
+            }
+            isPlayingSteps = false;
         }
     }
 
@@ -121,7 +164,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         playerDir.y = 0;
 
         Quaternion rotate = Quaternion.LookRotation(playerDir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * rotSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * rotSpeed);        
     }
 
     IEnumerator Shoot()
