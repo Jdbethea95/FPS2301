@@ -132,7 +132,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 }
 
                 
-                if (!isShooting && angleToPlayer <= shootAngle)
+                if (!isShooting && angleToPlayer <= shootAngle && agent.remainingDistance <= shootDist)
                     StartCoroutine(Shoot());
             }
         }
