@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4323566388483004}
   - component: {fileID: 33837606549662942}
   - component: {fileID: 23190637497344010}
-  - component: {fileID: 3383534798163456284}
+  - component: {fileID: 2399789518899739825}
   m_Layer: 0
   m_Name: SM_Buildings_WallWindow_2x3_01
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3383534798163456284
-BoxCollider:
+--- !u!64 &2399789518899739825
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,6 +94,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 0.58}
-  m_Center: {x: 1, y: 1.5, z: 0.049999997}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: c61783dd79ffb5443ac65c3892395ad7, type: 3}
