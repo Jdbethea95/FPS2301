@@ -12,10 +12,16 @@ public class GameData
     public float xSen;
     public float ySen;
 
+    public string topLevel;
+    public int levelIndx;
+
     public GameData()
     {
         xSen = 300f;
         ySen = 300f;
+        levelLocks.Add(true);
+        topLevel = ScoreManager.instance.Scenes[0];
+        levelIndx = 0;
     }
 
     public GameData(GameData data)

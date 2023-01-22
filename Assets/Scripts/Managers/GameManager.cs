@@ -77,7 +77,14 @@ public class GameManager : MonoBehaviour
         GetDoorScripts();
 
         timeScaleOrig = Time.timeScale;
-        levelLocks.Add(true);
+        if (levelLocks.Count <= 0)
+        {
+            for (int i = 0; i < SaveManager.instance.gameData.levelLocks.Count; i++)
+            {
+                levelLocks.Add(SaveManager.instance.gameData.levelLocks[i]);
+            }
+        }
+
     }
 
 
@@ -116,7 +123,7 @@ public class GameManager : MonoBehaviour
         activeMenu.SetActive(false);
         activeMenu = null;
     }
-
+    //test Level Locks
     public void WinCondition()
     {
 
@@ -128,6 +135,18 @@ public class GameManager : MonoBehaviour
         {
             ScoreManager.instance.boards[SceneManager.GetActiveScene().name].AddScore(currentScore);
             ScoreManager.instance.Save(ref SaveManager.instance.gameData);
+
+            if (SaveManager.instance.gameData.topLevel == SceneManager.GetActiveScene().name)
+            {
+                SaveManager.instance.gameData.levelIndx++;
+
+                if (SaveManager.instance.gameData.levelIndx <= ScoreManager.instance.Scenes.Count)
+                {
+                    SaveManager.instance.gameData.topLevel = ScoreManager.instance.Scenes[SaveManager.instance.gameData.levelIndx];
+                    SaveManager.instance.gameData.levelLocks.Add(true);
+                }
+                    
+            }
         }
 
 
