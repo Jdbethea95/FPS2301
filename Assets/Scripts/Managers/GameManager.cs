@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused;
     float timeScaleOrig;
 
+    public List<bool> levelLocks;
     //aquires player gameobject and script, Remember awake happens before Start.
     private void Awake()
     {
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
         GetDoorScripts();
 
         timeScaleOrig = Time.timeScale;
+        levelLocks.Add(true);
     }
 
 

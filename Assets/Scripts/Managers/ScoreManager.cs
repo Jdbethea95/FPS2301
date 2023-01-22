@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour, ISaveData
 {
     public static ScoreManager instance;
     public Dictionary<string, LevelScores> boards = new Dictionary<string, LevelScores>();
-    [SerializeField] List<string> Scenes;
+    public List<string> Scenes;
 
     private void Awake()
     {

@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     int maxHp = 50;
     [Range(1, 20)] [SerializeField] int speed;
     [Range(1, 5)] [SerializeField] int reduceRate = 2;
-    SO_Perk[] activePerk = new SO_Perk[2];
+    SO_Perk[] activePerk = new SO_Perk[3];
     int baseSpeed;
     float speedTimer;
 
@@ -315,6 +315,9 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+
+    #region PerkMethods
+
     public void perkPickup(SO_Perk pickup)
     {
         perkName = pickup.ID;
@@ -324,7 +327,7 @@ public class PlayerController : MonoBehaviour
     public void ActivatePerks()
     {
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             shootDamage += activePerk[i].ShootDamage;
             maxHp += activePerk[i].hpModifier;
@@ -341,4 +344,7 @@ public class PlayerController : MonoBehaviour
         shootDist = ogShootDist;
         shootRate = ogShootRate;
     }
+
+
+    #endregion
 }
