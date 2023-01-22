@@ -906,6 +906,7 @@ MonoBehaviour:
   speedMult: 1
   viewAngle: 90
   shootAngle: 65
+  despawnTime: 3
   bullet: {fileID: 6716093678165597531, guid: 3132bb0d0b13c7d42bbe0cb4b7e25adb, type: 3}
   shootPos: {fileID: 8653942893115144255}
   shootDist: 25

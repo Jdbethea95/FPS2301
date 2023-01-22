@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int speedMult;
     [SerializeField] int viewAngle;
     [SerializeField] int shootAngle;
+    [SerializeField] int despawnTime;
 
     [Header("----- Gun Stats -----")]
     bool isShooting = false;
@@ -40,7 +41,24 @@ public class EnemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     bool isDead = false;
     bool isPlayingSteps;
+    float despawnTimer;
 
+
+
+    public int ShootDist 
+    {
+        private get { return shootDist; }
+        set 
+        {
+            if (value > 5 && value < 100)
+                shootDist = value;
+        }
+    }
+    public int SpeedMult 
+    {
+        private get { return speedMult;}
+        set { speedMult = value; }
+    }
 
     private void Start()
     {
@@ -60,6 +78,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (playerInRange && !isDead)
         {
             canSeePlayer();
+        }
+        else if(isDead) 
+        {
+            if (Time.time > despawnTimer + despawnTime)
+                Destroy(gameObject);            
         }
 
     }
@@ -82,6 +105,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             body.enabled = false;
             GameManager.instance.UpdateEnemiesRemaining(-1);
             GameManager.instance.currentScore.EnemyScore = 1;
+            despawnTimer = Time.time;
             //Destroy(gameObject);
         }
         else 
