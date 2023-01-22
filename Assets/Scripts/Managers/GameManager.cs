@@ -154,6 +154,7 @@ public class GameManager : MonoBehaviour
         {
             ScoreManager.instance.ownedList.Add(playerScript.PerkID);
             perkFoundTxt.text = $"Perk {playerScript.PerkName} Found!";
+            ScoreManager.instance.Save(ref SaveManager.instance.gameData);
         }
         else { perkFoundTxt.text = ""; }
 

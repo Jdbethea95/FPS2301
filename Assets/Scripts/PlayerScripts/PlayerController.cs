@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     int maxHp = 50;
     [Range(1, 20)] [SerializeField] int speed;
     [Range(1, 5)] [SerializeField] int reduceRate = 2;
-    SO_Perk[] activePerk = new SO_Perk[3];
     int baseSpeed;
     float speedTimer;
 
@@ -104,8 +103,9 @@ public class PlayerController : MonoBehaviour
         UpdatePlayerHp();
 
         //checks for lobby level then activates any perks attached, if any.
-        if(!isLobby && activePerk[0] != null)
+        if(!isLobby && PerkManager.instance.activePerks[0] != null)
         {
+            DeActivatePerks();
             ActivatePerks();
         }
 
@@ -342,9 +342,9 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            if (activePerk[i] != null)
+            if (PerkManager.instance.activePerks[i] != null)
             {
-                activePerk[i] = perk;
+                PerkManager.instance.activePerks[i] = perk;
                 break;
             }
         }
@@ -354,7 +354,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            activePerk[i] = null;
+            PerkManager.instance.activePerks[i] = null;
         }
     }
 
@@ -363,18 +363,18 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            if (activePerk[i] != null)
+            if (PerkManager.instance.activePerks[i] != null)
             {
 
-                maxHp += activePerk[i].hpModifier;
-                hp += activePerk[i].hpModifier;
+                maxHp += PerkManager.instance.activePerks[i].hpModifier;
+                hp += PerkManager.instance.activePerks[i].hpModifier;
 
-                baseSpeed += activePerk[i].SpeedModifier;
-                speed += activePerk[i].SpeedModifier;
+                baseSpeed += PerkManager.instance.activePerks[i].SpeedModifier;
+                speed += PerkManager.instance.activePerks[i].SpeedModifier;
 
-                shootDamage += activePerk[i].ShootDamage;
-                shootDist += activePerk[i].ShootDistance;
-                shootRate += activePerk[i].ShootRate;
+                shootDamage += PerkManager.instance.activePerks[i].ShootDamage;
+                shootDist += PerkManager.instance.activePerks[i].ShootDistance;
+                shootRate += PerkManager.instance.activePerks[i].ShootRate;
             }
         }
     }

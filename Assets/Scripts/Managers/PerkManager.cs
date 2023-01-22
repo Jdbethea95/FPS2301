@@ -7,7 +7,7 @@ public class PerkManager : MonoBehaviour
     public static PerkManager instance;
 
     [SerializeField] List<SO_Perk> collectionList;
-
+    public SO_Perk[] activePerks = new SO_Perk[3];
     public Dictionary<string, SO_Perk> grabList = new Dictionary<string, SO_Perk>();
 
     private void Awake()
