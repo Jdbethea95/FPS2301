@@ -20,7 +20,7 @@ public class GameData
         xSen = 300f;
         ySen = 300f;
         levelLocks.Add(true);
-        topLevel = ScoreManager.instance.Scenes[0];
+        topLevel = "Level 2";
         levelIndx = 0;
     }
 
