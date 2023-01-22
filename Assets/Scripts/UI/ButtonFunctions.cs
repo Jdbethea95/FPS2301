@@ -15,12 +15,14 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Restart()
     {
+        GameManager.instance.playerScript.DeActivatePerks();
         GameManager.instance.UnPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Quit()
     {
+        GameManager.instance.playerScript.DeActivatePerks();
         Application.Quit();
     }
 
@@ -55,6 +57,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        GameManager.instance.playerScript.DeActivatePerks();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         SceneManager.LoadScene("MainMenu");

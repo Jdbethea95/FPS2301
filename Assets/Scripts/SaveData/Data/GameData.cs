@@ -20,7 +20,7 @@ public class GameData
         xSen = 300f;
         ySen = 300f;
         levelLocks.Add(true);
-        topLevel = "Level 2";
+        topLevel = "BuildingLevel";
         levelIndx = 0;
     }
 

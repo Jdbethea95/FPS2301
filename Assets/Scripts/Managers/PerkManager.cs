@@ -7,7 +7,7 @@ public class PerkManager : MonoBehaviour
     public static PerkManager instance;
 
     [SerializeField] List<SO_Perk> collectionList;
-    [SerializeField] List<SO_Perk> ownedList;
+    //public List<string> ownedList;
 
     private void Awake()
     {

@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthScoreTxt;
     [SerializeField] TextMeshProUGUI boostScoreTxt;
     [SerializeField] TextMeshProUGUI PerkScoreTxt;
+    [SerializeField] TextMeshProUGUI perkFoundTxt;
     public Score currentScore = new Score();
 
     [SerializeField] List<GameObject> doors;
@@ -149,7 +150,15 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (playerScript.PerkFound)
+        {
+            ScoreManager.instance.ownedList.Add(playerScript.PerkID);
+            perkFoundTxt.text = $"Perk {playerScript.PerkName} Found!";
+        }
+        else { perkFoundTxt.text = ""; }
 
+
+        playerScript.DeActivatePerks();
         activeMenu.SetActive(true);
 
     }

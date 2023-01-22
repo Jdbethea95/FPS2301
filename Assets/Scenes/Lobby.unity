@@ -1705,11 +1705,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: Scenes.Array.data[0]
-      value: Level 2
+      value: BuildingLevel
       objectReference: {fileID: 0}
     - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: Scenes.Array.data[1]
-      value: BuildingLevel
+      value: Level 2
       objectReference: {fileID: 0}
     - target: {fileID: 7969890902344046839, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: m_Name

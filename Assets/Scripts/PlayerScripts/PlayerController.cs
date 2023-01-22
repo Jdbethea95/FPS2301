@@ -56,7 +56,9 @@ public class PlayerController : MonoBehaviour
     int ogHp;
     int ogSpeed;
 
+    string perkId;
     string perkName;
+    bool foundPerk;
     Vector3 move;
     Vector3 velocity;
     public Vector3 hitDirection = Vector3.zero;
@@ -77,11 +79,17 @@ public class PlayerController : MonoBehaviour
         get { return com.transform.position; }
     }
 
+    public bool PerkFound { get { return foundPerk; } }
+    public string PerkID { get { return perkId; } }
+
+    public string PerkName { get { return perkName; } }
+
     #endregion
 
     //sets baseSpeed to match speed provided on start
     private void Start()
     {
+        //sets base stats
         baseSpeed = speed;
         maxHp = hp;
         ogShootDist = shootDist;
@@ -90,8 +98,12 @@ public class PlayerController : MonoBehaviour
         ogHp = maxHp;
         ogSpeed = baseSpeed;
 
+        foundPerk = false;
+
         dashParticles.Stop();
         UpdatePlayerHp();
+
+        //checks for lobby level then activates any perks attached, if any.
         if(!isLobby && activePerk[0] != null)
         {
             ActivatePerks();
@@ -318,10 +330,32 @@ public class PlayerController : MonoBehaviour
 
     #region PerkMethods
 
-    public void perkPickup(SO_Perk pickup)
+    public void PerkPickup(SO_Perk pickup)
     {
-        perkName = pickup.ID;
+        perkId = pickup.ID;
+        perkName = pickup.perkName;
+        foundPerk = true;
+    }
 
+
+    public void AddPerk(SO_Perk perk) 
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (activePerk[i] != null)
+            {
+                activePerk[i] = perk;
+                break;
+            }
+        }
+    }
+
+    public void ClearPerks() 
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            activePerk[i] = null;
+        }
     }
 
     public void ActivatePerks()
@@ -329,11 +363,19 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            shootDamage += activePerk[i].ShootDamage;
-            maxHp += activePerk[i].hpModifier;
-            baseSpeed += activePerk[i].SpeedModifier;
-            shootDist += activePerk[i].ShootDistance;
-            shootRate += activePerk[i].ShootRate;
+            if (activePerk[i] != null)
+            {
+
+                maxHp += activePerk[i].hpModifier;
+                hp += activePerk[i].hpModifier;
+
+                baseSpeed += activePerk[i].SpeedModifier;
+                speed += activePerk[i].SpeedModifier;
+
+                shootDamage += activePerk[i].ShootDamage;
+                shootDist += activePerk[i].ShootDistance;
+                shootRate += activePerk[i].ShootRate;
+            }
         }
     }
     public void DeActivatePerks()

@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour, ISaveData
     public Dictionary<string, LevelScores> boards = new Dictionary<string, LevelScores>();
     public List<string> Scenes;
 
+    public List<string> ownedList;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -45,6 +47,12 @@ public class ScoreManager : MonoBehaviour, ISaveData
             }
             
         }
+
+        ownedList.Clear();
+        for (int x = 0; x < data.perkIds.Count; x++)
+        {
+            ownedList.Add(data.perkIds[x]);
+        }
     }
 
     public void Save(ref GameData data)
@@ -54,6 +62,13 @@ public class ScoreManager : MonoBehaviour, ISaveData
         foreach (var item in boards)
         {
             data.scores.Add(item.Value);
+        }
+
+
+        data.perkIds.Clear();
+        for (int x = 0; x < ownedList.Count; x++)
+        {
+            data.perkIds.Add(ownedList[x]);
         }
     }
 

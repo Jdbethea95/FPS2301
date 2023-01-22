@@ -9,7 +9,7 @@ public class PerkPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.playerScript.perkPickup(perk);
+            GameManager.instance.playerScript.PerkPickup(perk);
             Destroy(gameObject);
         }
     }
