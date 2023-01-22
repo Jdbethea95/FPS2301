@@ -160,7 +160,7 @@ Shader "SyntyStudios/Prototype_Glass_Global"
 		}
 	}
 	Fallback "Diffuse"
-	CustomEditor "ASEMaterialInspector"
+
 }
 /*ASEBEGIN
 Version=15900
