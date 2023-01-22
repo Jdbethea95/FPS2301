@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The Structure
+  m_text: Entrance
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1784,7 +1784,7 @@ RectTransform:
   m_Children:
   - {fileID: 855200518}
   m_Father: {fileID: 1735987847}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1930,7 +1930,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 113326689}
-  - {fileID: 2055020556}
   m_Father: {fileID: 1735987847}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3465,6 +3464,7 @@ RectTransform:
   - {fileID: 376014522}
   - {fileID: 736570078}
   - {fileID: 263413568}
+  - {fileID: 2055020556}
   - {fileID: 679000414}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -4225,12 +4225,12 @@ RectTransform:
   - {fileID: 990993488}
   - {fileID: 1344694598}
   - {fileID: 1817815746}
-  m_Father: {fileID: 736570078}
-  m_RootOrder: 1
+  m_Father: {fileID: 1735987847}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4, y: 67.000015}
+  m_AnchoredPosition: {x: 0, y: 0.9999542}
   m_SizeDelta: {x: 800, y: 1000.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055020557
@@ -4472,9 +4472,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: The Structure
+    - m_Text: Entrance
       m_Image: {fileID: 0}
-    - m_Text: Sand Box 3
+    - m_Text: The Building
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5553,6 +5553,14 @@ PrefabInstance:
     - target: {fileID: 7969890902344046833, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
+      propertyPath: Scenes.Array.data[0]
+      value: Level 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
+      propertyPath: Scenes.Array.data[1]
+      value: BuildingLevel
       objectReference: {fileID: 0}
     - target: {fileID: 7969890902344046839, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: m_Name
