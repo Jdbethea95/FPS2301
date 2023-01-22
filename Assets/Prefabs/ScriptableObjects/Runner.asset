@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992261532e6c0744cb84af1c5c08dd1b, type: 3}
   m_Name: Runner
   m_EditorClassIdentifier: 
-  ID: 
-  perkName: 
+  ID: MC01
+  perkName: Runner
   ShootDistance: 0
   ShootRate: 0
   ShootDamage: 0
-  hpModifier: 0
-  SpeedModifier: 0
+  hpModifier: -5
+  SpeedModifier: 5
   Model: {fileID: 0}
   material: {fileID: 0}
   audGunShot: []

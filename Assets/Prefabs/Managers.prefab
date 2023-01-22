@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7969890902344046833}
   - component: {fileID: 7969890902344046838}
   - component: {fileID: 7969890902344046832}
+  - component: {fileID: 8944778248512239267}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -47,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scenes:
   - BuildingLevel
-  - SandBox_3
+  - Level 2
+  ownedList: []
 --- !u!114 &7969890902344046832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,5 +68,22 @@ MonoBehaviour:
     levelLocks: 
     xSen: 1.5
     ySen: 1.5
+    topLevel: BuildingLevel
+    levelIndx: 0
   playerXSen: 300
   playerYSen: 300
+--- !u!114 &8944778248512239267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969890902344046839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fda130fe512e745a38e59bb56712c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectionList:
+  - {fileID: 11400000, guid: 09533f422b441cc498b93e4972dc216b, type: 2}
+  - {fileID: 11400000, guid: 2840e5d4de073df47a7d035b0883ab97, type: 2}

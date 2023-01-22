@@ -7,7 +7,8 @@ public class PerkManager : MonoBehaviour
     public static PerkManager instance;
 
     [SerializeField] List<SO_Perk> collectionList;
-    //public List<string> ownedList;
+
+    public Dictionary<string, SO_Perk> grabList;
 
     private void Awake()
     {
@@ -17,6 +18,17 @@ public class PerkManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+
+        BuildDictionary();
+    }
+
+
+    void BuildDictionary() 
+    {
+        for (int i = 0; i < collectionList.Count; i++)
+        {
+            grabList.Add(collectionList[i].ID, collectionList[i]);
+        }
     }
 
 }
