@@ -162,6 +162,8 @@ public class PerkBoard : MonoBehaviour
             }
 
             UpdateSlots();
+
+            GameManager.instance.playerScript.DeActivatePerks();
             GameManager.instance.playerScript.ActivatePerks();
         }
     }

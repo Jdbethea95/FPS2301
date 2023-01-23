@@ -381,8 +381,12 @@ public class PlayerController : MonoBehaviour
     public void DeActivatePerks()
     {
         maxHp = ogHp;
-        shootDamage = ogShootDamage;
+        hp = ogHp;
+
         baseSpeed = ogSpeed;
+        speed = ogSpeed;
+
+        shootDamage = ogShootDamage;
         shootDist = ogShootDist;
         shootRate = ogShootRate;
     }
