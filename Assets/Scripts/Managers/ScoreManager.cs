@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour, ISaveData
         if (instance == null)
             instance = this;
         else
-            Destroy(gameObject);
+            Destroy(gameObject);        
     }
 
     private void Start()
