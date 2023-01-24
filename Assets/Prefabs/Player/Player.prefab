@@ -15021,6 +15021,7 @@ MonoBehaviour:
   hp: 50
   speed: 10
   reduceRate: 2
+  pushBackTime: 3
   gravity: 9.8
   jumpHeight: 5
   jumpMax: 1
@@ -15051,6 +15052,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3bc27ee5c2255c042adf39566f6f4576, type: 3}
   - {fileID: 8300000, guid: 28cb8d5929ebe824bacaecfe81f0f448, type: 3}
   audPlayerShootVol: 0.293
+  pushBack: {x: 0, y: 0, z: 0}
   hitDirection: {x: 0, y: 0, z: 0}
 --- !u!143 &8413257563759295684
 CharacterController:

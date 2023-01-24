@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     int maxHp = 50;
     [Range(1, 20)] [SerializeField] int speed;
     [Range(1, 5)] [SerializeField] int reduceRate = 2;
+    [SerializeField] int pushBackTime;
     int baseSpeed;
     float speedTimer;
 
@@ -44,23 +45,35 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip[] audPlayerShoot;
     [Range(0, 1)] [SerializeField] float audPlayerShootVol;
 
+
+    #region Co-Bools
     bool isShooting = false;
     bool isPlayingSteps;
     bool isPlayingShootAudio;
     bool isSparking;
     bool isLobby;
+    #endregion
+
+    #region OgStats
     int ogShootDist;
     float ogShootRate;
     int ogShootDamage;
     int ogHp;
     int ogSpeed;
+    #endregion
 
+    #region PerkVars
     string perkId;
     string perkName;
     bool foundPerk;
+    #endregion
+
+    #region MoveVectors
+    public Vector3 pushBack;
     Vector3 move;
     Vector3 velocity;
-    public Vector3 hitDirection = Vector3.zero;
+    public Vector3 hitDirection = Vector3.zero; 
+    #endregion
 
     #region Properties
 
@@ -84,6 +97,7 @@ public class PlayerController : MonoBehaviour
     public string PerkName { get { return perkName; } }
 
     #endregion
+
 
     //sets baseSpeed to match speed provided on start
     private void Start()
@@ -115,18 +129,26 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //Compares velocity of player set between 0 and 1 to a float
-        if (move.normalized.magnitude > 0.9f && !isPlayingSteps)       
-            StartCoroutine(playSteps());
-        
-        Movement();
 
-        if (!isShooting && Input.GetButtonDown("Shoot") && !GameManager.instance.isPaused)
-            StartCoroutine(Shoot());
+        if (!GameManager.instance.isPaused)
+        {
+            //resolved the pushback.
+            PushBackReduction();
 
-        if (Time.time > speedTimer && speed > baseSpeed)
-            ReduceSpeed();
+            //Compares velocity of player set between 0 and 1 to a float
+            if (move.normalized.magnitude > 0.9f && !isPlayingSteps)
+                StartCoroutine(playSteps());
+
+            Movement();
+
+            if (!isShooting && Input.GetButtonDown("Shoot") && !GameManager.instance.isPaused)
+                StartCoroutine(Shoot());
+
+            if (Time.time > speedTimer && speed > baseSpeed)
+                ReduceSpeed(); 
+        }
     }
+
 
     #region MovementMethods
     void Movement()
@@ -138,10 +160,12 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
+        //pushback implementation inside Jump
         Jump();
 
     }
 
+    #region JumpMethods
     //used in movement for jump input
     void Jump()
     {
@@ -154,7 +178,7 @@ public class PlayerController : MonoBehaviour
         }
 
         velocity.y -= gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move((velocity + pushBack) * Time.deltaTime);
     }
 
     //Resets Jump Count once Grounded
@@ -166,7 +190,8 @@ public class PlayerController : MonoBehaviour
             jumpCount = 0;
         }
 
-    }
+    } 
+    #endregion
 
     IEnumerator playSteps()
     {
@@ -194,7 +219,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void PushBackReduction() 
+    {
+        pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
+        pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 3);
+        pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
+    }
+
     #endregion
+
 
     #region DamageMethods
 
@@ -303,6 +336,7 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.playerHpBar.fillAmount = (float)hp / (float)maxHp;
     }
 
+
     #region SpeedMethods
 
     public void SpeedBoost(int boost, int offset)
@@ -327,6 +361,7 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+
 
     #region PerkMethods
 

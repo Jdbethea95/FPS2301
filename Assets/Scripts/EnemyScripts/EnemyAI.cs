@@ -23,6 +23,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("----- Gun Stats -----")]
     bool isShooting = false;
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject explosion;
     [SerializeField] Transform shootPos;
     [Range(5, 100)] [SerializeField] int shootDist;
     [Range(0.1f, 2)] [SerializeField] float shootRate;
@@ -87,6 +88,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     }
 
+
+
     /// <summary>
     /// 
     /// </summary>
@@ -95,7 +98,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {        
         hp -= dmg;
         animator.SetBool("PlayerNear", true);
-        animator.SetTrigger("Hurt");
+        //animator.SetTrigger("Hurt");
 
         if (hp <= 0)
         {
@@ -168,7 +171,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
 
             isPlayingSteps = true;
-            audioPlayer.PlayOneShot(audEnemySteps[Random.Range(0, audEnemySteps.Length)], audEnemyStepsVol);
+            //audioPlayer.PlayOneShot(audEnemySteps[Random.Range(0, audEnemySteps.Length)], audEnemyStepsVol);
 
             if (agent.speed == 3)
             {
@@ -210,6 +213,12 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    void Explode() 
+    {
+        Instantiate(explosion, transform.position, explosion.transform.rotation);
+        TakeDamage(int.MaxValue);
     }
 
     //Checks for player inside collider trigger
