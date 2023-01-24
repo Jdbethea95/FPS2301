@@ -195,12 +195,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
 
+
+
         animator.SetTrigger("Shoot");
         int offest = Random.Range(0, 2);
 
         Vector3 accuracy = new Vector3(GameManager.instance.playerScript.COM.x + offest,
                                        GameManager.instance.playerScript.COM.y,
                                        GameManager.instance.playerScript.COM.z + offest);
+        audioPlayer.PlayOneShot(audEnemyShoot[Random.Range(0, audEnemyShoot.Length)], audEnemyShootVol);
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
         bulletClone.GetComponent<Rigidbody>().velocity = (accuracy - transform.position).normalized * bulletSpeed;
