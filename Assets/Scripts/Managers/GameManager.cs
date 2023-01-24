@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         GetDoorScripts();
 
         timeScaleOrig = Time.timeScale;
-        if (levelLocks.Count <= 0)
+        if (levelLocks.Count < 0)
         {
             for (int i = 0; i < SaveManager.instance.gameData.levelLocks.Count; i++)
             {
