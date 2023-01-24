@@ -298,7 +298,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int amount, Vector3 pos)
     {
-        //audioPlayer.PlayOneShot(audPlayerTakesDamage[Random.Range(0, audPlayerTakesDamage.Length)], audPlayerTakesDamageVol);
+        audioPlayer.PlayOneShot(audPlayerTakesDamage[Random.Range(0, audPlayerTakesDamage.Length)], audPlayerTakesDamageVol);
         //healthpack uses takedamage in negative amounts to heal
         if (hp - amount >= maxHp)
         {
