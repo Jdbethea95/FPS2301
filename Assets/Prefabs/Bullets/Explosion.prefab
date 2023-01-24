@@ -110,11 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb69503ba93c51c46bcded7acc3c240b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBackAmount: 30
+  knockBackAmount: 60
   pull: 0
   doesDamage: 1
-  explosionDmg: 0
+  explosionDmg: 5
   isGrowing: 1
-  growthRate: 1.5
-  maxGrowth: 4
+  growthRate: 4
+  maxGrowth: 10
   lingerTime: 0.11

@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
+    enum EnemyType { Shoot, Explode}
+
     [Header("----- Components -----")]
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform headPos;
@@ -19,6 +21,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int viewAngle;
     [SerializeField] int shootAngle;
     [SerializeField] int despawnTime;
+    [SerializeField] EnemyType type;
 
     [Header("----- Gun Stats -----")]
     bool isShooting = false;
@@ -68,6 +71,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (agent.speed == 0)
             agent.stoppingDistance = int.MaxValue;
+
+        if (type == EnemyType.Explode)
+        {
+            shootDist = 2;
+            agent.stoppingDistance = 3;
+        }
+            
     }
 
     private void Update()
@@ -158,9 +168,20 @@ public class EnemyAI : MonoBehaviour, IDamage
                     FacePlayer();
                 }
 
-                
-                if (!isShooting && angleToPlayer <= shootAngle && agent.remainingDistance <= shootDist)
-                    StartCoroutine(Shoot());
+
+                switch (type)
+                {
+                    case EnemyType.Shoot:
+                        if (!isShooting && angleToPlayer <= shootAngle && agent.remainingDistance <= shootDist)
+                            StartCoroutine(Shoot());
+                        break;
+                    case EnemyType.Explode:
+                        if (angleToPlayer <= shootAngle && agent.remainingDistance <= shootDist)
+                            Explode();
+                        break;
+                }
+
+
             }
         }
     }
