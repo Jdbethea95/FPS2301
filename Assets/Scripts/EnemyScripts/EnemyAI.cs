@@ -171,7 +171,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
 
             isPlayingSteps = true;
-            //audioPlayer.PlayOneShot(audEnemySteps[Random.Range(0, audEnemySteps.Length)], audEnemyStepsVol);
+            audioPlayer.PlayOneShot(audEnemySteps[Random.Range(0, audEnemySteps.Length)], audEnemyStepsVol);
 
             if (agent.speed == 3)
             {
