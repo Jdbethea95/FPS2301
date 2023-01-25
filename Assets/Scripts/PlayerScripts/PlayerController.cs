@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     [Range(0.1f, 2)] [SerializeField] float shootRate;
     [SerializeField] ParticleSystem gunFlash;
     [SerializeField] ParticleSystem gunSpark;
+    [SerializeField] MeshFilter gunModel;
+    [SerializeField] MeshRenderer gunMaterial;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audPlayerTakesDamage;
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip[] audPlayerSteps;
     [Range(0, 1)] [SerializeField] float audPlayerStepsVol;
     [SerializeField] AudioClip[] audPlayerShoot;
+    [SerializeField] AudioClip[] ogPlayerShootAud;
     [Range(0, 1)] [SerializeField] float audPlayerShootVol;
 
 
@@ -60,6 +63,8 @@ public class PlayerController : MonoBehaviour
     int ogShootDamage;
     int ogHp;
     int ogSpeed;
+    [SerializeField] Mesh ogGunModel;
+    [SerializeField] Material ogMaterial;
     #endregion
 
     #region PerkVars
@@ -410,6 +415,28 @@ public class PlayerController : MonoBehaviour
                 shootDamage += PerkManager.instance.activePerks[i].ShootDamage;
                 shootDist += PerkManager.instance.activePerks[i].ShootDistance;
                 shootRate += PerkManager.instance.activePerks[i].ShootRate;
+
+                if (PerkManager.instance.activePerks[i].Model != null)
+                {
+                    gunModel.sharedMesh = PerkManager.instance.activePerks[i].Model;
+                    continue;
+                }
+
+
+
+                if (PerkManager.instance.activePerks[i].material != null)
+                {
+                    gunMaterial.sharedMaterial = PerkManager.instance.activePerks[i].material.GetComponent<MeshRenderer>().sharedMaterial;
+                    continue;
+                }
+
+                if (PerkManager.instance.activePerks[i].audGunShot[0] != null)
+                {                    
+                    for (int x = 0; x < PerkManager.instance.activePerks[i].audGunShot.Length; x++)
+                    {
+                        audPlayerShoot[x] = PerkManager.instance.activePerks[i].audGunShot[x];
+                    }
+                }
             }
         }
     }
@@ -424,6 +451,11 @@ public class PlayerController : MonoBehaviour
         shootDamage = ogShootDamage;
         shootDist = ogShootDist;
         shootRate = ogShootRate;
+
+        if(PerkManager.instance.activePerks[0] != null)
+        gunModel.sharedMesh = ogGunModel;
+        if (PerkManager.instance.activePerks[1] != null)
+            gunMaterial.sharedMaterial = ogMaterial;
     }
 
 

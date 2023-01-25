@@ -23,7 +23,7 @@ public class SO_Perk : ScriptableObject
     public int SpeedModifier;
 
     [Header("----- Gun Modifiers -----")]
-    public Renderer Model;
+    public Mesh Model;
     public Material material;
     public AudioClip[] audGunShot;
     [Range(0, 1)] public float audGunShotVol;
