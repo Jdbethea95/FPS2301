@@ -24,13 +24,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] EnemyType type;
 
     [Header("----- Gun Stats -----")]
-    bool isShooting = false;
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject explosion;
     [SerializeField] Transform shootPos;
+    [Range(0,3)][SerializeField] int percision;
     [Range(5, 100)] [SerializeField] int shootDist;
     [Range(0.1f, 2)] [SerializeField] float shootRate;
     [Range(15, 50)] [SerializeField] int bulletSpeed;
+    bool isShooting = false;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audEnemyTakesDamage;
@@ -175,7 +176,6 @@ public class EnemyAI : MonoBehaviour, IDamage
                             StartCoroutine(Shoot());
                         break;
                     case EnemyType.Explode:
-                        Debug.Log(Vector3.Distance(transform.position, GameManager.instance.player.transform.position));
                         if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= shootDist)
                             Explode();
                         break;
@@ -222,7 +222,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
         animator.SetTrigger("Shoot");
-        int offest = Random.Range(0, 2);
+        int offest = Random.Range(0, percision);
 
         Vector3 accuracy = new Vector3(GameManager.instance.playerScript.COM.x + offest,
                                        GameManager.instance.playerScript.COM.y,

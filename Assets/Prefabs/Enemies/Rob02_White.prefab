@@ -96,9 +96,11 @@ MonoBehaviour:
   viewAngle: 90
   shootAngle: 75
   despawnTime: 3
+  type: 0
   bullet: {fileID: 6716093678165597531, guid: 3132bb0d0b13c7d42bbe0cb4b7e25adb, type: 3}
   explosion: {fileID: 0}
   shootPos: {fileID: 3622169146001365138}
+  percision: 1
   shootDist: 100
   shootRate: 0.5
   bulletSpeed: 50
