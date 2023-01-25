@@ -66,7 +66,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     private void Start()
     {
-        GameManager.instance.UpdateEnemiesRemaining(1);
         agent.speed = agent.speed * speedMult;
 
         if (agent.speed == 0)
