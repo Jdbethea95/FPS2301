@@ -29,7 +29,7 @@ public class PerkManager : MonoBehaviour
     {
         for (int i = 0; i < collectionList.Count; i++)
         {
-            grabList.Add(collectionList[i].ID, collectionList[i]);
+            grabList.Add(collectionList[i].ID, collectionList[i]);            
         }
     }
 

@@ -424,19 +424,12 @@ public class PlayerController : MonoBehaviour
 
 
 
-                if (PerkManager.instance.activePerks[i].material != null)
-                {
-                    gunModel.GetComponent<MeshRenderer>().sharedMaterial = PerkManager.instance.activePerks[i].material.GetComponent<MeshRenderer>().sharedMaterial;
-                    continue;
-                }
+                //if (PerkManager.instance.activePerks[i].material != null)
+                //{
+                //    gunModel.GetComponent<MeshRenderer>().sharedMaterial = PerkManager.instance.activePerks[i].material.GetComponent<MeshRenderer>().sharedMaterial;
+                //    continue;
+                //}
 
-                if (PerkManager.instance.activePerks[i].audGunShot[0] != null)
-                {                    
-                    for (int x = 0; x < PerkManager.instance.activePerks[i].audGunShot.Length; x++)
-                    {
-                        audPlayerShoot[x] = PerkManager.instance.activePerks[i].audGunShot[x];
-                    }
-                }
             }
         }
     }
@@ -455,8 +448,8 @@ public class PlayerController : MonoBehaviour
         if(PerkManager.instance.activePerks[0] != null)
             gunModel.GetComponent<MeshFilter>().sharedMesh = ogGunModel;
 
-        if (PerkManager.instance.activePerks[1] != null)
-            gunModel.GetComponent<MeshRenderer>().sharedMaterial = ogMaterial;
+        //if (PerkManager.instance.activePerks[1] != null)
+            //gunModel.GetComponent<MeshRenderer>().sharedMaterial = ogMaterial;
     }
 
 
