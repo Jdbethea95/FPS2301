@@ -34,8 +34,7 @@ public class PlayerController : MonoBehaviour
     [Range(0.1f, 2)] [SerializeField] float shootRate;
     [SerializeField] ParticleSystem gunFlash;
     [SerializeField] ParticleSystem gunSpark;
-    [SerializeField] MeshFilter gunModel;
-    [SerializeField] MeshRenderer gunMaterial;
+    [SerializeField] GameObject gunModel;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audPlayerTakesDamage;
@@ -122,8 +121,9 @@ public class PlayerController : MonoBehaviour
         UpdatePlayerHp();
 
         //checks for lobby level then activates any perks attached, if any.
-        if(!isLobby && PerkManager.instance.activePerks[0] != null)
+        if(PerkManager.instance.activePerks[0] != null)
         {
+            Debug.Log("Activate!!");
             DeActivatePerks();
             ActivatePerks();
         }
@@ -418,7 +418,7 @@ public class PlayerController : MonoBehaviour
 
                 if (PerkManager.instance.activePerks[i].Model != null)
                 {
-                    gunModel.sharedMesh = PerkManager.instance.activePerks[i].Model;
+                    gunModel.GetComponent<MeshFilter>().sharedMesh = PerkManager.instance.activePerks[i].Model;
                     continue;
                 }
 
@@ -426,7 +426,7 @@ public class PlayerController : MonoBehaviour
 
                 if (PerkManager.instance.activePerks[i].material != null)
                 {
-                    gunMaterial.sharedMaterial = PerkManager.instance.activePerks[i].material.GetComponent<MeshRenderer>().sharedMaterial;
+                    gunModel.GetComponent<MeshRenderer>().sharedMaterial = PerkManager.instance.activePerks[i].material.GetComponent<MeshRenderer>().sharedMaterial;
                     continue;
                 }
 
@@ -453,9 +453,10 @@ public class PlayerController : MonoBehaviour
         shootRate = ogShootRate;
 
         if(PerkManager.instance.activePerks[0] != null)
-        gunModel.sharedMesh = ogGunModel;
+            gunModel.GetComponent<MeshFilter>().sharedMesh = ogGunModel;
+
         if (PerkManager.instance.activePerks[1] != null)
-            gunMaterial.sharedMaterial = ogMaterial;
+            gunModel.GetComponent<MeshRenderer>().sharedMaterial = ogMaterial;
     }
 
 

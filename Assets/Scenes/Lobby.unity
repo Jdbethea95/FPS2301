@@ -4982,16 +4982,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006421443}
   m_CullTransparentMesh: 1
---- !u!23 &1013907041 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5401594806923117315, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-  m_PrefabInstance: {fileID: 1464377056}
-  m_PrefabAsset: {fileID: 0}
---- !u!33 &1013907042 stripped
-MeshFilter:
-  m_CorrespondingSourceObject: {fileID: 5401594806921986499, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-  m_PrefabInstance: {fileID: 1464377056}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1038051934
 GameObject:
   m_ObjectHideFlags: 0
@@ -6987,14 +6977,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1564800675, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1564800678, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8413257563759295686, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -7039,22 +7021,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8413257563759295687, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: gunModel
-      value: 
-      objectReference: {fileID: 1013907042}
-    - target: {fileID: 8413257563759295687, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: ogGunModel
-      value: 
-      objectReference: {fileID: 4300000, guid: c61b3e31a550fa34eabfd4cf550b7494, type: 3}
-    - target: {fileID: 8413257563759295687, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: ogMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 0b860aa49ec587447a0c903606bcc8d2, type: 2}
-    - target: {fileID: 8413257563759295687, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: gunMaterial
-      value: 
-      objectReference: {fileID: 1013907041}
     - target: {fileID: 8413257563759295691, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
       propertyPath: m_Name
       value: Player

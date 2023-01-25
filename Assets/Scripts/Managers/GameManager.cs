@@ -85,12 +85,14 @@ public class GameManager : MonoBehaviour
     {
         if (levelLocks.Count == 0)
         {
-            Debug.Log("This happened");
+            //Debug.Log("This happened");
             for (int i = 0; i < SaveManager.instance.gameData.levelLocks.Count; i++)
             {
                 levelLocks.Add(SaveManager.instance.gameData.levelLocks[i]);
             }
         }
+
+        onTheClock = true;
     }
 
     private void Update()
