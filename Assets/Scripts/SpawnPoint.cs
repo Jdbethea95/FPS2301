@@ -8,7 +8,7 @@ public class SpawnPoint : MonoBehaviour
 
     [SerializeField] GameObject[] enemies;
     [SerializeField] EnemyType type;
-    [SerializeField] int enemySightRadius;
+    [SerializeField] float enemySightRadius;
 
     SphereCollider currentEnemy;
     public void Spawn() 

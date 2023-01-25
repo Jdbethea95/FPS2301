@@ -874,8 +874,8 @@ Transform:
   m_GameObject: {fileID: 8653942892982929197}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -39.15, y: 0.50000095, z: -23.81}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.46, y: 0.46, z: 0.46}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8653942891739698024}
   - {fileID: 8653942893115144255}
@@ -904,14 +904,14 @@ MonoBehaviour:
   hp: 10
   rotSpeed: 300
   speedMult: 3
-  viewAngle: 90
+  viewAngle: 180
   shootAngle: 65
   despawnTime: 3
   type: 1
   bullet: {fileID: 6716093678165597531, guid: 3132bb0d0b13c7d42bbe0cb4b7e25adb, type: 3}
   explosion: {fileID: 5619195110038660448, guid: e31fae241ab73b04f9bc5b4c45f3eec0, type: 3}
   shootPos: {fileID: 8653942893115144255}
-  shootDist: 25
+  shootDist: 5
   shootRate: 0.5
   bulletSpeed: 50
   audEnemyTakesDamage: []
@@ -961,8 +961,8 @@ NavMeshAgent:
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 600
-  m_StoppingDistance: 5
+  m_AngularSpeed: 800
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1091,7 +1091,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 9
+  m_Radius: 91.15
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8653942893092182256
 GameObject:

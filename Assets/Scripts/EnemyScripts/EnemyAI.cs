@@ -74,7 +74,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (type == EnemyType.Explode)
         {
             shootDist = 2;
-            agent.stoppingDistance = 3;
+            agent.stoppingDistance = 2;
         }
             
     }
@@ -167,7 +167,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                     FacePlayer();
                 }
 
-
+                
                 switch (type)
                 {
                     case EnemyType.Shoot:
@@ -175,7 +175,8 @@ public class EnemyAI : MonoBehaviour, IDamage
                             StartCoroutine(Shoot());
                         break;
                     case EnemyType.Explode:
-                        if (angleToPlayer <= shootAngle && agent.remainingDistance <= shootDist)
+                        Debug.Log(Vector3.Distance(transform.position, GameManager.instance.player.transform.position));
+                        if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= shootDist)
                             Explode();
                         break;
                 }
