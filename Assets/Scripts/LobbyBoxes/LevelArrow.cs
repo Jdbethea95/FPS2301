@@ -9,7 +9,7 @@ public class LevelArrow : MonoBehaviour, IDamage
 
     public void TakeDamage(int dmg)
     {
-        selecter.IncrementIndex(increment);
-        selecter.UpdateLevelText();
+        if (selecter.IncrementIndex(increment))
+            selecter.UpdateLevelText();
     }
 }

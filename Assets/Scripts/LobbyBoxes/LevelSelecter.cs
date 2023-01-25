@@ -30,7 +30,7 @@ public class LevelSelecter : MonoBehaviour
         if (ScoreManager.instance.Scenes.Count > index)
             levelName.text = ScoreManager.instance.Scenes[index];
 
-        Debug.Log(ScoreManager.instance.Scenes[index] + " : " + ScoreManager.instance.Scenes.Count);
+       
 
         if (GameManager.instance.levelLocks.Count > index)
         {
@@ -49,21 +49,36 @@ public class LevelSelecter : MonoBehaviour
         {
             isOpen = false;
             portal.material = red;
+            Debug.Log("Pop");
         }
 
     }
 
-    public void IncrementIndex(int amount) 
+    public bool IncrementIndex(int amount) 
     {
-        if (ScoreManager.instance.Scenes.Count > index &&
-            GameManager.instance.levelLocks.Count > index && amount > 0)
+
+        if (ScoreManager.instance.Scenes.Count > index && amount > 0)
+        {            
+            index += amount;
+
+            if (index >= ScoreManager.instance.Scenes.Count)
+                index = 0;
+
+            Debug.Log(GameManager.instance.levelLocks.Count + " : " + ScoreManager.instance.Scenes.Count 
+                + " : " + index);
+            return true;
+        }
+        else if (amount < 0)
         {
             index += amount;
+
+            if (index < 0)
+                index = ScoreManager.instance.Scenes.Count - 1;
+
+            return true;
         }
-        else if (index > 0 && amount < 0)
-        {
-            index += amount;
-        }
+
+        return false;
     }
 
 
