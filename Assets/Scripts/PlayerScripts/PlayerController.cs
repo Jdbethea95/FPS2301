@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ParticleSystem gunFlash;
     [SerializeField] ParticleSystem gunSpark;
     [SerializeField] GameObject gunModel;
+    [SerializeField] ParticleSystem.MainModule gunFlashColor;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audPlayerTakesDamage;
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
     int ogShootDamage;
     int ogHp;
     int ogSpeed;
+    ParticleSystem.MinMaxGradient ogColor;
     [SerializeField] Mesh ogGunModel;
     [SerializeField] Material ogMaterial;
     #endregion
@@ -114,6 +116,9 @@ public class PlayerController : MonoBehaviour
         ogShootDamage = shootDamage;
         ogHp = maxHp;
         ogSpeed = baseSpeed;
+        gunFlashColor = gunFlash.main;
+        ogColor = gunFlash.main.startColor;
+
 
         foundPerk = false;
 
@@ -431,6 +436,11 @@ public class PlayerController : MonoBehaviour
                     gunModel.GetComponent<MeshRenderer>().sharedMaterial = PerkManager.instance.activePerks[i].material;
                 }
 
+                if (PerkManager.instance.activePerks[i].isColored)
+                {
+                    gunFlashColor.startColor = PerkManager.instance.activePerks[i].color;
+                }
+
             }
         }
     }
@@ -451,6 +461,9 @@ public class PlayerController : MonoBehaviour
 
         if (PerkManager.instance.activePerks[1] != null)
             gunModel.GetComponent<MeshRenderer>().sharedMaterial = ogMaterial;
+
+        if (PerkManager.instance.activePerks[2] != null)
+            gunFlashColor.startColor = ogColor;
     }
 
 

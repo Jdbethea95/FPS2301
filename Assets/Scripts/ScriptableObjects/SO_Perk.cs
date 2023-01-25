@@ -25,6 +25,6 @@ public class SO_Perk : ScriptableObject
     [Header("----- Gun Modifiers -----")]
     public Mesh Model;
     public Material material;
-    public AudioClip[] audGunShot;
-    [Range(0, 1)] public float audGunShotVol;
+    public bool isColored;
+    public ParticleSystem.MinMaxGradient color;
 }
