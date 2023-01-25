@@ -2396,6 +2396,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 8944778248512239267, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
+      propertyPath: collectionList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944778248512239267, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
+      propertyPath: collectionList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b1a2de0e1fb9ae4791b13df7359ffd9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
 --- !u!1001 &495382221
@@ -6977,6 +6985,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5401594806923117315, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0b860aa49ec587447a0c903606bcc8d2, type: 2}
     - target: {fileID: 8413257563759295686, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
       propertyPath: m_RootOrder
       value: 3
