@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject deathMenu;
     public GameObject settingsMenu;
+    public GameObject timerUI;
 
     [Header("----- Settings Components -----")]
     public Slider xSenSlider;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     //Pause State Variables
     public bool isPaused;
+    public bool onTheClock = true;
     float timeScaleOrig;
 
     public List<bool> levelLocks;
@@ -69,7 +71,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
 
@@ -78,16 +79,19 @@ public class GameManager : MonoBehaviour
         GetDoorScripts();
 
         timeScaleOrig = Time.timeScale;
-        if (levelLocks.Count < 0)
+    }
+
+    private void Start()
+    {
+        if (levelLocks.Count == 0)
         {
+            Debug.Log("This happened");
             for (int i = 0; i < SaveManager.instance.gameData.levelLocks.Count; i++)
             {
                 levelLocks.Add(SaveManager.instance.gameData.levelLocks[i]);
             }
         }
-
     }
-
 
     private void Update()
     {
@@ -202,7 +206,7 @@ public class GameManager : MonoBehaviour
 
     void StopWatch()
     {
-        if (Time.time > currentTime + timeInterval)
+        if (Time.time > currentTime + timeInterval && onTheClock)
         {
             timerSeconds += timeInterval;
 
@@ -228,6 +232,13 @@ public class GameManager : MonoBehaviour
                 timerTxt.text += $"{timerSeconds}";
 
         }
+    }
+
+    public void ResetTime() 
+    {
+        timerSeconds = 0;
+        timerMinutes = 0;
+        StopWatch();
     }
 
     void GetDoorScripts()
