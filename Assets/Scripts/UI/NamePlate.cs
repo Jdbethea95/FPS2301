@@ -12,7 +12,7 @@ public class NamePlate : MonoBehaviour
 
     public void EnterButton() 
     {
-        Debug.Log(input.text.Length);
+
         if (input.text.Length > 4)
         {
             warnings.color = Color.red;

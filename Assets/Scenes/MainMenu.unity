@@ -6741,22 +6741,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
-      propertyPath: Scenes.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
-      propertyPath: Scenes.Array.data[2]
-      value: The Dip
-      objectReference: {fileID: 0}
-    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
-      propertyPath: Scenes.Array.data[3]
-      value: Highway
-      objectReference: {fileID: 0}
-    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
-      propertyPath: Scenes.Array.data[4]
-      value: Showdown
-      objectReference: {fileID: 0}
     - target: {fileID: 7969890902344046839, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: m_Name
       value: Managers

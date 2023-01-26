@@ -175,6 +175,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   type: 0
   enemySightRadius: 17
+  isMinion: 0
 --- !u!65 &13207891
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3969,7 +3970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8168159443867158799, guid: 81268c9ada56bd04c82041abc36a1216, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8168159443867158799, guid: 81268c9ada56bd04c82041abc36a1216, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5450,6 +5451,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   type: 0
   enemySightRadius: 16
+  isMinion: 0
 --- !u!65 &1327053858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5709,7 +5711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 553501303601398918, guid: 32a85adbab189a846ab5835343762913, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 553501303601398918, guid: 32a85adbab189a846ab5835343762913, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7214,6 +7216,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   type: 0
   enemySightRadius: 15
+  isMinion: 0
 --- !u!65 &1748123727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8000,6 +8003,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   type: 0
   enemySightRadius: 22
+  isMinion: 0
 --- !u!65 &2099823529
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9937,6 +9941,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   type: 0
   enemySightRadius: 12
+  isMinion: 0
 --- !u!114 &8668204661966441332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9961,6 +9966,7 @@ MonoBehaviour:
   - {fileID: 1748123726}
   - {fileID: 2099823528}
   - {fileID: 1327053857}
+  isMinions: 0
 --- !u!135 &8668204661966441334
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10050,6 +10056,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   type: 0
   enemySightRadius: 10
+  isMinion: 0
 --- !u!65 &8668204662105399211
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10146,6 +10153,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   type: 0
   enemySightRadius: 12
+  isMinion: 0
 --- !u!4 &8668204662577866932
 Transform:
   m_ObjectHideFlags: 0
@@ -10180,6 +10188,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   type: 0
   enemySightRadius: 22
+  isMinion: 0
 --- !u!65 &8668204662577866935
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10245,6 +10254,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   type: 0
   enemySightRadius: 17
+  isMinion: 0
 --- !u!65 &8668204662592181563
 BoxCollider:
   m_ObjectHideFlags: 0

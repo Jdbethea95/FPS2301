@@ -49,6 +49,9 @@ MonoBehaviour:
   Scenes:
   - The Hallway
   - First Hurdle
+  - The Dip
+  - Highway
+  - Showdown
   ownedList: []
   playerName: JZH
 --- !u!114 &7969890902344046832
@@ -88,8 +91,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectionList:
   - {fileID: 11400000, guid: 09533f422b441cc498b93e4972dc216b, type: 2}
-  - {fileID: 11400000, guid: 39f49305aa8ab0e4c9d19c4c91ba84f5, type: 2}
   - {fileID: 11400000, guid: 2840e5d4de073df47a7d035b0883ab97, type: 2}
+  - {fileID: 11400000, guid: 3bde950e39b3cd3468c9231a8f81a664, type: 2}
+  - {fileID: 11400000, guid: 8b1a2de0e1fb9ae4791b13df7359ffd9, type: 2}
+  - {fileID: 11400000, guid: 8c44a20b08073344f86dc18dad78363f, type: 2}
   activePerks:
   - {fileID: 0}
   - {fileID: 0}

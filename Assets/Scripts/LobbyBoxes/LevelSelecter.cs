@@ -49,7 +49,6 @@ public class LevelSelecter : MonoBehaviour
         {
             isOpen = false;
             portal.material = red;
-            Debug.Log("Pop");
         }
 
     }
@@ -64,8 +63,6 @@ public class LevelSelecter : MonoBehaviour
             if (index >= ScoreManager.instance.Scenes.Count)
                 index = 0;
 
-            Debug.Log(GameManager.instance.levelLocks.Count + " : " + ScoreManager.instance.Scenes.Count 
-                + " : " + index);
             return true;
         }
         else if (amount < 0)
