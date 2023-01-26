@@ -22,7 +22,7 @@ public class GameData
         xSen = 300f;
         ySen = 300f;
         levelLocks.Add(true);
-        topLevel = "Level 1";
+        topLevel = "The Hallway";
         levelIndx = 0;
         playerName = "JZH";
     }

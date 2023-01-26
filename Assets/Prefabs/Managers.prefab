@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scenes:
-  - Level 1
-  - Level 2
+  - The Hallway
+  - First Hurdle
   ownedList: []
   playerName: JZH
 --- !u!114 &7969890902344046832
@@ -67,6 +67,7 @@ MonoBehaviour:
     scores: []
     perkIds: []
     levelLocks: 
+    playerName: JZH
     xSen: 1.5
     ySen: 1.5
     topLevel: BuildingLevel

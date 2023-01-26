@@ -1679,7 +1679,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Entrance
+  m_text: The Hallway
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5653,9 +5653,15 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Entrance
+    - m_Text: The Hallway
       m_Image: {fileID: 0}
-    - m_Text: The Building
+    - m_Text: First Hurdle
+      m_Image: {fileID: 0}
+    - m_Text: The Dip
+      m_Image: {fileID: 0}
+    - m_Text: Highway
+      m_Image: {fileID: 0}
+    - m_Text: Showdown
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6734,6 +6740,22 @@ PrefabInstance:
     - target: {fileID: 7969890902344046833, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
+      propertyPath: Scenes.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
+      propertyPath: Scenes.Array.data[2]
+      value: The Dip
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
+      propertyPath: Scenes.Array.data[3]
+      value: Highway
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969890902344046838, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
+      propertyPath: Scenes.Array.data[4]
+      value: Showdown
       objectReference: {fileID: 0}
     - target: {fileID: 7969890902344046839, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: m_Name
