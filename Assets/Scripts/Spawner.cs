@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
         spawnPoints[index].Spawn();
         enemiesSpawned++;
 
-        if (index < spawnPoints.Count)
+        if (index < spawnPoints.Count - 1)
             index++;
         else
             index = 0;

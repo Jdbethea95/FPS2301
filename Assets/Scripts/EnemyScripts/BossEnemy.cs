@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class BossEnemy : MonoBehaviour, IDamage
 {
@@ -13,9 +14,11 @@ public class BossEnemy : MonoBehaviour, IDamage
     [SerializeField] Animator animator;
     [SerializeField] Collider body;
     [SerializeField] AudioSource audioPlayer;
+    [SerializeField] Image bossHpBar;
 
     [Header("----- Enemy Stats -----")]
     [Range(1, 1000)] [SerializeField] int hp = 10;
+    int maxHp;
     [SerializeField] int rotSpeed;
     [SerializeField] int speedMult;
     [SerializeField] int viewAngle;
@@ -68,7 +71,7 @@ public class BossEnemy : MonoBehaviour, IDamage
     private void Start()
     {
         agent.speed = agent.speed * speedMult;
-
+        maxHp = hp;
         GameManager.instance.UpdateEnemiesRemaining(1);
 
         if (agent.speed == 0)
@@ -102,13 +105,11 @@ public class BossEnemy : MonoBehaviour, IDamage
 
 
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="dmg">Applies Damage to Enemy</param>
+
     public void TakeDamage(int dmg)
     {        
         hp -= dmg;
+        UpdateHealthBar();
         animator.SetBool("PlayerNear", true);
         //animator.SetTrigger("Hurt");
 
@@ -134,6 +135,8 @@ public class BossEnemy : MonoBehaviour, IDamage
         }
 
     }
+
+
     void canSeePlayer()
     {
         //Provides player's direction from enemy
@@ -243,6 +246,13 @@ public class BossEnemy : MonoBehaviour, IDamage
         Instantiate(explosion, transform.position, explosion.transform.rotation);
         TakeDamage(int.MaxValue);
     }
+
+
+    void UpdateHealthBar() 
+    {
+        bossHpBar.fillAmount = (float)hp / (float)maxHp;
+    }
+
 
     //Checks for player inside collider trigger
     private void OnTriggerEnter(Collider other)

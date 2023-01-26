@@ -2536,7 +2536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.061599493, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6424,6 +6424,7 @@ MonoBehaviour:
   winMenu: {fileID: 2137597805}
   deathMenu: {fileID: 2084587502}
   settingsMenu: {fileID: 40084777284573431}
+  timerUI: {fileID: 0}
   xSenSlider: {fileID: 1803656989377652129}
   ySenSlider: {fileID: 926909341084003221}
   enemyCountTxt: {fileID: 77874678}
@@ -6443,6 +6444,7 @@ MonoBehaviour:
   doors: []
   doorScripts: []
   isPaused: 0
+  onTheClock: 1
   levelLocks: 
 --- !u!1 &2317743670203063297
 GameObject:
