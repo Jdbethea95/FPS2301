@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scenes:
-  - BuildingLevel
+  - Level 1
   - Level 2
   ownedList: []
+  playerName: JZH
 --- !u!114 &7969890902344046832
 MonoBehaviour:
   m_ObjectHideFlags: 0

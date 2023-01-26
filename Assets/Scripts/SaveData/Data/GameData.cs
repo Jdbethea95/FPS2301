@@ -9,6 +9,8 @@ public class GameData
     public List<string> perkIds = new List<string>();
     public List<bool> levelLocks = new List<bool>();
 
+    public string playerName;
+
     public float xSen;
     public float ySen;
 
@@ -20,8 +22,9 @@ public class GameData
         xSen = 300f;
         ySen = 300f;
         levelLocks.Add(true);
-        topLevel = "BuildingLevel";
+        topLevel = "Level 1";
         levelIndx = 0;
+        playerName = "JZH";
     }
 
     public GameData(GameData data)
@@ -31,6 +34,7 @@ public class GameData
         UpdateLevels(data.levelLocks);
         xSen = data.xSen;
         ySen = data.ySen;
+        playerName = data.playerName;
     }
 
 

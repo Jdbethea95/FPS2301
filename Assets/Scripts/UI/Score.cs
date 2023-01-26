@@ -46,7 +46,7 @@ public class Score
         get { return _playerName; }
         set 
         {
-            if (value.Length > 3)
+            if (value.Length > 4)
                 _playerName = "NAH";
             else
                 _playerName = value.ToUpper();
@@ -58,7 +58,6 @@ public class Score
         HealthScore = 0;
         BoostScore = 0;
         EnemyScore = 0;
-        _playerName = "JZH";
     }
 
     /// <summary>

@@ -408,11 +408,43 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 190295091, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
+      propertyPath: m_Name
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 190295093, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
     - target: {fileID: 659117121, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1174650632, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
+      propertyPath: m_Name
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174650634, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
     - target: {fileID: 1246632295, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1874182574, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
+      propertyPath: m_text
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081002895, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
+      propertyPath: m_text
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084587502, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107382593, guid: 4d1903a01e99296409209e6d56d8ca87, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

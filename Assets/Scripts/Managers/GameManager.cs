@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI enemyScoreTxt;
     [SerializeField] TextMeshProUGUI healthScoreTxt;
     [SerializeField] TextMeshProUGUI boostScoreTxt;
+    [SerializeField] TextMeshProUGUI nameTxt;
     [SerializeField] TextMeshProUGUI PerkScoreTxt;
     [SerializeField] TextMeshProUGUI perkFoundTxt;
     public Score currentScore = new Score();
@@ -175,12 +176,14 @@ public class GameManager : MonoBehaviour
     {
         currentScore.HealthScore = playerScript.CurrentHealth;
         currentScore.SetTimeScore(timerMinutes, timerSeconds);
+        currentScore.PlayerName = ScoreManager.instance.playerName;
 
         timeScoreTxt.text = currentScore.TimeScore.ToString("F0");
         enemyScoreTxt.text = currentScore.EnemyScore.ToString("F0");
         healthScoreTxt.text = currentScore.HealthScore.ToString("F0");
         boostScoreTxt.text = currentScore.BoostScore.ToString("F0");
         totalScoreTxt.text = currentScore.TotalScore.ToString("F0");
+        nameTxt.text = currentScore.PlayerName;
     }
 
     public void PlayerDeath()

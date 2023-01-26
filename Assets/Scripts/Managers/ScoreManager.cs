@@ -12,6 +12,8 @@ public class ScoreManager : MonoBehaviour, ISaveData
 
     public List<string> ownedList;
 
+    public string playerName = "JZH";
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -33,6 +35,8 @@ public class ScoreManager : MonoBehaviour, ISaveData
 
     public void Load(GameData data)
     {
+        playerName = data.playerName;
+
         int i = 0;
         foreach (var item in boards)
         {
@@ -70,6 +74,8 @@ public class ScoreManager : MonoBehaviour, ISaveData
         {
             data.perkIds.Add(ownedList[x]);
         }
+
+        data.playerName = playerName;
     }
 
 }
