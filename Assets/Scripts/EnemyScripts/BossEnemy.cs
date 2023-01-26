@@ -14,7 +14,11 @@ public class BossEnemy : MonoBehaviour, IDamage
     [SerializeField] Animator animator;
     [SerializeField] Collider body;
     [SerializeField] AudioSource audioPlayer;
+
+    [Header("----- Boss Components -----")]
+    [SerializeField] GameObject bossBar;
     [SerializeField] Image bossHpBar;
+    [SerializeField] GameObject[] MinionSpawner;
 
     [Header("----- Enemy Stats -----")]
     [Range(1, 1000)] [SerializeField] int hp = 10;
@@ -122,6 +126,12 @@ public class BossEnemy : MonoBehaviour, IDamage
             GameManager.instance.UpdateEnemiesRemaining(-1);
             GameManager.instance.currentScore.EnemyScore = 1;
             despawnTimer = Time.time;
+
+            for (int i = 0; i < MinionSpawner.Length; i++)
+            {
+                Destroy(MinionSpawner[i]);
+            }
+
             //Destroy(gameObject);
         }
         else 
@@ -260,6 +270,7 @@ public class BossEnemy : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            bossBar.SetActive(true);
             animator.SetBool("PlayerNear", true);
         }
     }
