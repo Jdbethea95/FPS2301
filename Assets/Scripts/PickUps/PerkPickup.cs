@@ -6,6 +6,10 @@ public class PerkPickup : MonoBehaviour
 {
     [SerializeField] SO_Perk perk;
 
+    [Range(0, 1f)] [SerializeField] float soundVol;
+    [SerializeField] AudioSource player;
+    [SerializeField] AudioClip sound;
+
 
     private void Start()
     {
@@ -23,7 +27,18 @@ public class PerkPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.playerScript.PerkPickup(perk);
-            Destroy(gameObject);
+            player.PlayOneShot(sound, soundVol);
+            StartCoroutine(SoundWait(sound));
         }
+    }
+
+
+    IEnumerator SoundWait(AudioClip sound)
+    {
+        yield return new WaitUntil(() => player.isPlaying == false);
+
+        if (gameObject != null)
+            Destroy(gameObject);
+
     }
 }
