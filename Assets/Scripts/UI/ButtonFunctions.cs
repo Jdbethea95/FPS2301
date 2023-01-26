@@ -69,6 +69,12 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.UnPause();
     }
 
+    public void Lobby()
+    {
+        SceneManager.LoadScene("Lobby");
+        GameManager.instance.UnPause();
+    }
+
     public void SaveButton() 
     {
         SaveManager.instance.SaveGame();
