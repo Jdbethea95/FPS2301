@@ -1,5 +1,135 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1005162593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1005162596}
+  - component: {fileID: 1005162595}
+  - component: {fileID: 1005162594}
+  m_Layer: 7
+  m_Name: MinionSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1005162596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005162593}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.765, y: 0, z: 8.0625}
+  m_LocalScale: {x: 5.3025, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2133439181}
+  m_Father: {fileID: 2921687512385296402}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!135 &1005162595
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005162593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1005162594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005162593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca99c74130956e4d937a9977fac6f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCount: 9999
+  timer: 15
+  spawnPoints:
+  - {fileID: 2133439179}
+  isMinions: 1
+--- !u!1 &2133439178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2133439181}
+  - component: {fileID: 2133439180}
+  - component: {fileID: 2133439179}
+  m_Layer: 0
+  m_Name: SpawnPos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2133439181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133439178}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 1.7001415, y: 0.040000476, z: -32.75}
+  m_LocalScale: {x: 0.047147572, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1005162596}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &2133439180
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133439178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.31, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2133439179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133439178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e15689bc44be740b1499195c10a8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 251008109471441558, guid: 9fd890cfa8206ed4598e4e1a0e5985ef, type: 3}
+  - {fileID: 627066583853161830, guid: ee5868aa876e22f4f8950192c7f0bb07, type: 3}
+  - {fileID: 753428896529195182, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
+  - {fileID: 8653942892982929197, guid: f7bb09cb30835944ba107594abfa4976, type: 3}
+  type: 3
+  enemySightRadius: 120
+  isMinion: 1
 --- !u!1 &66270771757238811
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +537,136 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0058428645, y: 0.55144614, z: -0.009128392}
     m_Extent: {x: 0.67702323, y: 0.9555097, z: 0.6752512}
   m_DirtyAABB: 0
+--- !u!1 &2262507993680726683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2262507993680726686}
+  - component: {fileID: 2262507993680726685}
+  - component: {fileID: 2262507993680726684}
+  m_Layer: 0
+  m_Name: SpawnPos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2262507993680726686
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262507993680726683}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0}
+  m_LocalPosition: {x: 1.8340406, y: 0.04, z: -36.45}
+  m_LocalScale: {x: 0.047147572, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2262507993819651649}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &2262507993680726685
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262507993680726683}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.31, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2262507993680726684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262507993680726683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e15689bc44be740b1499195c10a8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 251008109471441558, guid: 9fd890cfa8206ed4598e4e1a0e5985ef, type: 3}
+  - {fileID: 627066583853161830, guid: ee5868aa876e22f4f8950192c7f0bb07, type: 3}
+  - {fileID: 753428896529195182, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
+  - {fileID: 8653942892982929197, guid: f7bb09cb30835944ba107594abfa4976, type: 3}
+  type: 3
+  enemySightRadius: 120
+  isMinion: 1
+--- !u!1 &2262507993819651663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2262507993819651649}
+  - component: {fileID: 2262507993819651648}
+  - component: {fileID: 2262507993819651650}
+  m_Layer: 7
+  m_Name: MinionSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2262507993819651649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262507993819651663}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.9750004, y: 0, z: 11.1625}
+  m_LocalScale: {x: 5.3025, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2262507993680726686}
+  m_Father: {fileID: 2921687512385296402}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!135 &2262507993819651648
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262507993819651663}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2262507993819651650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262507993819651663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca99c74130956e4d937a9977fac6f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCount: 9999
+  timer: 15
+  spawnPoints:
+  - {fileID: 2262507993680726684}
+  isMinions: 1
 --- !u!1 &2288051684082646385
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +770,8 @@ Transform:
   - {fileID: 6069513104994093196}
   - {fileID: 5689402262376104862}
   - {fileID: 1460037687491463332}
+  - {fileID: 2262507993819651649}
+  - {fileID: 1005162596}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -531,7 +793,8 @@ MonoBehaviour:
   body: {fileID: 3387078749845913590}
   audioPlayer: {fileID: 8823839138848317340}
   bossHpBar: {fileID: 3849900311058517575}
-  hp: 100
+  MinionSpawner: []
+  hp: 120
   rotSpeed: 300
   speedMult: 1
   viewAngle: 180

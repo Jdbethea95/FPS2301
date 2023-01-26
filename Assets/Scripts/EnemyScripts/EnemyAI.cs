@@ -42,7 +42,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Range(0, 5)][SerializeField] float audEnemyShootVol;
 
     [Header("----- Side Options -----")]
-    [SerializeField] bool reportDeath = true;
+    public bool reportDeath = true;
 
     Vector3 playerDir;
     bool playerInRange = false;
