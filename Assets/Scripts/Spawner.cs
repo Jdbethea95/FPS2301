@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] int timer;
     [SerializeField] List<SpawnPoint> spawnPoints;
 
+    [SerializeField] bool isMinions;
+
     bool isSpawning;
     bool playerInRange;
     int enemiesSpawned;
@@ -17,7 +19,8 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.UpdateEnemiesRemaining(enemyCount);
+        if (!isMinions)
+            GameManager.instance.UpdateEnemiesRemaining(enemyCount);
     }
 
 
@@ -27,7 +30,7 @@ public class Spawner : MonoBehaviour
             StartCoroutine(Spawn());
     }
 
-    IEnumerator Spawn() 
+    IEnumerator Spawn()
     {
         isSpawning = true;
 
@@ -38,7 +41,7 @@ public class Spawner : MonoBehaviour
             index++;
         else
             index = 0;
-        
+
         yield return new WaitForSeconds(timer);
         isSpawning = false;
     }

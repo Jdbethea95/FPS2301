@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class BossEnemy : MonoBehaviour, IDamage
 {
     enum EnemyType { Shoot, Explode}
 
@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioSource audioPlayer;
 
     [Header("----- Enemy Stats -----")]
-    [Range(1, 100)] [SerializeField] int hp = 10;
+    [Range(1, 1000)] [SerializeField] int hp = 10;
     [SerializeField] int rotSpeed;
     [SerializeField] int speedMult;
     [SerializeField] int viewAngle;
@@ -28,9 +28,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject explosion;
     [SerializeField] Transform shootPos;
     [Range(0,3)][SerializeField] int percision;
-    [Range(5, 100)] [SerializeField] int shootDist;
-    [Range(0.1f, 2)] [SerializeField] float shootRate;
-    [Range(15, 50)] [SerializeField] int bulletSpeed;
+    [Range(5, 1000)] [SerializeField] int shootDist;
+    [Range(0.1f, 10)] [SerializeField] float shootRate;
+    [Range(15, 100)] [SerializeField] int bulletSpeed;
     bool isShooting = false;
 
     [Header("----- Audio -----")]
@@ -40,9 +40,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Range(0, 5)][SerializeField] float audEnemyStepsVol;
     [SerializeField] AudioClip[] audEnemyShoot;
     [Range(0, 5)][SerializeField] float audEnemyShootVol;
-
-    [Header("----- Side Options -----")]
-    [SerializeField] bool reportDeath = true;
 
     Vector3 playerDir;
     bool playerInRange = false;
@@ -71,6 +68,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     private void Start()
     {
         agent.speed = agent.speed * speedMult;
+
+        GameManager.instance.UpdateEnemiesRemaining(1);
 
         if (agent.speed == 0)
             agent.stoppingDistance = int.MaxValue;
@@ -119,13 +118,8 @@ public class EnemyAI : MonoBehaviour, IDamage
             animator.SetBool("Dead", true);
             isDead = true;
             body.enabled = false;
-
-            if (reportDeath)
-            {
-                GameManager.instance.UpdateEnemiesRemaining(-1);
-                GameManager.instance.currentScore.EnemyScore = 1;
-            }
-
+            GameManager.instance.UpdateEnemiesRemaining(-1);
+            GameManager.instance.currentScore.EnemyScore = 1;
             despawnTimer = Time.time;
             //Destroy(gameObject);
         }
@@ -232,9 +226,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         animator.SetTrigger("Shoot");
         int offest = Random.Range(0, percision);
 
-        Vector3 accuracy = new Vector3(GameManager.instance.playerScript.COM.x + offest,
+        Vector3 accuracy = new Vector3(GameManager.instance.playerScript.COM.x,
                                        GameManager.instance.playerScript.COM.y,
-                                       GameManager.instance.playerScript.COM.z + offest);
+                                       GameManager.instance.playerScript.COM.z);
         audioPlayer.PlayOneShot(audEnemyShoot[Random.Range(0, audEnemyShoot.Length)], audEnemyShootVol);
 
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
