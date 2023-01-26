@@ -26,6 +26,11 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
     }
 
+    public void MenuQuit()
+    {
+        Application.Quit();
+    }
+
     public void Settings()
     {
         GameManager.instance.activeMenu.SetActive(false);

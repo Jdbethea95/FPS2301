@@ -13,6 +13,11 @@ public class MenuScript : MonoBehaviour
         if (ScoreManager.instance.playerName == "JZH" || ScoreManager.instance.playerName == "")
             namePlate.SetActive(true);
         else
+        {
             SceneManager.LoadScene("Lobby");
+            GameManager.instance.UnPause();
+            GameManager.instance.isPaused = false;
+        }
+           
     }
 }

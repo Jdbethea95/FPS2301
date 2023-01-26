@@ -49,6 +49,14 @@ public class LevelSelecter : MonoBehaviour
         {
             isOpen = false;
             portal.material = red;
+
+            if (levelName.text == "The Hallway")
+            {
+                isOpen = true;
+                portal.material = green;
+            }
+                
+
         }
 
     }
