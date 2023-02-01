@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI enemyCountTxt;
     [SerializeField] TextMeshProUGUI timerTxt;
     public Image playerHpBar;
+    public Image overHeatBar;
 
     [Header("----- Flash Items-----")]
     [SerializeField] GameObject topFlash;

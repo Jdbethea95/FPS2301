@@ -15004,7 +15004,7 @@ MonoBehaviour:
   cam: {fileID: 8413257563753050936}
   com: {fileID: 1991006701}
   audioPlayer: {fileID: 1012042200}
-  hp: 50
+  hp: 65
   speed: 10
   reduceRate: 2
   pushBackTime: 3
@@ -15012,9 +15012,14 @@ MonoBehaviour:
   jumpHeight: 5
   jumpMax: 1
   jumpCount: 0
-  shootDamage: 5
+  shootDamage: 1
   shootDist: 30
-  shootRate: 0.5
+  shootRate: 0.1
+  overHeat: 0
+  overHeatMax: 25
+  overHeatReduction: 1
+  overHeatCooldown: 2
+  heatAmount: 1
   gunFlash: {fileID: 607246711}
   gunSpark: {fileID: 2111912513}
   gunModel: {fileID: 5401594806920928707}
@@ -15068,7 +15073,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &8413257563759295685
 MeshFilter:

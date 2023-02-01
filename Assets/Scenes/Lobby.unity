@@ -2148,7 +2148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7969890902344046839, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8944778248512239267, guid: a222d0b93829c4644a42c91bab60864d, type: 3}
       propertyPath: collectionList.Array.size
@@ -6232,6 +6232,10 @@ PrefabInstance:
     - target: {fileID: 8413257563759295686, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8413257563759295687, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
+      propertyPath: reduceRate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8413257563759295691, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
       propertyPath: m_Name

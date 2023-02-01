@@ -29,9 +29,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int jumpCount;
 
     [Header("----- Gun Stats -----")]
-    [Range(5, 50)] [SerializeField] int shootDamage = 10;
+    [Range(1, 50)] [SerializeField] int shootDamage = 10;
     [Range(15, 200)] [SerializeField] int shootDist;
     [Range(0.1f, 2)] [SerializeField] float shootRate;
+    [SerializeField] float overHeat;
+    [SerializeField] float overHeatMax;
+    [SerializeField] int overHeatReduction;
+    [SerializeField] int overHeatCooldown;
+    [SerializeField] float heatAmount = 1.0f;
+    float overHeatTimer;
+    float overheatHolder;
+    int damage;
+
+    [Header("----- Gun Components -----")]
     [SerializeField] ParticleSystem gunFlash;
     [SerializeField] ParticleSystem gunSpark;
     [SerializeField] GameObject gunModel;
@@ -54,7 +64,8 @@ public class PlayerController : MonoBehaviour
     bool isPlayingSteps;
     bool isPlayingShootAudio;
     bool isSparking;
-    bool isLobby;
+    bool isOverheated;
+    bool zeroedHeat;
     #endregion
 
     #region OgStats
@@ -78,7 +89,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 pushBack;
     Vector3 move;
     Vector3 velocity;
-    public Vector3 hitDirection = Vector3.zero; 
+    public Vector3 hitDirection = Vector3.zero;
     #endregion
 
     #region Properties
@@ -112,7 +123,7 @@ public class PlayerController : MonoBehaviour
         baseSpeed = speed;
         maxHp = hp;
         ogShootDist = shootDist;
-        ogShootRate = shootRate; 
+        ogShootRate = shootRate;
         ogShootDamage = shootDamage;
         ogHp = maxHp;
         ogSpeed = baseSpeed;
@@ -124,9 +135,10 @@ public class PlayerController : MonoBehaviour
 
         dashParticles.Stop();
         UpdatePlayerHp();
+        UpdateHeatBar();
 
         //checks for lobby level then activates any perks attached, if any.
-        if(PerkManager.instance.activePerks[0] != null || PerkManager.instance.activePerks[1] != null ||
+        if (PerkManager.instance.activePerks[0] != null || PerkManager.instance.activePerks[1] != null ||
             PerkManager.instance.activePerks[2] != null)
         {
             Debug.Log("Activate!!");
@@ -152,11 +164,15 @@ public class PlayerController : MonoBehaviour
 
             Movement();
 
-            if (!isShooting && Input.GetButtonDown("Shoot") && !GameManager.instance.isPaused)
+            if (!isShooting && Input.GetButtonDown("Shoot") && !GameManager.instance.isPaused && !isOverheated)
                 StartCoroutine(Shoot());
 
+            //checks the timer for the overheat plus the cooldown time to see if it can reduce bar.
+            if (Time.time > overHeatTimer)
+                ReduceHeat();
+
             if (Time.time > speedTimer && speed > baseSpeed)
-                ReduceSpeed(); 
+                ReduceSpeed();
         }
     }
 
@@ -171,8 +187,12 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
+        damage = Mathf.FloorToInt(controller.velocity.magnitude);
+        //Debug.Log(Mathf.FloorToInt(controller.velocity.magnitude));
+
         //pushback implementation inside Jump
-        Jump();
+
+            Jump();
 
     }
 
@@ -181,8 +201,8 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
 
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
-        {
+        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax && IsGrounded())
+        {            
             velocity.y = jumpHeight;
             jumpCount++;
             //audioPlayer.PlayOneShot(audPlayerJump[Random.Range(0, audPlayerJump.Length)], audPlayerJumpVol);
@@ -190,6 +210,20 @@ public class PlayerController : MonoBehaviour
 
         velocity.y -= gravity * Time.deltaTime;
         controller.Move((velocity + pushBack) * Time.deltaTime);
+
+
+    }
+
+    bool IsGrounded() 
+    {
+
+        Ray ray = new Ray(transform.position, Vector3.down);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 2f))
+        {
+            return true;
+        }
+        return false;
     }
 
     //Resets Jump Count once Grounded
@@ -201,7 +235,7 @@ public class PlayerController : MonoBehaviour
             jumpCount = 0;
         }
 
-    } 
+    }
     #endregion
 
     IEnumerator playSteps()
@@ -230,7 +264,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void PushBackReduction() 
+    void PushBackReduction()
     {
         pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
         pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime * 3);
@@ -247,6 +281,25 @@ public class PlayerController : MonoBehaviour
         isShooting = true;
         RaycastHit hit;
 
+        //adds 1 to over heat if not maxed. overheats when max is reached.
+        if (overHeat < overHeatMax)
+        {
+            overHeat += heatAmount;
+            UpdateHeatBar();
+        }
+        else if (overHeat >= overHeatMax)
+        {
+            isOverheated = true;
+            //affects heat amount if not zeroed when fired by the player.
+            zeroedHeat = false;
+            overHeat = overHeatMax;
+        }
+
+
+        //adds time to the timer before the bar will reduce.
+        overHeatTimer = Time.time + overHeatCooldown;
+
+        //plays the particle effect infront of gun model.
         gunFlash.Play();
 
         if (!isPlayingShootAudio)
@@ -267,7 +320,8 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider.GetComponent<IDamage>() != null)
             {
-                hit.collider.GetComponent<IDamage>().TakeDamage(shootDamage);
+                hit.collider.GetComponent<IDamage>().TakeDamage(shootDamage + (damage / 5));
+                Debug.Log(shootDamage + (damage / 5));
             }
         }
 
@@ -285,7 +339,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    IEnumerator ResetSpark() 
+    IEnumerator ResetSpark()
     {
         isSparking = true;
         yield return new WaitForSeconds(gunSpark.main.duration);
@@ -340,6 +394,48 @@ public class PlayerController : MonoBehaviour
         if (hp <= 0)
             GameManager.instance.PlayerDeath();
     }
+
+    void ReduceHeat()
+    {
+        //holder is used to store the old heat value to see if its time to add time to timer
+        if (overheatHolder == 0)
+            overheatHolder = overHeat - overHeatReduction;
+
+
+        //prevents the bar from emptying instantly.
+        if (overHeat > 0)
+            overHeat = Mathf.Lerp(overHeat, (overHeat - overHeatReduction), 10 * Time.deltaTime);
+        else
+            overHeat = 0;
+
+        UpdateHeatBar();
+
+        if (overheatHolder == overHeat)
+        {
+            overHeatTimer = Time.time + 0.05f;
+            overheatHolder = 0;
+        }
+
+
+        if (overHeat <= 0)
+        {
+            isOverheated = false;
+            heatAmount = 1f;
+            zeroedHeat = true;
+        }
+        else if (overHeat <= (overHeatMax * 0.5f) && !zeroedHeat)
+        {
+            isOverheated = false;
+            heatAmount = 3f;
+        }
+
+
+    }
+
+    public void UpdateHeatBar()
+    {
+        GameManager.instance.overHeatBar.fillAmount = overHeat / overHeatMax;
+    }
     #endregion
 
     public void UpdatePlayerHp()
@@ -384,7 +480,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void AddPerk(SO_Perk perk) 
+    public void AddPerk(SO_Perk perk)
     {
         for (int i = 0; i < 3; i++)
         {
@@ -396,7 +492,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ClearPerks() 
+    public void ClearPerks()
     {
         for (int i = 0; i < 3; i++)
         {
@@ -456,7 +552,7 @@ public class PlayerController : MonoBehaviour
         shootDist = ogShootDist;
         shootRate = ogShootRate;
 
-        if(PerkManager.instance.activePerks[0] != null)
+        if (PerkManager.instance.activePerks[0] != null)
             gunModel.GetComponent<MeshFilter>().sharedMesh = ogGunModel;
 
         if (PerkManager.instance.activePerks[1] != null)
