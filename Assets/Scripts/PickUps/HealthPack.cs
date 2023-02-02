@@ -15,19 +15,11 @@ public class HealthPack : MonoBehaviour
         if (GameManager.instance.playerScript.CanHeal)
         {
             GameManager.instance.playerScript.HealPlayer(heal);
-            player.PlayOneShot(sound, soundVol);
-            StartCoroutine(SoundWait(sound));
+            GameManager.instance.PlayPickup(1); //1 is the array index/id of perk
+            Destroy(gameObject);
 
         }
 
     }
 
-    IEnumerator SoundWait(AudioClip sound) 
-    {
-        yield return new WaitUntil(() => player.isPlaying == false);
-
-        if (gameObject != null)
-            Destroy(gameObject);
-
-    }
 }

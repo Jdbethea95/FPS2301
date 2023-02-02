@@ -21,17 +21,10 @@ public class SpeedPack : MonoBehaviour
         {
             GameManager.instance.currentScore.BoostScore = 1;
             GameManager.instance.playerScript.SpeedBoost(speedBoost, duration);
-            player.PlayOneShot(sound, soundVol);
-            StartCoroutine(SoundWait(sound));
+            GameManager.instance.PlayPickup(0); //0 is the array index/id of perk
+            Destroy(gameObject);
+
         }
     }
 
-    IEnumerator SoundWait(AudioClip sound)
-    {
-        yield return new WaitUntil(() => player.isPlaying == false);
-
-        if (gameObject != null)
-            Destroy(gameObject);
-
-    }
 }

@@ -671,9 +671,11 @@ MonoBehaviour:
   viewAngle: 90
   shootAngle: 65
   despawnTime: 3
+  type: 0
   bullet: {fileID: 6716093678165597531, guid: b689dfb8ea7456a428099e496f8a31e5, type: 3}
   explosion: {fileID: 0}
   shootPos: {fileID: 627066582849741627}
+  percision: 0
   shootDist: 100
   shootRate: 0.896
   bulletSpeed: 50
@@ -694,6 +696,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 98a49d739017e9741be7a98d1f723443, type: 3}
   - {fileID: 8300000, guid: 0cea4f2697c9cae43bb627a4e40ef563, type: 3}
   audEnemyShootVol: 5
+  reportDeath: 1
 --- !u!95 &627066583853161754
 Animator:
   serializedVersion: 5
@@ -748,13 +751,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.574
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 147
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

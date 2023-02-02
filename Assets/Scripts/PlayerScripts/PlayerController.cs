@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     [Range(0, 1)] [SerializeField] float audPlayerShootVol;
 
 
+
     #region Co-Bools
     bool isShooting = false;
     bool isPlayingSteps;
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
     int ogShootDamage;
     int ogHp;
     int ogSpeed;
+    float ogOverHeatMax; //DevTool
     ParticleSystem.MinMaxGradient ogColor;
     [SerializeField] Mesh ogGunModel;
     [SerializeField] Material ogMaterial;
@@ -105,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public int CurrentHealth { get { return hp; } }
+    public int CurrentHealth { get { return hp; }}
 
     //center of mass
     public Vector3 COM
@@ -134,6 +136,7 @@ public class PlayerController : MonoBehaviour
         ogSpeed = baseSpeed;
         gunFlashColor = gunFlash.main;
         ogColor = gunFlash.main.startColor;
+        ogOverHeatMax = overHeatMax; //devTool
 
 
         foundPerk = false;
@@ -285,20 +288,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Vertical") != 0)
         {
             pushBack = (transform.forward) * (Input.GetAxis("Vertical") * dashDistance);
-            Debug.Log(Input.GetAxis("Vertical") * dashDistance);
-            dashParticles.Play();
-            speed = 11;
-            dashCount--;
+            SpeedBoost(3, 1);
             GameManager.instance.ReduceBoost();
+            dashCount--;
         }
         else if (Input.GetAxis("Horizontal") != 0)
         {
             pushBack = (transform.right) * (Input.GetAxis("Horizontal") * dashDistance);
-            Debug.Log(Input.GetAxis("Horizontal") * dashDistance);
-            dashParticles.Play();
-            speed = 11;
-            dashCount--;
+            SpeedBoost(3, 1);
             GameManager.instance.ReduceBoost();
+            dashCount--;
         }
 
 
@@ -608,6 +607,41 @@ public class PlayerController : MonoBehaviour
             gunFlashColor.startColor = ogColor;
     }
 
+
+    #endregion
+
+    #region DevTools
+
+    public void MaxHealth() 
+    {
+        hp = int.MaxValue;
+        maxHp = int.MaxValue;
+    }
+    public void RevertHealth() 
+    {
+        hp = ogHp;
+        maxHp = ogHp;
+    }
+
+    public void MaxTheHeat() 
+    {
+        overHeatMax = int.MaxValue;
+    }
+
+    public void BringTheHeat() 
+    {
+        overHeat = 0;
+        overHeatMax = ogOverHeatMax;
+    }
+
+    public void MaxDash() 
+    {
+        dashCount = int.MaxValue;
+    }
+    public void RevertDash() 
+    {
+        dashCount = 3;
+    }
 
     #endregion
 }

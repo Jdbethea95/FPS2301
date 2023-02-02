@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
 
+    [Header("-----bComponents -----")]
+    [SerializeField] AudioSource audioPlayer;
+
     [Header("----- Game Goal -----")]
     public int enemyCount;
 
@@ -53,6 +56,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI PerkScoreTxt;
     [SerializeField] TextMeshProUGUI perkFoundTxt;
     public Score currentScore = new Score();
+
+    [Header("-----Pick-Up Audio -----")]
+    [Tooltip("0-speed 1-hp, 2-perk")]
+    [SerializeField] AudioClip[] pickUpClips;
+    [Range(0f, 1f)][SerializeField] float pickupVol;
 
     [SerializeField] List<GameObject> doors;
     [SerializeField] List<DoorScript> doorScripts;
@@ -96,6 +104,7 @@ public class GameManager : MonoBehaviour
         }
 
         onTheClock = true;
+        audioPlayer.volume = pickupVol;
     }
 
     private void Update()
@@ -281,6 +290,11 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void PlayPickup(int id) 
+    {        
+        audioPlayer.PlayOneShot(pickUpClips[id]);
     }
 
     #region Flashes

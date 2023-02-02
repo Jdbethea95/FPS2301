@@ -27,18 +27,10 @@ public class PerkPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.playerScript.PerkPickup(perk);
-            player.PlayOneShot(sound, soundVol);
-            StartCoroutine(SoundWait(sound));
+            GameManager.instance.PlayPickup(2); //2 is the array index/id of perk
+            Destroy(gameObject);
         }
     }
 
 
-    IEnumerator SoundWait(AudioClip sound)
-    {
-        yield return new WaitUntil(() => player.isPlaying == false);
-
-        if (gameObject != null)
-            Destroy(gameObject);
-
-    }
 }
