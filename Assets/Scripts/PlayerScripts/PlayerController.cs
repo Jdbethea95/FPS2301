@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ParticleSystem gunSpark;
     [SerializeField] GameObject gunModel;
     [SerializeField] ParticleSystem.MainModule gunFlashColor;
+    [SerializeField] Animator animGun;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audPlayerTakesDamage;
@@ -171,7 +172,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(playSteps());
 
             Movement();
-
+          
             if (Input.GetButtonDown("Sprint") && dashCount > 0)
                 Dash();
             
@@ -198,6 +199,15 @@ public class PlayerController : MonoBehaviour
                (transform.forward * Input.GetAxis("Vertical"));
 
         controller.Move(move * speed * Time.deltaTime);
+
+        //Gun Animation
+        float animSpeed = (Input.GetAxis("Vertical") * speed) * 0.1f;
+        if (animSpeed < 0)
+            animSpeed *= -1;
+
+        animGun.SetFloat("GunBob", animSpeed);
+
+        
 
         damage = Mathf.FloorToInt(controller.velocity.magnitude);
         //Debug.Log(Mathf.FloorToInt(controller.velocity.magnitude));
@@ -333,6 +343,7 @@ public class PlayerController : MonoBehaviour
         else if (overHeat >= overHeatMax)
         {
             isOverheated = true;
+            animGun.SetTrigger("OverHeat");
             //affects heat amount if not zeroed when fired by the player.
             zeroedHeat = false;
             overHeat = overHeatMax;
@@ -344,6 +355,7 @@ public class PlayerController : MonoBehaviour
 
         //plays the particle effect infront of gun model.
         gunFlash.Play();
+        animGun.SetTrigger("Fire");
 
         if (!isPlayingShootAudio)
             StartCoroutine(PlayShootAudio());
