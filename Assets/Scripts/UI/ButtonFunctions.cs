@@ -36,7 +36,7 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.activeMenu.SetActive(false);
         GameManager.instance.activeMenu = GameManager.instance.settingsMenu;
         GameManager.instance.activeMenu.SetActive(true);
-
+        GameManager.instance.system.SetSelectedGameObject(GameManager.instance.settingSelected);
         //update sensitivity slider position with current value
         GameManager.instance.xSenSlider.value = GameManager.instance.playerScript.cam.XSen;
         GameManager.instance.ySenSlider.value = GameManager.instance.playerScript.cam.YSen;
@@ -46,7 +46,8 @@ public class ButtonFunctions : MonoBehaviour
     {
         GameManager.instance.activeMenu.SetActive(false);
         GameManager.instance.activeMenu = GameManager.instance.pauseMenu;
-        GameManager.instance.activeMenu.SetActive(true);        
+        GameManager.instance.activeMenu.SetActive(true);
+        GameManager.instance.system.SetSelectedGameObject(GameManager.instance.pauseSelected);
     }
 
     public void SettingsSave()

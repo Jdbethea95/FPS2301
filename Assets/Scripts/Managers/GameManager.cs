@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     [Header("-----Components -----")]
     [SerializeField] AudioSource audioPlayer;
-    [SerializeField] EventSystem system;
+    public EventSystem system;
 
     [Header("----- Game Goal -----")]
     public int enemyCount;
@@ -26,12 +26,13 @@ public class GameManager : MonoBehaviour
     [Header("----- UI Menus-----")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
-    [SerializeField] GameObject pauseSelected;
+    public GameObject pauseSelected;
     public GameObject winMenu;
     [SerializeField] GameObject winSelected;
     public GameObject deathMenu;
     [SerializeField] GameObject deathSelected;
     public GameObject settingsMenu;
+    public GameObject settingSelected;
     public GameObject timerUI;
 
     [Header("----- Settings Components -----")]
@@ -119,10 +120,15 @@ public class GameManager : MonoBehaviour
         {
             isPaused = !isPaused;
             activeMenu = pauseMenu;
+               
             activeMenu.SetActive(isPaused);
 
             if (isPaused)
+            {
                 PauseGame();
+                system.SetSelectedGameObject(pauseSelected);
+            }
+                
 
         }
 
@@ -157,6 +163,8 @@ public class GameManager : MonoBehaviour
         PauseGame();
         activeMenu = winMenu;
         UpdateScoreCard();
+        system.SetSelectedGameObject(winSelected);
+
 
         if (ScoreManager.instance != null && ScoreManager.instance.boards.ContainsKey(SceneManager.GetActiveScene().name))
         {
@@ -210,6 +218,7 @@ public class GameManager : MonoBehaviour
         PauseGame();
         activeMenu = deathMenu;
         activeMenu.SetActive(true);
+        system.SetSelectedGameObject(deathSelected);
     }
 
     #endregion
