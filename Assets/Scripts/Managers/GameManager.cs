@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -15,8 +16,9 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
 
-    [Header("-----bComponents -----")]
+    [Header("-----Components -----")]
     [SerializeField] AudioSource audioPlayer;
+    [SerializeField] EventSystem system;
 
     [Header("----- Game Goal -----")]
     public int enemyCount;
@@ -24,8 +26,11 @@ public class GameManager : MonoBehaviour
     [Header("----- UI Menus-----")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
+    [SerializeField] GameObject pauseSelected;
     public GameObject winMenu;
+    [SerializeField] GameObject winSelected;
     public GameObject deathMenu;
+    [SerializeField] GameObject deathSelected;
     public GameObject settingsMenu;
     public GameObject timerUI;
 

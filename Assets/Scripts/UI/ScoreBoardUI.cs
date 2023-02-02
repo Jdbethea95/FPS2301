@@ -11,6 +11,7 @@ public class ScoreBoardUI : MonoBehaviour
     List<LevelScores> levels = new List<LevelScores>();
 
 
+
     private void Start()
     {
         SetUpGrid();

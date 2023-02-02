@@ -7415,11 +7415,15 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   audioPlayer: {fileID: 1348587629}
+  system: {fileID: 0}
   enemyCount: 0
   activeMenu: {fileID: 0}
   pauseMenu: {fileID: 2107382593}
+  pauseSelected: {fileID: 0}
   winMenu: {fileID: 2137597805}
+  winSelected: {fileID: 0}
   deathMenu: {fileID: 2084587502}
+  deathSelected: {fileID: 0}
   settingsMenu: {fileID: 40084777284573431}
   timerUI: {fileID: 0}
   xSenSlider: {fileID: 1803656989377652129}
