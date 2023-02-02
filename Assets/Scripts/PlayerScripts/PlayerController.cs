@@ -16,11 +16,16 @@ public class PlayerController : MonoBehaviour
     [Header("----- Player Stats -----")]
     [Range(10, 100)] [SerializeField] int hp = 50;
     int maxHp = 50;
+
     [Range(1, 20)] [SerializeField] int speed;
     [Range(1, 5)] [SerializeField] int reduceRate = 2;
-    [SerializeField] int pushBackTime;
-    int baseSpeed;
     float speedTimer;
+    int baseSpeed;
+
+    [SerializeField] int pushBackTime;
+    [SerializeField] int dashDistance;
+    [SerializeField] int dashCount;
+
 
     [Header("----- Jump Stats -----")]
     [SerializeField] float gravity = 9.8f;
@@ -164,6 +169,10 @@ public class PlayerController : MonoBehaviour
 
             Movement();
 
+            if (Input.GetButtonDown("Sprint") && dashCount > 0)
+                Dash();
+            
+
             if (!isShooting && Input.GetButtonDown("Shoot") && !GameManager.instance.isPaused && !isOverheated)
                 StartCoroutine(Shoot());
 
@@ -271,6 +280,41 @@ public class PlayerController : MonoBehaviour
         pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
     }
 
+    void Dash() 
+    {
+        if (Input.GetAxis("Vertical") != 0)
+        {
+            pushBack = (transform.forward) * (Input.GetAxis("Vertical") * dashDistance);
+            Debug.Log(Input.GetAxis("Vertical") * dashDistance);
+            dashParticles.Play();
+            speed = 11;
+            dashCount--;
+            GameManager.instance.ReduceBoost();
+        }
+        else if (Input.GetAxis("Horizontal") != 0)
+        {
+            pushBack = (transform.right) * (Input.GetAxis("Horizontal") * dashDistance);
+            Debug.Log(Input.GetAxis("Horizontal") * dashDistance);
+            dashParticles.Play();
+            speed = 11;
+            dashCount--;
+            GameManager.instance.ReduceBoost();
+        }
+
+
+
+    }
+
+    public void DashPointGain() 
+    {
+        if (dashCount < 3)
+        {
+            dashCount++;
+            GameManager.instance.GainBoost();
+        }
+            
+    }
+
     #endregion
 
 
@@ -321,7 +365,7 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.GetComponent<IDamage>() != null)
             {
                 hit.collider.GetComponent<IDamage>().TakeDamage(shootDamage + (damage / 5));
-                Debug.Log(shootDamage + (damage / 5));
+                //Debug.Log(shootDamage + (damage / 5));
             }
         }
 
@@ -436,12 +480,14 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.instance.overHeatBar.fillAmount = overHeat / overHeatMax;
     }
-    #endregion
 
     public void UpdatePlayerHp()
     {
         GameManager.instance.playerHpBar.fillAmount = (float)hp / (float)maxHp;
     }
+
+
+    #endregion
 
 
     #region SpeedMethods

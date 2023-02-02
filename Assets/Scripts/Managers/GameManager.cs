@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerTxt;
     public Image playerHpBar;
     public Image overHeatBar;
+    public Image[] boostBars;
 
     [Header("----- Flash Items-----")]
     [SerializeField] GameObject topFlash;
@@ -255,6 +256,30 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < doors.Count; i++)
         {
             doorScripts.Add(doors[i].GetComponent<DoorScript>());
+        }
+    }
+
+    public void ReduceBoost() 
+    {
+        for (int i = 0; i < boostBars.Length; i++)
+        {
+            if (boostBars[i].enabled)
+            {
+                boostBars[i].enabled = false;
+                break;
+            }
+        }
+    }
+
+    public void GainBoost() 
+    {
+        for (int i = boostBars.Length - 1; i >= 0; i--)
+        {
+            if (!boostBars[i].enabled)
+            {
+                boostBars[i].enabled = true;
+                break;
+            }
         }
     }
 

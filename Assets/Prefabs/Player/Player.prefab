@@ -14770,7 +14770,7 @@ GameObject:
   - component: {fileID: 5401594806920692195}
   - component: {fileID: 5401594806921986499}
   - component: {fileID: 5401594806923117315}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15005,9 +15005,11 @@ MonoBehaviour:
   com: {fileID: 1991006701}
   audioPlayer: {fileID: 1012042200}
   hp: 65
-  speed: 10
+  speed: 7
   reduceRate: 2
   pushBackTime: 3
+  dashDistance: 50
+  dashCount: 3
   gravity: 9.8
   jumpHeight: 5
   jumpMax: 1

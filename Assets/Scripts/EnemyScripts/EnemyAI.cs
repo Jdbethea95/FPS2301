@@ -124,6 +124,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 GameManager.instance.UpdateEnemiesRemaining(-1);
                 GameManager.instance.currentScore.EnemyScore = 1;
+                GameManager.instance.playerScript.DashPointGain();
             }
 
             despawnTimer = Time.time;
