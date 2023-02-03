@@ -127,6 +127,7 @@ public class PlayerController : MonoBehaviour
     //sets baseSpeed to match speed provided on start
     private void Start()
     {
+        #region OgStatSave
         //sets base stats
         baseSpeed = speed;
         maxHp = hp;
@@ -137,7 +138,8 @@ public class PlayerController : MonoBehaviour
         ogSpeed = baseSpeed;
         gunFlashColor = gunFlash.main;
         ogColor = gunFlash.main.startColor;
-        ogOverHeatMax = overHeatMax; //devTool
+        ogOverHeatMax = overHeatMax; //devTool 
+        #endregion
 
 
         foundPerk = false;
@@ -150,13 +152,22 @@ public class PlayerController : MonoBehaviour
         if (PerkManager.instance.activePerks[0] != null || PerkManager.instance.activePerks[1] != null ||
             PerkManager.instance.activePerks[2] != null)
         {
-            Debug.Log("Activate!!");
+            
             DeActivatePerks();
             ActivatePerks();
         }
 
+
+
+        #region SettingsUpdate
         cam.XSen = SaveManager.instance.gameData.xSen;
         cam.YSen = SaveManager.instance.gameData.ySen;
+        audPlayerJumpVol = SaveManager.instance.gameData.sfxVol;
+        audPlayerShootVol = SaveManager.instance.gameData.sfxVol;
+        audPlayerStepsVol = SaveManager.instance.gameData.sfxVol;
+        audPlayerTakesDamageVol = SaveManager.instance.gameData.sfxVol; 
+        #endregion
+
     }
 
     void Update()
@@ -526,7 +537,6 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-
     #region PerkMethods
 
     public void PerkPickup(SO_Perk pickup)
@@ -621,6 +631,14 @@ public class PlayerController : MonoBehaviour
 
 
     #endregion
+
+    public void UpdatePlayerSFX() 
+    {
+        audPlayerJumpVol = SaveManager.instance.gameData.sfxVol;
+        audPlayerShootVol = SaveManager.instance.gameData.sfxVol;
+        audPlayerStepsVol = SaveManager.instance.gameData.sfxVol;
+        audPlayerTakesDamageVol = SaveManager.instance.gameData.sfxVol;
+    }
 
     #region DevTools
 

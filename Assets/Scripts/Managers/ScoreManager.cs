@@ -6,13 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour, ISaveData
 {
+    
     public static ScoreManager instance;
+
+    [Header("----- Level Items -----")]
     public Dictionary<string, LevelScores> boards = new Dictionary<string, LevelScores>();
     public List<string> Scenes;
 
+    [Header("----- Player Items -----")]
     public List<string> ownedList;
-
     public string playerName = "JZH";
+
+    [Header("----- Menu Audio -----")]
+    [SerializeField] AudioSource audPlayer;
+    [SerializeField] AudioClip btnChime;
 
     private void Awake()
     {
@@ -31,6 +38,8 @@ public class ScoreManager : MonoBehaviour, ISaveData
             boards.Add(name, new LevelScores(name));
         }
 
+        
+        audPlayer.volume = SaveManager.instance.gameData.menuSfxVol;
     }
 
     public void Load(GameData data)
@@ -76,6 +85,16 @@ public class ScoreManager : MonoBehaviour, ISaveData
         }
 
         data.playerName = playerName;
+    }
+
+    public void UpdateChimeVol() 
+    {
+        audPlayer.volume = SaveManager.instance.gameData.menuSfxVol;
+    }
+
+    public void PlayChime() 
+    {
+        audPlayer.PlayOneShot(btnChime);
     }
 
 }

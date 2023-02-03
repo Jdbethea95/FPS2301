@@ -17,14 +17,27 @@ public class GameData
     public string topLevel;
     public int levelIndx;
 
+    public float sfxVol;
+    public float musicVol;
+    public float menuMusicVol;
+    public float menuSfxVol;
+
     public GameData()
     {
         xSen = 300f;
         ySen = 300f;
+
         levelLocks.Add(true);
         topLevel = "The Hallway";
         levelIndx = 0;
+
         playerName = "JZH";
+
+        sfxVol = .4f;
+        musicVol = .3f;
+        menuMusicVol = .25f;
+        menuSfxVol = .3f;
+
     }
 
     public GameData(GameData data)
@@ -32,9 +45,16 @@ public class GameData
         UpdateScores(data.scores);
         UpdatePerks(data.perkIds);
         UpdateLevels(data.levelLocks);
+
         xSen = data.xSen;
         ySen = data.ySen;
+
         playerName = data.playerName;
+
+        sfxVol = data.sfxVol;
+        musicVol = data.musicVol;
+        menuMusicVol = data.menuMusicVol;
+        menuSfxVol = data.menuSfxVol;
     }
 
 

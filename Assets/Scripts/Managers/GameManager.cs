@@ -38,6 +38,15 @@ public class GameManager : MonoBehaviour
     [Header("----- Settings Components -----")]
     public Slider xSenSlider;
     public Slider ySenSlider;
+    public Slider sfxBar;
+    public Slider musicBar;
+    public Slider menuMusicBar;
+    public Slider menuSfxBar;
+    [Header("----- Settings Text Components -----")]
+    public TextMeshProUGUI sfxTxt;
+    public TextMeshProUGUI musicTxt;
+    public TextMeshProUGUI menuMusicTxt;
+    public TextMeshProUGUI menuSfxTxt;
 
     [Header("----- Canvas Items-----")]
     [SerializeField] TextMeshProUGUI enemyCountTxt;
@@ -108,7 +117,7 @@ public class GameManager : MonoBehaviour
                 levelLocks.Add(SaveManager.instance.gameData.levelLocks[i]);
             }
         }
-
+        UnPause();
         onTheClock = true;
         audioPlayer.volume = pickupVol;
     }
