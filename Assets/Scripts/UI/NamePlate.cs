@@ -13,6 +13,8 @@ public class NamePlate : MonoBehaviour
     [SerializeField] GameObject selected;
     [SerializeField] EventSystem system;
 
+    [SerializeField] MenuScript menu;
+
     public void EnterButton() 
     {
 
@@ -33,6 +35,7 @@ public class NamePlate : MonoBehaviour
     {
         system.SetSelectedGameObject(selected);
         warnings.color = Color.white;
+        menu.EnableButtons();
         gameObject.SetActive(false);
     }
 }
