@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] AudioClip[] musicClips;
     [SerializeField] int index = -1;
     [SerializeField] float musicVol;
+    [SerializeField] AudioMixer audMixer;
 
 
 
@@ -22,6 +24,7 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         musicPlayer.volume = SaveManager.instance.gameData.menuMusicVol;
+        UpdateEnemySFX(SaveManager.instance.gameData.sfxVol);
     }
 
 
@@ -49,6 +52,11 @@ public class MusicManager : MonoBehaviour
             index = indx;
 
         UpdateMusicVol();
+    }
+
+    public void UpdateEnemySFX(float volume) 
+    {
+        audMixer.SetFloat("EnemyVol", Mathf.Log10(volume) * 20);
     }
 
 }

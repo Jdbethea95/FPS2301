@@ -123,6 +123,7 @@ MonoBehaviour:
   musicClips: []
   index: -1
   musicVol: 0
+  audMixer: {fileID: 24100000, guid: 2ac87d550eab70f4c9f66b61528242ad, type: 2}
 --- !u!82 &1891171441
 AudioSource:
   m_ObjectHideFlags: 0

@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         }
         UnPause();
         onTheClock = true;
-        audioPlayer.volume = pickupVol;
+        audioPlayer.volume = SaveManager.instance.gameData.sfxVol;
     }
 
     private void Update()
@@ -318,6 +318,11 @@ public class GameManager : MonoBehaviour
     public void PlayPickup(int id) 
     {        
         audioPlayer.PlayOneShot(pickUpClips[id]);
+    }
+
+    public void UpdatePickUpVol() 
+    {
+        audioPlayer.volume = SaveManager.instance.gameData.sfxVol;
     }
 
     #region Flashes

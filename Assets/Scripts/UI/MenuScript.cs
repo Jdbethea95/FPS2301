@@ -98,7 +98,7 @@ public class MenuScript : MonoBehaviour
 
         MusicManager.instance.UpdateMusicVol();
         ScoreManager.instance.UpdateChimeVol();
-
+        MusicManager.instance.UpdateEnemySFX(SaveManager.instance.gameData.sfxVol);
         CloseSettings();
     }
 

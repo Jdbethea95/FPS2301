@@ -139,8 +139,10 @@ public class ButtonFunctions : MonoBehaviour
         SaveManager.instance.gameData.menuMusicVol = GameManager.instance.menuMusicBar.value;
 
         MusicManager.instance.UpdateMusicVol();
+        MusicManager.instance.UpdateEnemySFX(GameManager.instance.sfxBar.value);
         ScoreManager.instance.UpdateChimeVol();
         GameManager.instance.playerScript.UpdatePlayerSFX();
+        GameManager.instance.UpdatePickUpVol();
 
         SettingsBack();
     }
