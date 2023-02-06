@@ -65,6 +65,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: f7bb09cb30835944ba107594abfa4976, type: 3}
   type: 0
   enemySightRadius: 9
+  isMinion: 0
 --- !u!1 &4852511004827801736
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +131,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: f7bb09cb30835944ba107594abfa4976, type: 3}
   type: 2
   enemySightRadius: 9
+  isMinion: 0
 --- !u!1 &4852511005183846431
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +197,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: f7bb09cb30835944ba107594abfa4976, type: 3}
   type: 2
   enemySightRadius: 9
+  isMinion: 0
 --- !u!1 &4852511005291622300
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,14 +223,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4852511005291622300}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.151, y: 0.04, z: 1.03}
-  m_LocalScale: {x: 0.047147572, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.6414702, z: -0, w: -0.76714796}
+  m_LocalPosition: {x: 0.15100098, y: 0.62, z: 1.0299988}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4852511005422189382}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 280.197, z: 0}
 --- !u!65 &4852511005291622298
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -260,6 +263,7 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: f7bb09cb30835944ba107594abfa4976, type: 3}
   type: 1
   enemySightRadius: 40
+  isMinion: 0
 --- !u!1 &4852511005422189384
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +291,7 @@ Transform:
   m_GameObject: {fileID: 4852511005422189384}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -8.94, y: 0.70509416, z: 39.67}
-  m_LocalScale: {x: 21.21, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4852511005291622297}
@@ -309,7 +313,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 21
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4852511005422189381
 MonoBehaviour:
@@ -331,6 +335,7 @@ MonoBehaviour:
   - {fileID: 4852511004770755851}
   - {fileID: 4852511005494912618}
   - {fileID: 4852511004827801735}
+  isMinions: 0
 --- !u!1 &4852511005494912619
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,3 +401,4 @@ MonoBehaviour:
   - {fileID: 8653942892982929197, guid: f7bb09cb30835944ba107594abfa4976, type: 3}
   type: 3
   enemySightRadius: 9
+  isMinion: 0
