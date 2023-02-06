@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour
     public Image overHeatBar;
     public Image[] boostBars;
 
+    [Header("----- Loading Screen-----")]
+    public GameObject loadingPanel;
+    public Image loadingImage;
+
     [Header("----- Flash Items-----")]
     [SerializeField] GameObject topFlash;
     [SerializeField] GameObject leftFlash;
@@ -232,19 +236,8 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public void UpdateEnemiesRemaining(int amount)
-    {
-        enemyCount += amount;
-        enemyCountTxt.text = enemyCount.ToString("F0");
 
-        if (amount < 0)
-        {
-            for (int i = 0; i < doors.Count; i++)
-            {
-                doorScripts[i].UpdateDoorCounter(amount);
-            }
-        }
-    }
+    #region TimerMethods
 
     void StopWatch()
     {
@@ -276,22 +269,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetTime() 
+    public void ResetTime()
     {
         timerSeconds = 0;
         timerMinutes = 0;
         StopWatch();
     }
 
-    void GetDoorScripts()
-    {
-        for (int i = 0; i < doors.Count; i++)
-        {
-            doorScripts.Add(doors[i].GetComponent<DoorScript>());
-        }
-    }
+    #endregion
 
-    public void ReduceBoost() 
+
+    #region DashMethods
+
+    public void ReduceBoost()
     {
         for (int i = 0; i < boostBars.Length; i++)
         {
@@ -303,7 +293,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GainBoost() 
+    public void GainBoost()
     {
         for (int i = boostBars.Length - 1; i >= 0; i--)
         {
@@ -315,15 +305,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PlayPickup(int id) 
-    {        
+    #endregion
+
+
+    #region PickUpVolMethods
+    public void PlayPickup(int id)
+    {
         audioPlayer.PlayOneShot(pickUpClips[id]);
     }
 
-    public void UpdatePickUpVol() 
+    public void UpdatePickUpVol()
     {
         audioPlayer.volume = SaveManager.instance.gameData.sfxVol;
-    }
+    } 
+    #endregion
+
 
     #region Flashes
 
@@ -356,5 +352,52 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+
+    public void LoadingScene(string sceneName) 
+    {
+        PauseGame();
+        StartCoroutine(LoadAsyncScene(sceneName));
+    }
+
+    IEnumerator LoadAsyncScene(string sceneName) 
+    {
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+        loadingPanel.SetActive(true);
+
+
+        while (!op.isDone)
+        {
+            float progress = Mathf.Clamp01(op.progress / 0.9f);
+
+            loadingImage.fillAmount = progress;
+
+            yield return null;
+        }
+
+    }
+
+    void GetDoorScripts()
+    {
+        for (int i = 0; i < doors.Count; i++)
+        {
+            doorScripts.Add(doors[i].GetComponent<DoorScript>());
+        }
+    }
+
+    public void UpdateEnemiesRemaining(int amount)
+    {
+        enemyCount += amount;
+        enemyCountTxt.text = enemyCount.ToString("F0");
+
+        if (amount < 0)
+        {
+            for (int i = 0; i < doors.Count; i++)
+            {
+                doorScripts[i].UpdateDoorCounter(amount);
+            }
+        }
+    }
+
 
 }

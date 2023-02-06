@@ -27,7 +27,7 @@ public class NamePlate : MonoBehaviour
         {
             ScoreManager.instance.playerName = input.text;
             input.text = "";
-            SceneManager.LoadScene("Lobby");
+            MenuLoad.instance.LoadingScene("Lobby");
         }
     }
 
