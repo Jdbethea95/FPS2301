@@ -16,7 +16,8 @@ public class LevelPortal : MonoBehaviour
 
             if (ScoreManager.instance.Scenes.Count > selecter.Index)
             {
-                SceneManager.LoadScene(ScoreManager.instance.Scenes[selecter.Index]);
+                //SceneManager.LoadScene(ScoreManager.instance.Scenes[selecter.Index]);
+                GameManager.instance.LoadingScene(ScoreManager.instance.Scenes[selecter.Index]);
             }
                 
         }

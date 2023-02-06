@@ -42,7 +42,7 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.playerScript.DeActivatePerks();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        SceneManager.LoadScene("MainMenu");
+        GameManager.instance.LoadingScene("MainMenu");
     }
 
     public void CreditToMenu() 
@@ -62,16 +62,13 @@ public class ButtonFunctions : MonoBehaviour
     public void TempPlay()
     {
         ScoreManager.instance.PlayChime();
-
-        SceneManager.LoadScene("Lobby");
-        GameManager.instance.UnPause();
     }
 
     public void Lobby()
     {
         ScoreManager.instance.PlayChime();
 
-        SceneManager.LoadScene("Lobby");
+        GameManager.instance.LoadingScene("Lobby");
         GameManager.instance.UnPause();
     }
 
