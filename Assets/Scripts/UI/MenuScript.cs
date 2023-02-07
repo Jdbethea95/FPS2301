@@ -53,6 +53,8 @@ public class MenuScript : MonoBehaviour
             
         else
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             SceneManager.LoadScene("Lobby");
         }
            

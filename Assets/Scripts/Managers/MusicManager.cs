@@ -17,7 +17,10 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
     }
 
 
@@ -25,16 +28,11 @@ public class MusicManager : MonoBehaviour
     {
         musicPlayer.volume = SaveManager.instance.gameData.menuMusicVol;
         UpdateEnemySFX(SaveManager.instance.gameData.sfxVol);
+        PlayThatRadio();
     }
 
 
-    private void Update()
-    {
-        if (index >= 0 && !musicPlayer.isPlaying)
-        {
-            musicPlayer.PlayOneShot(musicClips[index]);
-        }
-    }
+
 
 
     public void UpdateMusicVol()
@@ -57,6 +55,15 @@ public class MusicManager : MonoBehaviour
     public void UpdateEnemySFX(float volume) 
     {
         audMixer.SetFloat("EnemyVol", Mathf.Log10(volume) * 20);
+    }
+
+    public void PlayThatRadio(int indx = 0) 
+    {
+        index = indx;
+        UpdateMusicVol();
+        Debug.Log(index + " : " + (musicClips.Length - 1));
+        musicPlayer.Stop();
+        musicPlayer.PlayOneShot(musicClips[indx]);
     }
 
 }

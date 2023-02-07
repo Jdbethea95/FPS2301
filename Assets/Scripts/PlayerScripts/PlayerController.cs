@@ -121,6 +121,8 @@ public class PlayerController : MonoBehaviour
 
     public string PerkName { get { return perkName; } }
 
+    public int BaseSpeed { get { return baseSpeed; } }
+
     #endregion
 
 
@@ -156,8 +158,6 @@ public class PlayerController : MonoBehaviour
             DeActivatePerks();
             ActivatePerks();
         }
-
-
 
         #region SettingsUpdate
         cam.XSen = SaveManager.instance.gameData.xSen;
@@ -519,6 +519,16 @@ public class PlayerController : MonoBehaviour
         speed += boost;
         speedTimer = Time.time + offset;
         dashParticles.Play();
+    }
+
+    public void SetSpeed(int amount) 
+    {
+        speed = amount;
+    }
+
+    public void StopDashPart() 
+    {
+        dashParticles.Stop();
     }
 
     void ReduceSpeed()

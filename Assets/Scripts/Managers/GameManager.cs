@@ -113,6 +113,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        UnPause();
+
         if (levelLocks.Count == 0)
         {
             //Debug.Log("This happened");
@@ -120,10 +122,11 @@ public class GameManager : MonoBehaviour
             {
                 levelLocks.Add(SaveManager.instance.gameData.levelLocks[i]);
             }
-        }
-        UnPause();
+        }        
         onTheClock = true;
         audioPlayer.volume = SaveManager.instance.gameData.sfxVol;
+       
+        MusicUpdate();
     }
 
     private void Update()
@@ -354,13 +357,14 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
-    public void LoadingScene(string sceneName) 
-    {
-        PauseGame();
-        StartCoroutine(LoadAsyncScene(sceneName));
+    #region LoadingScreenMethods
+
+    public void LoadingScene(string sceneName)
+    {        
+        StartCoroutine(LoadAsyncScene(sceneName));        
     }
 
-    IEnumerator LoadAsyncScene(string sceneName) 
+    IEnumerator LoadAsyncScene(string sceneName)
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         loadingPanel.SetActive(true);
@@ -373,9 +377,12 @@ public class GameManager : MonoBehaviour
             loadingImage.fillAmount = progress;
 
             yield return null;
-        }
-
+        }        
     }
+
+
+    #endregion
+
 
     void GetDoorScripts()
     {
@@ -397,6 +404,18 @@ public class GameManager : MonoBehaviour
                 doorScripts[i].UpdateDoorCounter(amount);
             }
         }
+    }
+
+    void MusicUpdate() 
+    {
+        Debug.Log(SceneManager.GetActiveScene().buildIndex + " || " + SceneManager.sceneCountInBuildSettings);
+        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings &&
+            SceneManager.GetActiveScene().buildIndex >= 0)
+        {
+            MusicManager.instance.PlayThatRadio(SceneManager.GetActiveScene().buildIndex);
+            
+        }
+        else { MusicManager.instance.PlayThatRadio(); }
     }
 
 

@@ -120,8 +120,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicPlayer: {fileID: 1891171441}
-  musicClips: []
-  index: -1
+  musicClips:
+  - {fileID: 8300000, guid: 61d38086680790941bd056b92d2a601e, type: 3}
+  - {fileID: 8300000, guid: f4f9f1a57b84fd54f8b13bf2a7ff6773, type: 3}
+  - {fileID: 8300000, guid: 2261b792b43052749bda49a715caa904, type: 3}
+  - {fileID: 8300000, guid: 287b45e268a07034a963bfa9a2ec7ff9, type: 3}
+  - {fileID: 8300000, guid: 4df37b756d194c54e8d7e2b490148e80, type: 3}
+  - {fileID: 8300000, guid: 04801098930e5174da87159e2cb04890, type: 3}
+  - {fileID: 8300000, guid: 5e0ef59cca53e554a93e1df2bba57a3e, type: 3}
+  index: 0
   musicVol: 0
   audMixer: {fileID: 24100000, guid: 2ac87d550eab70f4c9f66b61528242ad, type: 2}
 --- !u!82 &1891171441
@@ -138,7 +145,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

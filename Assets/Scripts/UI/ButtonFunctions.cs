@@ -38,8 +38,10 @@ public class ButtonFunctions : MonoBehaviour
     public void ReturnToMenu()
     {
         ScoreManager.instance.PlayChime();
-
+        MusicManager.instance.PlayThatRadio();
         GameManager.instance.playerScript.DeActivatePerks();
+
+        GameManager.instance.UnPause();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         GameManager.instance.LoadingScene("MainMenu");
