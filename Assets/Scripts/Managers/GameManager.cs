@@ -409,7 +409,7 @@ public class GameManager : MonoBehaviour
     void MusicUpdate() 
     {
         
-        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings &&
+        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 1 &&
             SceneManager.GetActiveScene().buildIndex >= 0)
         {
             MusicManager.instance.PlayThatRadio(SceneManager.GetActiveScene().buildIndex);
