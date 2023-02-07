@@ -123,10 +123,10 @@ public class EnemyAI : MonoBehaviour, IDamage
             if (reportDeath)
             {
                 GameManager.instance.UpdateEnemiesRemaining(-1);
-                GameManager.instance.currentScore.EnemyScore = 1;
-                GameManager.instance.playerScript.DashPointGain();
+                GameManager.instance.currentScore.EnemyScore = 1;                
             }
 
+            GameManager.instance.playerScript.DashPointGain();
             despawnTimer = Time.time;
             //Destroy(gameObject);
         }
