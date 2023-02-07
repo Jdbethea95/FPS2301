@@ -21,6 +21,7 @@ public class SO_Perk : ScriptableObject
     public int ShootDamage;
     public int hpModifier;
     public int SpeedModifier;
+    public int overHeatMax;
 
     [Header("----- Gun Modifiers -----")]
     public Mesh Model;

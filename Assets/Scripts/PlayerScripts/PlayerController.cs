@@ -595,6 +595,8 @@ public class PlayerController : MonoBehaviour
                 shootDist += PerkManager.instance.activePerks[i].ShootDistance;
                 shootRate += PerkManager.instance.activePerks[i].ShootRate;
 
+                overHeatMax += PerkManager.instance.activePerks[i].overHeatMax;
+
                 if (PerkManager.instance.activePerks[i].Model != null)
                 {
                     gunModel.GetComponent<MeshFilter>().sharedMesh = PerkManager.instance.activePerks[i].Model;
@@ -628,6 +630,8 @@ public class PlayerController : MonoBehaviour
         shootDamage = ogShootDamage;
         shootDist = ogShootDist;
         shootRate = ogShootRate;
+
+        overHeatMax = ogOverHeatMax;
 
         if (PerkManager.instance.activePerks[0] != null)
             gunModel.GetComponent<MeshFilter>().sharedMesh = ogGunModel;
