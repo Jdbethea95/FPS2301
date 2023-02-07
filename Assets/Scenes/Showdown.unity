@@ -4673,9 +4673,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sludge
       objectReference: {fileID: 0}
+    - target: {fileID: 7210741043138117146, guid: 33385c32f4a01dd418ec23324057eaea, type: 3}
+      propertyPath: m_Size.y
+      value: 1.85
+      objectReference: {fileID: 0}
     - target: {fileID: 7210741043138117147, guid: 33385c32f4a01dd418ec23324057eaea, type: 3}
       propertyPath: toxicRate
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7210741043138117147, guid: 33385c32f4a01dd418ec23324057eaea, type: 3}
       propertyPath: sludgeDamage
