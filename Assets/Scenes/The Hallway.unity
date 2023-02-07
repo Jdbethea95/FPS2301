@@ -981,30 +981,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 606174567, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.01353082
-      objectReference: {fileID: 0}
-    - target: {fileID: 606174567, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.889389
-      objectReference: {fileID: 0}
-    - target: {fileID: 606174567, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.2823292
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012042200, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012042200, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: MinDistance
-      value: 0.8965225
-      objectReference: {fileID: 0}
-    - target: {fileID: 8413257563759295684, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: m_MinMoveDistance
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8413257563759295686, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1049,25 +1025,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8413257563759295687, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: speed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8413257563759295687, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: shootDist
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8413257563759295687, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: shootDamage
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8413257563759295691, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8413257563759295691, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eee09cdae163a3e4e815b5119ddfb9f0, type: 3}
