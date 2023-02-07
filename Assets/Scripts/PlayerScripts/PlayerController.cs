@@ -652,6 +652,8 @@ public class PlayerController : MonoBehaviour
         audPlayerShootVol = SaveManager.instance.gameData.sfxVol;
         audPlayerStepsVol = SaveManager.instance.gameData.sfxVol;
         audPlayerTakesDamageVol = SaveManager.instance.gameData.sfxVol;
+        cam.XSen = SaveManager.instance.gameData.xSen;
+        cam.YSen = SaveManager.instance.gameData.ySen;
     }
 
     #region DevTools

@@ -103,8 +103,8 @@ public class ButtonFunctions : MonoBehaviour
 
         //update sensitivity slider position with current value
         #region ValueUpdate
-        GameManager.instance.xSenSlider.value = GameManager.instance.playerScript.cam.XSen;
-        GameManager.instance.ySenSlider.value = GameManager.instance.playerScript.cam.YSen;
+        GameManager.instance.xSenSlider.value = SaveManager.instance.gameData.xSen;
+        GameManager.instance.ySenSlider.value = SaveManager.instance.gameData.ySen;
         GameManager.instance.sfxBar.value = SaveManager.instance.gameData.sfxVol;
         GameManager.instance.musicBar.value = SaveManager.instance.gameData.musicVol;
         GameManager.instance.menuSfxBar.value = SaveManager.instance.gameData.menuSfxVol;
