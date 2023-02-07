@@ -60,8 +60,7 @@ public class MusicManager : MonoBehaviour
     public void PlayThatRadio(int indx = 0) 
     {
         index = indx;
-        UpdateMusicVol();
-        Debug.Log(index + " : " + (musicClips.Length - 1));
+        UpdateMusicVol();        
         musicPlayer.Stop();
         musicPlayer.PlayOneShot(musicClips[indx]);
     }

@@ -408,7 +408,7 @@ public class GameManager : MonoBehaviour
 
     void MusicUpdate() 
     {
-        Debug.Log(SceneManager.GetActiveScene().buildIndex + " || " + SceneManager.sceneCountInBuildSettings);
+        
         if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings &&
             SceneManager.GetActiveScene().buildIndex >= 0)
         {
