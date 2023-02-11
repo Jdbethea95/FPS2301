@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7210741043138117145}
   - component: {fileID: 7210741043138117146}
   - component: {fileID: 7210741043138117147}
+  - component: {fileID: 888207285}
   m_Layer: 0
   m_Name: Sludge
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 15cc308d0cff1314091ada996a10eb4d, type: 2}
+  - {fileID: 2100000, guid: 6dcf759867bfc4ef0b52caed976f7996, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,3 +113,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sludgeDamage: 3
   toxicRate: 3
+--- !u!114 &888207285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7210741043138117124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45744f1f44d72d4596664ca89dcebf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollX: 0.01
+  scrollY: 0.01
+  rend: {fileID: 7210741043138117145}
