@@ -515,10 +515,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
-    - target: {fileID: 3324217181901982333, guid: e6ca50c9bc7c1fe44965221ca3ccff49, type: 3}
-      propertyPath: enemyCount
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ca50c9bc7c1fe44965221ca3ccff49, type: 3}
 --- !u!1001 &512032659
