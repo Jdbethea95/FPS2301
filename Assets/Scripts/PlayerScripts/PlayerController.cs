@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [Range(1, 3)] [SerializeField] int jumpMax;
     [SerializeField] int jumpCount;
     [SerializeField] float coyoteOffset;
+    [SerializeField] float coyoteSphereHeight;
 
     [Header("----- Gun Stats -----")]
     [Range(1, 50)] [SerializeField] int shootDamage = 10;
@@ -252,7 +253,7 @@ public class PlayerController : MonoBehaviour
     bool IsGrounded() 
     {
 
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1f,
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y - coyoteSphereHeight,
                                    transform.position.z);
 
         if (Physics.CheckSphere(pos, coyoteOffset, 3))
