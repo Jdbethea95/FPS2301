@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005162593}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.765, y: 0, z: 8.0625}
+  m_LocalPosition: {x: -0.69, y: 0, z: -0.03}
   m_LocalScale: {x: 5.3025, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45,7 +45,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2.33
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1005162594
 MonoBehaviour:
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 9999
-  timer: 15
+  timer: 8
   spawnPoints:
   - {fileID: 2133439179}
   isMinions: 1
@@ -90,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133439178}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.7001415, y: 0.040000476, z: -32.75}
+  m_LocalPosition: {x: 0.18, y: 0.040000476, z: 3.9}
   m_LocalScale: {x: 0.047147572, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,7 +127,8 @@ MonoBehaviour:
   - {fileID: 627066583853161830, guid: ee5868aa876e22f4f8950192c7f0bb07, type: 3}
   - {fileID: 753428896529195182, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   - {fileID: 8653942892982929197, guid: f7bb09cb30835944ba107594abfa4976, type: 3}
-  type: 3
+  - {fileID: 8653942892982929197, guid: 23f5f3049c4ec524e9aee43b72fed7b1, type: 3}
+  type: 4
   enemySightRadius: 120
   isMinion: 1
 --- !u!1 &66270771757238811
@@ -563,7 +564,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2262507993680726683}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0}
-  m_LocalPosition: {x: 1.8340406, y: 0.04, z: -36.45}
+  m_LocalPosition: {x: -0.04, y: 0.04, z: 4.9}
   m_LocalScale: {x: 0.047147572, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -600,7 +601,8 @@ MonoBehaviour:
   - {fileID: 627066583853161830, guid: ee5868aa876e22f4f8950192c7f0bb07, type: 3}
   - {fileID: 753428896529195182, guid: e9d2a2fc77a65294d9f6994743a7c6fa, type: 3}
   - {fileID: 8653942892982929197, guid: f7bb09cb30835944ba107594abfa4976, type: 3}
-  type: 3
+  - {fileID: 8653942892982929197, guid: 23f5f3049c4ec524e9aee43b72fed7b1, type: 3}
+  type: 4
   enemySightRadius: 120
   isMinion: 1
 --- !u!1 &2262507993819651663
@@ -629,7 +631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2262507993819651663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.9750004, y: 0, z: 11.1625}
+  m_LocalPosition: {x: -0.41, y: 0, z: -0}
   m_LocalScale: {x: 5.3025, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -648,7 +650,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.94
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2262507993819651650
 MonoBehaviour:
@@ -663,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 9999
-  timer: 15
+  timer: 7
   spawnPoints:
   - {fileID: 2262507993680726684}
   isMinions: 1

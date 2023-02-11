@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    enum EnemyType {Base, Sniper, Smg, Chaser}
+    enum EnemyType {Base, Sniper, Smg, Chaser, Minion}
 
     [SerializeField] GameObject[] enemies;
     [SerializeField] EnemyType type;
@@ -28,6 +28,11 @@ public class SpawnPoint : MonoBehaviour
             case EnemyType.Chaser:
                 currentEnemy = Instantiate(enemies[3], transform.position, transform.rotation).GetComponent<SphereCollider>();
                 break;
+            case EnemyType.Minion:
+                if(enemies.Length >= 5)
+                currentEnemy = Instantiate(enemies[4], transform.position, transform.rotation).GetComponent<SphereCollider>();
+                break;
+
         }
 
         currentEnemy.radius = enemySightRadius;
