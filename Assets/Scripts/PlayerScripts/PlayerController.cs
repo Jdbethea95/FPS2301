@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [Range(5, 10)] [SerializeField] int jumpHeight;
     [Range(1, 3)] [SerializeField] int jumpMax;
     [SerializeField] int jumpCount;
+    [SerializeField] float coyoteOffset;
 
     [Header("----- Gun Stats -----")]
     [Range(1, 50)] [SerializeField] int shootDamage = 10;
@@ -247,15 +248,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
     bool IsGrounded() 
     {
 
-        Ray ray = new Ray(transform.position, Vector3.down);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1f,
+                                   transform.position.z);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 2f))
+        if (Physics.CheckSphere(pos, coyoteOffset, 3))
         {
             return true;
         }
+
         return false;
     }
 
