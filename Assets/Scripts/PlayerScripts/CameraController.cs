@@ -17,7 +17,13 @@ public class CameraController : MonoBehaviour
     [Tooltip("Invert Vertical Input")]
     [SerializeField] bool invertX;
 
+    [Header("----- shake -----")]
+    [SerializeField] float duration;
+    [SerializeField] float strength;
+
     float xRotation;
+    public bool isShaking = false;
+    Vector3 ogPos;
 
     public float YSen 
     {
@@ -35,12 +41,16 @@ public class CameraController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        ogPos = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
         Rotation();
+
+        if (isShaking)
+            StartCoroutine(Shake(duration, strength));
     }
 
 
@@ -58,5 +68,33 @@ public class CameraController : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         transform.parent.Rotate(Vector3.up * mouseX);
+    }
+
+    public void ActivateShake(float time, float magnetude) 
+    {
+        isShaking = true;
+        duration = time;
+        strength = magnetude;
+    }
+
+    IEnumerator Shake(float time, float strength)
+    {
+        Vector3 pos = transform.localPosition;
+
+        float timer = 0f;
+
+        while (timer <= time)
+        {
+            float x = Random.Range(-1f, 1f * strength);
+            float y = Random.Range(-1f, 1f * strength);
+            transform.localPosition = new Vector3(x, y, pos.z);
+
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.localPosition = ogPos;
+        isShaking = false;
     }
 }

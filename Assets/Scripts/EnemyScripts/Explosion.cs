@@ -7,6 +7,8 @@ public class Explosion : MonoBehaviour
     [Header("----- Explode Stats -----")]
     [SerializeField] int knockBackAmount;
     [SerializeField] bool pull;
+    [SerializeField] float shakeDuration;
+    [SerializeField] float shakeMagnitude;
 
     [Header("----- Damage Stats -----")]
     [SerializeField] bool doesDamage;
@@ -19,6 +21,7 @@ public class Explosion : MonoBehaviour
 
     [Tooltip("The amount reduced from maxGrowth to Lower Linger Time")]
     [Range(.55f, .11f)][SerializeField] float lingerTime;
+
 
 
     private void Update()
@@ -38,6 +41,10 @@ public class Explosion : MonoBehaviour
         if (doesDamage)
         {
             GameManager.instance.playerScript.TakeDamage(explosionDmg, transform.position);
+
+            if(GameManager.instance.playerScript.CurrentHealth > 0)
+            GameManager.instance.playerScript.cam.ActivateShake(shakeDuration, shakeMagnitude);
+
             doesDamage = false;
         }
 
@@ -58,4 +65,6 @@ public class Explosion : MonoBehaviour
             Damage();
         }
     }
+
+
 }

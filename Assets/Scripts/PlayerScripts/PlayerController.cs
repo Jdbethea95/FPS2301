@@ -463,7 +463,12 @@ public class PlayerController : MonoBehaviour
         UpdatePlayerHp();
 
         if (hp <= 0)
+        {
+            cam.isShaking = false;
             GameManager.instance.PlayerDeath();
+            
+        }
+            
     }
 
     void ReduceHeat()

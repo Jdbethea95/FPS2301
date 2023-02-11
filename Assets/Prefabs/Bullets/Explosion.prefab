@@ -112,6 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockBackAmount: 60
   pull: 0
+  shakeDuration: 0.25
+  shakeMagnitude: 0.5
   doesDamage: 1
   explosionDmg: 5
   isGrowing: 1
