@@ -29,12 +29,13 @@ public class BotKiller : MonoBehaviour
             renderBot.material = matty;
             matswap = false;
         }
+
         Material[] mats = renderBot.materials;
 
         mats[0].SetFloat("_Cutoff", Mathf.Sin(ticker * speed));
         ticker += Time.deltaTime;
 
-        // Unity does not allow meshRenderer.materials[0]...
+       
         renderBot.materials = mats;
     }
 }
