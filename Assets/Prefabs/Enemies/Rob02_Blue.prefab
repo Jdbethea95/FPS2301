@@ -665,13 +665,16 @@ MonoBehaviour:
   animator: {fileID: 627066583853161754}
   body: {fileID: 627066583853161752}
   audioPlayer: {fileID: 1338454734905944986}
+  ranger: {fileID: 627066583853161831}
   hp: 5
   rotSpeed: 300
   speedMult: 0
   viewAngle: 90
   shootAngle: 65
-  despawnTime: 3
+  despawnTime: 2
   type: 0
+  graveDepth: 7
+  sinkSpeed: 0.5
   bullet: {fileID: 6716093678165597531, guid: b689dfb8ea7456a428099e496f8a31e5, type: 3}
   explosion: {fileID: 0}
   shootPos: {fileID: 627066582849741627}

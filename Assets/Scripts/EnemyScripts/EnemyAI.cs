@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
-    enum EnemyType { Shoot, Explode}
+    enum EnemyType { Shoot, Explode }
 
     [Header("----- Components -----")]
     [SerializeField] NavMeshAgent agent;
@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Animator animator;
     [SerializeField] Collider body;
     [SerializeField] AudioSource audioPlayer;
+    [SerializeField] SphereCollider ranger;
 
     [Header("----- Enemy Stats -----")]
     [Range(1, 100)] [SerializeField] int hp = 10;
@@ -23,11 +24,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int despawnTime;
     [SerializeField] EnemyType type;
 
+    [Header("----- death Stats -----")]
+    [SerializeField] int graveDepth;
+    [SerializeField] float sinkSpeed;
+
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject explosion;
     [SerializeField] Transform shootPos;
-    [Range(0,3)][SerializeField] int percision;
+    [Range(0, 3)] [SerializeField] int percision;
     [Range(5, 100)] [SerializeField] int shootDist;
     [Range(0.1f, 2)] [SerializeField] float shootRate;
     [Range(15, 50)] [SerializeField] int bulletSpeed;
@@ -35,16 +40,17 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audEnemyTakesDamage;
-    [Range(0, 5)][SerializeField] float audEnemyTakesDamageVol;
+    [Range(0, 5)] [SerializeField] float audEnemyTakesDamageVol;
     [SerializeField] AudioClip[] audEnemySteps;
-    [Range(0, 5)][SerializeField] float audEnemyStepsVol;
+    [Range(0, 5)] [SerializeField] float audEnemyStepsVol;
     [SerializeField] AudioClip[] audEnemyShoot;
-    [Range(0, 5)][SerializeField] float audEnemyShootVol;
+    [Range(0, 5)] [SerializeField] float audEnemyShootVol;
 
     [Header("----- Side Options -----")]
     public bool reportDeath = true;
 
     Vector3 playerDir;
+    Vector3 deathSpot;
     bool playerInRange = false;
     float angleToPlayer;
     bool isDead = false;
@@ -53,18 +59,18 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
 
-    public int ShootDist 
+    public int ShootDist
     {
         private get { return shootDist; }
-        set 
+        set
         {
             if (value > 5 && value < 100)
                 shootDist = value;
         }
     }
-    public int SpeedMult 
+    public int SpeedMult
     {
-        private get { return speedMult;}
+        private get { return speedMult; }
         set { speedMult = value; }
     }
 
@@ -80,12 +86,12 @@ public class EnemyAI : MonoBehaviour, IDamage
             shootDist = 2;
             agent.stoppingDistance = 2;
         }
-            
+
     }
 
     private void Update()
     {
-        
+
         animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
         //Checks to see if Player Triggers Sphere Collider
@@ -93,10 +99,17 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             canSeePlayer();
         }
-        else if(isDead) 
+        else if (isDead)
         {
             if (Time.time > despawnTimer + despawnTime)
-                Destroy(gameObject);            
+            {
+
+                transform.position = Vector3.Lerp(transform.position, deathSpot, sinkSpeed * Time.deltaTime);
+
+                if (transform.position.y <= deathSpot.y + 1.2f)
+                    Destroy(gameObject);
+
+            }
         }
 
     }
@@ -108,39 +121,46 @@ public class EnemyAI : MonoBehaviour, IDamage
     /// </summary>
     /// <param name="dmg">Applies Damage to Enemy</param>
     public void TakeDamage(int dmg)
-    {        
+    {
         hp -= dmg;
         animator.SetBool("PlayerNear", true);
         //animator.SetTrigger("Hurt");
 
         if (hp <= 0)
         {
-            agent.stoppingDistance = int.MaxValue;
+            body.enabled = false;
+            ranger.enabled = false;
+            agent.SetDestination(transform.position);
+            agent.enabled = false;
             animator.SetBool("Dead", true);
             isDead = true;
-            body.enabled = false;
+
+
+            deathSpot = new Vector3(transform.position.x, transform.position.y - graveDepth,
+                                    transform.position.z);
 
             if (reportDeath)
             {
                 GameManager.instance.UpdateEnemiesRemaining(-1);
-                GameManager.instance.currentScore.EnemyScore = 1;                
+                GameManager.instance.currentScore.EnemyScore = 1;
             }
 
             GameManager.instance.playerScript.DashPointGain();
             despawnTimer = Time.time;
             //Destroy(gameObject);
         }
-        else 
-        { 
-            
+        else
+        {
+
             agent.SetDestination(GameManager.instance.player.transform.position);
             if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
             {
-                StartCoroutine(playSteps()); 
+                StartCoroutine(playSteps());
             }
         }
 
     }
+
     void canSeePlayer()
     {
         //Provides player's direction from enemy
@@ -162,14 +182,14 @@ public class EnemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-        
+
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {
                 //sets destination for enemy pathing
                 agent.SetDestination(GameManager.instance.player.transform.position);
                 if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
                 {
-                    StartCoroutine(playSteps()); 
+                    StartCoroutine(playSteps());
                 }
 
                 if (agent.remainingDistance < agent.stoppingDistance)
@@ -177,7 +197,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                     FacePlayer();
                 }
 
-                
+
                 switch (type)
                 {
                     case EnemyType.Shoot:
@@ -207,7 +227,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 yield return new WaitForSeconds(0.4f);
             }
-            else if(agent.speed == 6)
+            else if (agent.speed == 6)
             {
                 yield return new WaitForSeconds(0.3f);
             }
@@ -221,7 +241,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         playerDir.y = 0;
 
         Quaternion rotate = Quaternion.LookRotation(playerDir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * rotSpeed);        
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotate, Time.deltaTime * rotSpeed);
     }
 
     IEnumerator Shoot()
@@ -245,7 +265,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    void Explode() 
+    void Explode()
     {
         Instantiate(explosion, transform.position, explosion.transform.rotation);
         TakeDamage(int.MaxValue);
