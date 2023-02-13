@@ -18,11 +18,13 @@ public class Explosion : MonoBehaviour
     [SerializeField] bool isGrowing;
     [SerializeField] float growthRate;
     [SerializeField] int maxGrowth;
-
+    [SerializeField] MeshRenderer renderSphere;
+    [SerializeField] int shimmerSpeed;
+    float timer = 3.8f;
     [Tooltip("The amount reduced from maxGrowth to Lower Linger Time")]
     [Range(.55f, .11f)][SerializeField] float lingerTime;
 
-
+    //_FresnelPower
 
     private void Update()
     {
@@ -30,6 +32,17 @@ public class Explosion : MonoBehaviour
         if (isGrowing)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * maxGrowth, growthRate * Time.deltaTime);
+
+            Material[] mats = renderSphere.materials;
+
+            
+            mats[0].SetFloat("_FresnelPower", timer);
+            timer -= shimmerSpeed * Time.deltaTime;
+            if (timer <= 0)
+                timer = 0;
+
+            renderSphere.materials = mats;
+
             if (transform.localScale.y >= maxGrowth - lingerTime)
                 Destroy(gameObject); 
         }
