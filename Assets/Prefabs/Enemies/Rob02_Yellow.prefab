@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 753428895570791445}
   - component: {fileID: 753428895570791446}
+  - component: {fileID: 6713337336744745232}
   m_Layer: 0
   m_Name: rob02
   m_TagString: Untagged
@@ -360,6 +361,22 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0058428645, y: 0.55144614, z: -0.009128392}
     m_Extent: {x: 0.67702323, y: 0.9555097, z: 0.6752512}
   m_DirtyAABB: 0
+--- !u!114 &6713337336744745232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753428895570791444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a08d93b2d31114d821d3b28ba27378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderBot: {fileID: 753428895570791446}
+  speed: 0.5
+  matty: {fileID: 2100000, guid: 5b92aedf7305acd4cab79d175065e6f4, type: 2}
+  killIt: 0
 --- !u!1 &753428895576221774
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +918,7 @@ MonoBehaviour:
   body: {fileID: 753428896529195176}
   audioPlayer: {fileID: -798960782205101969}
   ranger: {fileID: 753428896529195183}
+  killer: {fileID: 6713337336744745232}
   hp: 10
   rotSpeed: 300
   speedMult: 2

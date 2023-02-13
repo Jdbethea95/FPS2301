@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Collider body;
     [SerializeField] AudioSource audioPlayer;
     [SerializeField] SphereCollider ranger;
+    [SerializeField] BotKiller killer;
 
     [Header("----- Enemy Stats -----")]
     [Range(1, 100)] [SerializeField] int hp = 10;
@@ -104,10 +105,13 @@ public class EnemyAI : MonoBehaviour, IDamage
             if (Time.time > despawnTimer + despawnTime)
             {
 
-                transform.position = Vector3.Lerp(transform.position, deathSpot, sinkSpeed * Time.deltaTime);
-
-                if (transform.position.y <= deathSpot.y + 1.2f)
+                //transform.position = Vector3.Lerp(transform.position, deathSpot, sinkSpeed * Time.deltaTime);
+                if (killer.killIt)
                     Destroy(gameObject);
+
+                killer.killIt = true;
+                despawnTimer = Time.time;
+
 
             }
         }

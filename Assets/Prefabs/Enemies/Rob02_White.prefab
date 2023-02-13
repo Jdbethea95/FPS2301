@@ -90,6 +90,7 @@ MonoBehaviour:
   body: {fileID: 1133406660694679496}
   audioPlayer: {fileID: 6543567002704576418}
   ranger: {fileID: 1133406660694679497}
+  killer: {fileID: 4834853816409591999}
   hp: 5
   rotSpeed: 300
   speedMult: 1
@@ -711,6 +712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7948616131183977376}
   - component: {fileID: 5945604916263125230}
+  - component: {fileID: 4834853816409591999}
   m_Layer: 0
   m_Name: rob02
   m_TagString: Untagged
@@ -809,6 +811,22 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0058428645, y: 0.55144614, z: -0.009128392}
     m_Extent: {x: 0.67702323, y: 0.9555097, z: 0.6752512}
   m_DirtyAABB: 0
+--- !u!114 &4834853816409591999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3858384014918232107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a08d93b2d31114d821d3b28ba27378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderBot: {fileID: 5945604916263125230}
+  speed: 0.5
+  matty: {fileID: 2100000, guid: 5a554fc9eef5ea442bfb20baf125895d, type: 2}
+  killIt: 0
 --- !u!1 &4574306563370032463
 GameObject:
   m_ObjectHideFlags: 0
