@@ -952,6 +952,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 98a49d739017e9741be7a98d1f723443, type: 3}
   - {fileID: 8300000, guid: 0cea4f2697c9cae43bb627a4e40ef563, type: 3}
   audEnemyShootVol: 2.92
+  audEnemydeath: {fileID: 8300000, guid: 83f6d7a82c3fbae4ebca6ad0d46b7bf4, type: 3}
   reportDeath: 1
 --- !u!95 &753428896529195178
 Animator:

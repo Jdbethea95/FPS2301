@@ -24,7 +24,24 @@ public class Explosion : MonoBehaviour
     [Tooltip("The amount reduced from maxGrowth to Lower Linger Time")]
     [Range(.55f, .11f)][SerializeField] float lingerTime;
 
+
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource audPlayer;
+    [SerializeField] AudioClip[] clips;
+
     //_FresnelPower
+
+
+
+    private void Start()
+    {
+        audPlayer.volume = SaveManager.instance.gameData.sfxVol;
+        float range = Random.Range(-1f, 1f);
+        int index = Random.Range(0, 2);
+        audPlayer.pitch = range;
+        audPlayer.PlayOneShot(clips[index]);
+    }
 
     private void Update()
     {

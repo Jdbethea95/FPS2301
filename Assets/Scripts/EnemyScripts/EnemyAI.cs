@@ -46,6 +46,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Range(0, 5)] [SerializeField] float audEnemyStepsVol;
     [SerializeField] AudioClip[] audEnemyShoot;
     [Range(0, 5)] [SerializeField] float audEnemyShootVol;
+    [SerializeField] AudioClip audEnemydeath;
 
     [Header("----- Side Options -----")]
     public bool reportDeath = true;
@@ -139,6 +140,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             animator.SetBool("Dead", true);
             isDead = true;
 
+            audioPlayer.PlayOneShot(audEnemydeath);
 
             deathSpot = new Vector3(transform.position.x, transform.position.y - graveDepth,
                                     transform.position.z);

@@ -950,6 +950,7 @@ MonoBehaviour:
   audEnemyStepsVol: 5
   audEnemyShoot: []
   audEnemyShootVol: 0
+  audEnemydeath: {fileID: 8300000, guid: 83f6d7a82c3fbae4ebca6ad0d46b7bf4, type: 3}
   reportDeath: 0
 --- !u!95 &8653942892982929185
 Animator:
