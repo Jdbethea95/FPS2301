@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip[] audPlayerShoot;
     [SerializeField] AudioClip[] ogPlayerShootAud;
     [Range(0, 1)] [SerializeField] float audPlayerShootVol;
+    [SerializeField] AudioClip overheatAud;
 
 
 
@@ -360,6 +361,7 @@ public class PlayerController : MonoBehaviour
         {
             isOverheated = true;
             animGun.SetTrigger("OverHeat");
+            audioPlayer.PlayOneShot(overheatAud, audPlayerShootVol);
             //affects heat amount if not zeroed when fired by the player.
             zeroedHeat = false;
             overHeat = overHeatMax;
