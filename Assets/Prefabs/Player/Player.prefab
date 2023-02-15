@@ -14917,6 +14917,9 @@ MonoBehaviour:
   lockMin: -90
   lockMax: 90
   invertX: 0
+  duration: 0
+  strength: 0
+  isShaking: 0
 --- !u!20 &8413257563753050942
 Camera:
   m_ObjectHideFlags: 0
@@ -15079,6 +15082,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3bc27ee5c2255c042adf39566f6f4576, type: 3}
   - {fileID: 8300000, guid: 28cb8d5929ebe824bacaecfe81f0f448, type: 3}
   audPlayerShootVol: 0.293
+  overheatAud: {fileID: 8300000, guid: 4f6a9923b62b86c4cacd8776185ae65a, type: 3}
   ogGunModel: {fileID: 4300000, guid: c61b3e31a550fa34eabfd4cf550b7494, type: 3}
   ogMaterial: {fileID: 2100000, guid: 0b860aa49ec587447a0c903606bcc8d2, type: 2}
   pushBack: {x: 0, y: 0, z: 0}
