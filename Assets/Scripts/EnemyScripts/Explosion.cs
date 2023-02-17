@@ -22,7 +22,7 @@ public class Explosion : MonoBehaviour
     [SerializeField] int shimmerSpeed;
     float timer = 3.8f;
     [Tooltip("The amount reduced from maxGrowth to Lower Linger Time")]
-    [Range(.55f, .11f)][SerializeField] float lingerTime;
+    [Range(.55f, .11f)] [SerializeField] float lingerTime;
 
 
 
@@ -39,8 +39,11 @@ public class Explosion : MonoBehaviour
         audPlayer.volume = SaveManager.instance.gameData.sfxVol;
         float range = Random.Range(-1f, 1f);
         int index = Random.Range(0, 2);
+
         audPlayer.pitch = range;
         audPlayer.PlayOneShot(clips[index]);
+
+
     }
 
     private void Update()
@@ -52,7 +55,7 @@ public class Explosion : MonoBehaviour
 
             Material[] mats = renderSphere.materials;
 
-            
+
             mats[0].SetFloat("_FresnelPower", timer);
             timer -= shimmerSpeed * Time.deltaTime;
             if (timer <= 0)
@@ -61,19 +64,19 @@ public class Explosion : MonoBehaviour
             renderSphere.materials = mats;
 
             if (transform.localScale.y >= maxGrowth - lingerTime)
-                Destroy(gameObject); 
+                Destroy(gameObject);
         }
     }
 
 
-    void Damage() 
+    void Damage()
     {
         if (doesDamage)
         {
             GameManager.instance.playerScript.TakeDamage(explosionDmg, transform.position);
 
-            if(GameManager.instance.playerScript.CurrentHealth > 0)
-            GameManager.instance.playerScript.cam.ActivateShake(shakeDuration, shakeMagnitude);
+            if (GameManager.instance.playerScript.CurrentHealth > 0)
+                GameManager.instance.playerScript.cam.ActivateShake(shakeDuration, shakeMagnitude);
 
             doesDamage = false;
         }
@@ -82,15 +85,15 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!pull)
+        if (!pull && other.CompareTag("Player"))
         {
             GameManager.instance.playerScript.pushBack = (GameManager.instance.player.transform.position -
                                                           transform.position).normalized * knockBackAmount;
             Damage();
         }
-        else 
+        else
         {
-            GameManager.instance.playerScript.pushBack = (transform.position - 
+            GameManager.instance.playerScript.pushBack = (transform.position -
                                                          GameManager.instance.player.transform.position).normalized * knockBackAmount;
             Damage();
         }

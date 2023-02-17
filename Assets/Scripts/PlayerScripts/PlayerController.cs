@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public int CurrentHealth { get { return hp; }}
+    public int CurrentHealth { get { return hp; } }
 
     //center of mass
     public Vector3 COM
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
         if (PerkManager.instance.activePerks[0] != null || PerkManager.instance.activePerks[1] != null ||
             PerkManager.instance.activePerks[2] != null)
         {
-            
+
             DeActivatePerks();
             ActivatePerks();
         }
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
         audPlayerJumpVol = SaveManager.instance.gameData.sfxVol;
         audPlayerShootVol = SaveManager.instance.gameData.sfxVol;
         audPlayerStepsVol = SaveManager.instance.gameData.sfxVol;
-        audPlayerTakesDamageVol = SaveManager.instance.gameData.sfxVol; 
+        audPlayerTakesDamageVol = SaveManager.instance.gameData.sfxVol;
         #endregion
 
     }
@@ -186,10 +186,10 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(playSteps());
 
             Movement();
-          
+
             if (Input.GetButtonDown("Sprint") && dashCount > 0)
                 Dash();
-            
+
 
             if (!isShooting && Input.GetButtonDown("Shoot") && !GameManager.instance.isPaused && !isOverheated)
                 StartCoroutine(Shoot());
@@ -221,14 +221,14 @@ public class PlayerController : MonoBehaviour
 
         animGun.SetFloat("GunBob", animSpeed);
 
-        
+
 
         damage = Mathf.FloorToInt(controller.velocity.magnitude);
         //Debug.Log(Mathf.FloorToInt(controller.velocity.magnitude));
 
         //pushback implementation inside Jump
 
-            Jump();
+        Jump();
 
     }
 
@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
     {
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax && IsGrounded())
-        {            
+        {
             velocity.y = jumpHeight;
             jumpCount++;
             //audioPlayer.PlayOneShot(audPlayerJump[Random.Range(0, audPlayerJump.Length)], audPlayerJumpVol);
@@ -251,7 +251,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    bool IsGrounded() 
+    bool IsGrounded()
     {
 
         Vector3 pos = new Vector3(transform.position.x, transform.position.y - coyoteSphereHeight,
@@ -310,7 +310,7 @@ public class PlayerController : MonoBehaviour
         pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
     }
 
-    void Dash() 
+    void Dash()
     {
         if (Input.GetAxis("Vertical") != 0)
         {
@@ -331,14 +331,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void DashPointGain() 
+    public void DashPointGain()
     {
         if (dashCount < 3)
         {
             dashCount++;
             GameManager.instance.GainBoost();
         }
-            
+
     }
 
     #endregion
@@ -468,9 +468,9 @@ public class PlayerController : MonoBehaviour
         {
             cam.isShaking = false;
             GameManager.instance.PlayerDeath();
-            
+
         }
-            
+
     }
 
     void ReduceHeat()
@@ -533,12 +533,12 @@ public class PlayerController : MonoBehaviour
         dashParticles.Play();
     }
 
-    public void SetSpeed(int amount) 
+    public void SetSpeed(int amount)
     {
         speed = amount;
     }
 
-    public void StopDashPart() 
+    public void StopDashPart()
     {
         dashParticles.Stop();
     }
@@ -658,7 +658,7 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    public void UpdatePlayerSFX() 
+    public void UpdatePlayerSFX()
     {
         audPlayerJumpVol = SaveManager.instance.gameData.sfxVol;
         audPlayerShootVol = SaveManager.instance.gameData.sfxVol;
@@ -670,33 +670,33 @@ public class PlayerController : MonoBehaviour
 
     #region DevTools
 
-    public void MaxHealth() 
+    public void MaxHealth()
     {
         hp = int.MaxValue;
         maxHp = int.MaxValue;
     }
-    public void RevertHealth() 
+    public void RevertHealth()
     {
         hp = ogHp;
         maxHp = ogHp;
     }
 
-    public void MaxTheHeat() 
+    public void MaxTheHeat()
     {
         overHeatMax = int.MaxValue;
     }
 
-    public void BringTheHeat() 
+    public void BringTheHeat()
     {
         overHeat = 0;
         overHeatMax = ogOverHeatMax;
     }
 
-    public void MaxDash() 
+    public void MaxDash()
     {
         dashCount = int.MaxValue;
     }
-    public void RevertDash() 
+    public void RevertDash()
     {
         dashCount = 3;
     }
