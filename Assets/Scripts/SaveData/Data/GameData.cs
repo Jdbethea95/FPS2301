@@ -24,6 +24,7 @@ public class GameData
 
     public GameData()
     {
+        
         xSen = 300f;
         ySen = 300f;
 
@@ -33,10 +34,11 @@ public class GameData
 
         playerName = "JZH";
 
+
         sfxVol = .4f;
         musicVol = .3f;
         menuMusicVol = .25f;
-        menuSfxVol = .3f;
+        menuSfxVol = .25f;
 
     }
 
@@ -88,5 +90,6 @@ public class GameData
             levelLocks.Add(_bl[i]);
         }
     }
+    
 
 }

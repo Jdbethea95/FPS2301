@@ -22,12 +22,12 @@ public class SaveManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        gameData = new GameData();
+        NewGameData();
     }
 
     public void NewGame()
     {
-        gameData = new GameData();
+        NewGameData();
     }
 
     public void LoadGame()
@@ -43,7 +43,7 @@ public class SaveManager : MonoBehaviour
             gameData = new GameData(formatter.Deserialize(stream) as GameData);
 
             if (gameData.topLevel == null && gameData.playerName == "JZH")
-                gameData = new GameData();
+                NewGameData();
 
             Debug.Log(gameData.playerName);
             Debug.Log(gameData.topLevel);
@@ -53,7 +53,7 @@ public class SaveManager : MonoBehaviour
         }
         else 
         {
-            gameData = new GameData();
+            NewGameData();
         }
     }
 
@@ -67,7 +67,7 @@ public class SaveManager : MonoBehaviour
             FileStream stream = new FileStream(filePath, FileMode.Create);
 
             if (gameData.topLevel == null && gameData.playerName == "JZH")
-                gameData = new GameData();
+                NewGameData();
 
             formatter.Serialize(stream, gameData);
             stream.Close();
@@ -75,4 +75,49 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    void PlayerPrefCheck()
+    {
+        if (!PlayerPrefs.HasKey("xSen"))
+            PlayerPrefs.SetFloat("xSen", 300f);
+
+        if (!PlayerPrefs.HasKey("ySen"))
+            PlayerPrefs.SetFloat("ySen", 300f);
+
+        if (!PlayerPrefs.HasKey("sfxVol"))
+            PlayerPrefs.SetFloat("sfxVol", .4f);
+
+        if (!PlayerPrefs.HasKey("musicVol"))
+            PlayerPrefs.SetFloat("musicVol", .3f);
+
+        if (!PlayerPrefs.HasKey("menuMusicVol"))
+            PlayerPrefs.SetFloat("menuMusicVol", .25f);
+
+        if (!PlayerPrefs.HasKey("menuSfxVol"))
+            PlayerPrefs.SetFloat("menuSfxVol", .3f);
+
+    }
+
+    void NewGameData() 
+    {
+
+        PlayerPrefCheck();
+
+        gameData = new GameData();
+        gameData.xSen = PlayerPrefs.GetFloat("xSen");
+        gameData.ySen = PlayerPrefs.GetFloat("ySen");
+        gameData.sfxVol = PlayerPrefs.GetFloat("sfxVol");
+        gameData.musicVol = PlayerPrefs.GetFloat("musicVol"); ;
+        gameData.menuMusicVol = PlayerPrefs.GetFloat("menuMusicVol");
+        gameData.menuSfxVol = PlayerPrefs.GetFloat("menuSfxVol");
+    }
+
+    private void OnApplicationQuit()
+    {
+        gameData.xSen = PlayerPrefs.GetFloat("xSen");
+        gameData.ySen = PlayerPrefs.GetFloat("ySen");
+        gameData.sfxVol = PlayerPrefs.GetFloat("sfxVol");
+        gameData.musicVol = PlayerPrefs.GetFloat("musicVol"); ;
+        gameData.menuMusicVol = PlayerPrefs.GetFloat("menuMusicVol");
+        gameData.menuSfxVol = PlayerPrefs.GetFloat("menuSfxVol");
+    }
 }

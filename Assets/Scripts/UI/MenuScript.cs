@@ -97,6 +97,8 @@ public class MenuScript : MonoBehaviour
     {
         ScoreManager.instance.PlayChime();
 
+        PlayerPrefChange();
+
         SaveManager.instance.gameData.ySen = yBar.value;
         SaveManager.instance.gameData.xSen = xBar.value;
         SaveManager.instance.gameData.sfxVol = sfxBar.value;
@@ -109,6 +111,17 @@ public class MenuScript : MonoBehaviour
         MusicManager.instance.UpdateEnemySFX(SaveManager.instance.gameData.sfxVol);
         CloseSettings();
     }
+
+    void PlayerPrefChange() 
+    {
+        PlayerPrefs.SetFloat("xSen", xBar.value);
+        PlayerPrefs.SetFloat("ySen", yBar.value);
+        PlayerPrefs.SetFloat("sfxVol", sfxBar.value);
+        PlayerPrefs.SetFloat("musicVol", musicBar.value); ;
+        PlayerPrefs.SetFloat("menuMusicVol", menuSfxBar.value);
+        PlayerPrefs.SetFloat("menuSfxVol", menuMusicBar.value);
+    }
+
 
     #region VolumeMethods
 

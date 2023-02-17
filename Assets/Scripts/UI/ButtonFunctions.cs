@@ -137,6 +137,8 @@ public class ButtonFunctions : MonoBehaviour
         SaveManager.instance.gameData.menuSfxVol = GameManager.instance.menuSfxBar.value;
         SaveManager.instance.gameData.menuMusicVol = GameManager.instance.menuMusicBar.value;
 
+        PlayerPrefChange();
+
         MusicManager.instance.UpdateMusicVol();
         MusicManager.instance.UpdateEnemySFX(GameManager.instance.sfxBar.value);
         ScoreManager.instance.UpdateChimeVol();
@@ -145,6 +147,18 @@ public class ButtonFunctions : MonoBehaviour
 
         SettingsBack();
     }
+
+
+    void PlayerPrefChange()
+    {
+        PlayerPrefs.SetFloat("xSen", GameManager.instance.xSenSlider.value);
+        PlayerPrefs.SetFloat("ySen", GameManager.instance.ySenSlider.value);
+        PlayerPrefs.SetFloat("sfxVol", GameManager.instance.sfxBar.value);
+        PlayerPrefs.SetFloat("musicVol", GameManager.instance.musicBar.value);
+        PlayerPrefs.SetFloat("menuMusicVol", GameManager.instance.menuSfxBar.value);
+        PlayerPrefs.SetFloat("menuSfxVol", GameManager.instance.menuMusicBar.value);
+    }
+
 
     float CalculatePrecentage(float value)
     {
