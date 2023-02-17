@@ -193,8 +193,10 @@ public class GameManager : MonoBehaviour
 
                 if (SaveManager.instance.gameData.levelIndx < ScoreManager.instance.Scenes.Count)
                 {
+                    Debug.Log(SaveManager.instance.gameData.levelIndx);
                     SaveManager.instance.gameData.topLevel = ScoreManager.instance.Scenes[SaveManager.instance.gameData.levelIndx];
                     SaveManager.instance.gameData.levelLocks.Add(true);
+                    Debug.Log(SaveManager.instance.gameData.topLevel);
                 }
                     
             }

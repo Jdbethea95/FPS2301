@@ -50,7 +50,8 @@ public class GameData
         ySen = data.ySen;
 
         playerName = data.playerName;
-
+        topLevel = data.topLevel;
+        levelIndx = data.levelIndx;
         sfxVol = data.sfxVol;
         musicVol = data.musicVol;
         menuMusicVol = data.menuMusicVol;

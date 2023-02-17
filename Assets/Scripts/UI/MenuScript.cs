@@ -17,6 +17,9 @@ public class MenuScript : MonoBehaviour
     [Header("----- menus -----")]
     [SerializeField] GameObject namePlate;
     [SerializeField] GameObject settings;
+    [SerializeField] GameObject savePlate;
+    [SerializeField] GameObject loadPlate;
+    [SerializeField] GameObject loadPanel;
 
     [Header("----- menu items -----")]
     public Slider xBar;
@@ -32,6 +35,8 @@ public class MenuScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI menuMusicTxt;
     [SerializeField] TextMeshProUGUI menuSfxTxt;
 
+    [SerializeField] TextMeshProUGUI loadPlayerTape;
+
     [Header("----- buttons -----")]
     [SerializeField] Button play;
     [SerializeField] Button load;
@@ -39,6 +44,7 @@ public class MenuScript : MonoBehaviour
     [SerializeField] Button quit;
     [SerializeField] Button scoreBoard;
     [SerializeField] Button settingsBtn;
+    [SerializeField] Button credits;
    
     public void CallPlate()
     {
@@ -137,12 +143,48 @@ public class MenuScript : MonoBehaviour
 
     #endregion
 
+
+    public void OpenSavePlate() 
+    {
+        savePlate.SetActive(true);
+        DisableButtons();
+    }
+
+    public void OpenLoadPlate() 
+    {
+
+        StartCoroutine(LoadPanel());
+    }
+
+    public void CloseSavePlate() 
+    {
+        savePlate.SetActive(false);
+        EnableButtons();
+    }
+
+    public void CloseLoadPlate() 
+    {
+        loadPlate.SetActive(false);
+        EnableButtons();
+    }
+
+    IEnumerator LoadPanel() 
+    {
+        DisableButtons();
+        loadPanel.SetActive(true);
+        yield return new WaitForSeconds(1.3f);
+        loadPlayerTape.text = SaveManager.instance.gameData.playerName;
+        loadPanel.SetActive(false);
+        loadPlate.SetActive(true);
+    }
+
     public void DisableButtons() 
     {
         play.enabled = false;
         load.enabled = false;
         save.enabled = false;
         quit.enabled = false;
+        credits.enabled = false;
         scoreBoard.enabled = false;
         settingsBtn.enabled = false;
     }
@@ -153,6 +195,7 @@ public class MenuScript : MonoBehaviour
         load.enabled = true;
         save.enabled = true;
         quit.enabled = true;
+        credits.enabled = true;
         scoreBoard.enabled = true;
         settingsBtn.enabled = true;
     }
