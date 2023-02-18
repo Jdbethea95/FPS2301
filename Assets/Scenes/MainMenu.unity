@@ -1010,6 +1010,7 @@ GameObject:
   - component: {fileID: 215145413}
   - component: {fileID: 215145415}
   - component: {fileID: 215145414}
+  - component: {fileID: 215145416}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -1075,6 +1076,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215145412}
   m_CullTransparentMesh: 1
+--- !u!114 &215145416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215145412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b94484d3019304593621ca73f7a4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 2081812722}
+  audPlayer: {fileID: 8800215163321708619}
+  sample: {fileID: 8300000, guid: 95fb54ec4bb9d204fbfe195f076e1a73, type: 3}
+  barType: 1
 --- !u!1 &216087270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3327,6 +3344,7 @@ GameObject:
   - component: {fileID: 560607316}
   - component: {fileID: 560607318}
   - component: {fileID: 560607317}
+  - component: {fileID: 560607319}
   m_Layer: 5
   m_Name: MusicVol
   m_TagString: Untagged
@@ -3434,6 +3452,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 560607319}
+        m_TargetAssemblyTypeName: SliderSample, Assembly-CSharp
+        m_MethodName: OnMusicChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &560607319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560607315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b94484d3019304593621ca73f7a4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 560607318}
+  audPlayer: {fileID: 8800215163321708619}
+  sample: {fileID: 0}
+  barType: 0
 --- !u!1 &573532298
 GameObject:
   m_ObjectHideFlags: 0
@@ -4780,6 +4826,7 @@ GameObject:
   - component: {fileID: 877150246}
   - component: {fileID: 877150248}
   - component: {fileID: 877150247}
+  - component: {fileID: 877150249}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -4845,6 +4892,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877150245}
   m_CullTransparentMesh: 1
+--- !u!114 &877150249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877150245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b94484d3019304593621ca73f7a4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 1059601871}
+  audPlayer: {fileID: 8800215163321708619}
+  sample: {fileID: 8300000, guid: 5cc70fc2da1d66b4dba5db32535550ed, type: 3}
+  barType: 3
 --- !u!1 &888183857
 GameObject:
   m_ObjectHideFlags: 0
@@ -10867,6 +10930,7 @@ GameObject:
   - component: {fileID: 2025409377}
   - component: {fileID: 2025409379}
   - component: {fileID: 2025409378}
+  - component: {fileID: 2025409380}
   m_Layer: 5
   m_Name: MenuMusicVol
   m_TagString: Untagged
@@ -10974,6 +11038,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2025409380}
+        m_TargetAssemblyTypeName: SliderSample, Assembly-CSharp
+        m_MethodName: OnMenuMusicChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2025409380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025409376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b94484d3019304593621ca73f7a4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 2025409379}
+  audPlayer: {fileID: 8800215163321708619}
+  sample: {fileID: 0}
+  barType: 2
 --- !u!1 &2034645602
 GameObject:
   m_ObjectHideFlags: 0
@@ -12417,6 +12509,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2025409380}
+        m_TargetAssemblyTypeName: SliderSample, Assembly-CSharp
+        m_MethodName: RestoreMusicVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &4732225042938102340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12669,6 +12773,7 @@ GameObject:
   - component: {fileID: 8800215163321708618}
   - component: {fileID: 6482296477800203737}
   - component: {fileID: 1091157781592715740}
+  - component: {fileID: 8800215163321708619}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -13494,6 +13599,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cd05a9da76d7b418d9def565936975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &8800215163321708619
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5932209079803527055}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8859324163772641446
 GameObject:
   m_ObjectHideFlags: 0
