@@ -31,7 +31,7 @@ public class Explosion : MonoBehaviour
     [SerializeField] AudioClip[] clips;
 
     //_FresnelPower
-
+    bool isHit = false;
 
 
     private void Start()
@@ -85,17 +85,19 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!pull && other.CompareTag("Player"))
+        if (!pull && other.CompareTag("Player") && !isHit)
         {
             GameManager.instance.playerScript.pushBack = (GameManager.instance.player.transform.position -
                                                           transform.position).normalized * knockBackAmount;
             Damage();
+            isHit = true;
         }
-        else
+        else if (other.CompareTag("Player") && !isHit)
         {
             GameManager.instance.playerScript.pushBack = (transform.position -
                                                          GameManager.instance.player.transform.position).normalized * knockBackAmount;
             Damage();
+            isHit = true;
         }
     }
 
