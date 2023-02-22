@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        MusicManager.instance.UpdateEnemySFX(-80);
     }
 
     public void UnPause()
@@ -171,6 +172,7 @@ public class GameManager : MonoBehaviour
             activeMenu.SetActive(false); 
         }
         activeMenu = null;
+        MusicManager.instance.RestoreEnemySFX();
     }
     //test Level Locks
     public void WinCondition()

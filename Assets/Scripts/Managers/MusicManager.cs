@@ -14,7 +14,6 @@ public class MusicManager : MonoBehaviour
     [SerializeField] AudioMixer audMixer;
 
 
-
     private void Awake()
     {
         if (instance == null)
@@ -30,8 +29,6 @@ public class MusicManager : MonoBehaviour
         UpdateEnemySFX(SaveManager.instance.gameData.sfxVol);
         PlayThatRadio();
     }
-
-
 
 
 
@@ -63,6 +60,11 @@ public class MusicManager : MonoBehaviour
         UpdateMusicVol();        
         musicPlayer.Stop();
         musicPlayer.PlayOneShot(musicClips[indx]);
+    }
+
+    public void RestoreEnemySFX() 
+    {
+        UpdateEnemySFX(SaveManager.instance.gameData.sfxVol);
     }
 
 }
