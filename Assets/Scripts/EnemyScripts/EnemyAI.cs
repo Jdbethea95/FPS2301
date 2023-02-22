@@ -57,6 +57,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     bool isDead = false;
     bool isPlayingSteps;
+    bool motionless = false;
     float despawnTimer;
 
 
@@ -81,7 +82,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         agent.speed = agent.speed * speedMult;
 
         if (agent.speed == 0)
+        {
             agent.stoppingDistance = int.MaxValue;
+            motionless = true;
+        }
+            
 
         if (type == EnemyType.Explode)
         {
@@ -193,7 +198,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 //sets destination for enemy pathing
                 agent.SetDestination(GameManager.instance.player.transform.position);
-                if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps)
+                if (agent.remainingDistance > agent.stoppingDistance && !isPlayingSteps && !motionless)
                 {
                     StartCoroutine(playSteps());
                 }
