@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - ScoreGrid
   - Bullet
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Enemy
   - NoClip
   - Ground
-  - 
+  - wall
   - 
   - 
   - 
@@ -47,4 +48,7 @@ TagManager:
     locked: 0
   - name: Particles
     uniqueID: 3190998973
+    locked: 0
+  - name: wall
+    uniqueID: 3638694577
     locked: 0
